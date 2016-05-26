@@ -135,8 +135,10 @@ u--------
 \subsection{Access and integration requirements}
 
 \subsection{Quality requirements}
+Code needs to follow high development standards to produce professional code. Source code needs to be easily understood and maintainable.
 
 \subsubsection{Flexibility}
+The system needs to be able to accept a range of different object / model file types for both 2D and 3D files. CSV as well as other input data formats need to be supported.
 
 \subsubsection{Maintainability}
 	\begin{itemize}
@@ -144,26 +146,47 @@ u--------
 	\end{itemize}
 
 \subsubsection{Scalability}
+All major platforms should be catered for in support or aleast be relatively simple to port to. This includes:
 	\begin{itemize}
-		\item All major platforms should be catered for in support.
+		\item Windows
+		\item Mac
+		\item Linux		
 	\end{itemize}
-
-\subsubsection{Performance requirements}
+An added bonus would be:
 	\begin{itemize}
-		\item Consistent and high frame rate (75 or more fps)
+		\item Android
+		\item iOS
+		\item Any other mobile platform (Windows mobile, etc)
+	\end{itemize}
+	
+\subsubsection{Performance requirements}
+To ensure the best experience and prevent any motion sequence meeting performance requirements is crucial.
+	\begin{itemize}
+		\item Consistent and high frame rate (75 or more fps or 13.33 ms max per frame)
 		\item Low latency between input and display
 	\end{itemize}
-
+Oculus Rift's requirements for CV1 (Consumer Version 1) has the following explicitely stated requirements:
+\begin{itemize}
+	\item NVIDIA GTX 970 / AMD 290 equivalent or greater.
+	\item Intel i5-4590 equivalent or greater.
+	\item 8GB+ RAM.
+	\item Compatible HDMI 1.3 video output.
+	\item 2x USB 3.0 ports.
+	\item Windows 7 SP1 or newer.
+\end{itemize}
+Working backwards, DK2 requires atleast a GTX 770 equivelant card or better owning to the fact that it has 25\% less pixels compared to the CV1. Also it only needs to run at 75 fps compared to 90 fps of the CV1.
 \subsubsection{Reliability}
 	\begin{itemize}
 		\item The system should be able to handle user input without crashing.
 	\end{itemize}
 
 \subsubsection{Security}
+Currently security is not part of the requirements, however this could change at any stage.
 
 \subsubsection{Auditability}
 
 \subsubsection{Testability}
+There should be proper unit tests which cover all the contracts of the project. All tests should be automated and allow for both mock objects and integration tests.
 
 \subsubsection{Usability}
 	\begin{itemize}

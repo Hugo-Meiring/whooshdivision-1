@@ -7,14 +7,14 @@
 \contentsline {subsubsection}{Maintainability}{4}{section*.3}
 \contentsline {subsubsection}{Scalability}{4}{section*.4}
 \contentsline {subsubsection}{Performance requirements}{4}{section*.5}
-\contentsline {subsubsection}{Reliability}{4}{section*.6}
-\contentsline {subsubsection}{Security}{4}{section*.7}
-\contentsline {subsubsection}{Auditability}{4}{section*.8}
-\contentsline {subsubsection}{Testability}{4}{section*.9}
-\contentsline {subsubsection}{Usability}{4}{section*.10}
-\contentsline {subsubsection}{Integrability}{5}{section*.11}
-\contentsline {subsubsection}{Deployability}{5}{section*.12}
-\contentsline {subsection}{\numberline {0.3.3}Architectural responsibilities}{5}{subsection.0.3.3}
-\contentsline {subsection}{\numberline {0.3.4}Architecture constraints}{5}{subsection.0.3.4}
-\contentsline {section}{\numberline {0.4}Architecture design?}{5}{section.0.4}
-\contentsline {section}{\numberline {0.5}Initial Design}{6}{section.0.5}
+\contentsline {subsubsection}{Reliability}{5}{section*.6}
+\contentsline {subsubsection}{Security}{5}{section*.7}
+\contentsline {subsubsection}{Auditability}{5}{section*.8}
+\contentsline {subsubsection}{Testability}{5}{section*.9}
+\contentsline {subsubsection}{Usability}{5}{section*.10}
+\contentsline {subsubsection}{Integrability}{6}{section*.11}
+\contentsline {subsubsection}{Deployability}{6}{section*.12}
+\contentsline {subsection}{\numberline {0.3.3}Architectural responsibilities}{6}{subsection.0.3.3}
+\contentsline {subsection}{\numberline {0.3.4}Architecture constraints}{6}{subsection.0.3.4}
+\contentsline {section}{\numberline {0.4}Architecture design?}{6}{section.0.4}
+\contentsline {section}{\numberline {0.5}Initial Design}{7}{section.0.5}
