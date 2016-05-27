@@ -62,7 +62,7 @@ u13230795
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-Nontokozo Hlastwayo
+Nontokozo Hlatshwayo
 \end{flushleft}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
@@ -230,6 +230,21 @@ There should be proper unit tests which cover all the contracts of the project. 
 
 
 \section{Initial Design}  % proposed software architecture (this may evolve over the project)
+
+\subsection{Microservices Architecture}
+The application will have a hexagonal architecture with the four following components.
+\subsubsection{Presentation components}
+We will be using JSON object to recieve data from the user which will be the description of the scene, the preferred format of the output and other information required from the user. 
+
+\subsubsection{Business logic}
+Taking the user's input and processing it to a correct scene.
+
+\subsubsection{Database access logic}
+We will neeed to access the data from Wolfram Alpha and Google Public Data Explorer to create the scene. We have an output file. 
+
+\subsubsection{Application integration logic}
+Output of the whole application is to create the scene description given by the user.
+
 
 \subsection{Technologies}
 \subsubsection{Software}
