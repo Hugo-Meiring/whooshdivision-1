@@ -199,6 +199,7 @@ Currently security is not part of the requirements, however this could change at
 
 \subsubsection{Auditability}
 
+
 \subsubsection{Testability}
 There should be proper unit tests which cover all the contracts of the project. All tests should be automated and allow for both mock objects and integration tests.
 
@@ -231,8 +232,30 @@ There should be proper unit tests which cover all the contracts of the project. 
 \section{Initial Design}  % proposed software architecture (this may evolve over the project)
 
 \subsection{Technologies}
-Developing for VR we are choosing to use a game engine. Game engines are great since they offer almost all technologies to be used in a single package. Our game engine of choice is currently Unreal Engine 4 (UE4).\newline\newline UE4 provides cross platform support for Windows, Linux and Mac. It also has built in support for VR specifically for Oculus Rift headset which is going to be used.\newline\newline We will use Oculus Rift's Unreal engine integration.   
-
+\subsubsection{Software}
+\begin{enumerate}
+	\item \textbf{Game engine:}\\
+		Developing for VR, the obvious choice was to use a game engine as the underlying technology. Game engines provide a complete solution to many challenges like Virtual Reality support, object modelling, scene rendering, texturing and model file type support, and because of this the game engine itself will form the biggest part of the project's technology stack. The game engine chosen to this end is Unreal Engine 4, as it provides:
+		\begin{itemize}
+			\item Cross platform support for Windows, Linux and Mac OS.
+			\item Built-in support for the Oculus Rift
+			\item Support for all general 3D modelling functionality, such as object modelling, scene rendering, texturing, etc.
+		\end{itemize}
+		\textbf{Alternatives considered:}
+		\begin{enumerate}
+			\item Unity 5 %to complete, why choose unreal rather than unity?
+			\item CryEngine %to complete, why choose unreal rather than cryengine?
+		\end{enumerate}
+\end{enumerate}
+\subsubsection{Hardware}
+\begin{enumerate}
+	\item \textbf{Oculus Rift VR Headset:}\\
+		The Oculus Rift is listed as a requirement by the client, and provides integrated support for Unreal Engine 4\\.
+		\textbf{Alternatives considered:}
+		\begin{itemize}
+			\item Since the Oculus Rift was specified as a requirement by the client, no alternatives were considered.
+		\end{itemize}
+\end{enumerate}
 \newpage
 %
 %	End of Initial Design
