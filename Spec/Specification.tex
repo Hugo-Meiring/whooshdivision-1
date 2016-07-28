@@ -133,13 +133,39 @@ u12031519
 \newpage
 \section{Functional Requirements}
 \subsection{Allow the user to create scenarios:}
--The user should upload two csv files description file and input file . Where they specify what objects should be in the scene, how big the object should, if there should be animation in the scene, what type of animation(the speed, direction distance and other details about animation) and to which objects should the animation be applied and the scale of the viewer whether it should be fixec or scalable.Also if a user want to import models or scene they should be able or if they to download the models or scene they should be able to do so.There must be a editor to load and save the scene description file.
--Data format : The system must support 2D and 3D input data.Rows in the input data will be linked to entities. Entities will have properties(like the ssize of the model) and this will be linked to either static values or columns in the input data.
--Scene format :Specifying placement of entities in 3D(rows, randomly, specified by data or globe/map based on location information).Background shoud be a solid colour and/or cubemap.
-Placing entities on globe/map based on location info. 
--Models: Each entity will have an associated model. Basic shapes the will be supported(sphere, cylinder and rectangular prism). Texturing( and colouring will also be supported. Import of various types of models will be supported (Objects will be supported).
+\subsubsection{The user should upload two CSV files:} Description file and input file. These specify 
+\begin{itemize}
+	\item what objects should be in the scene, 
+	\item how big the object should be, 
+	\item if there should be animation in the scene, 
+	\item what type of animation (the speed, direction distance and other details about animation) and 
+	\item to which objects should the animation be applied and the scale of the viewer (whether it should be fixed or scalable).
+\end{itemize} 
+Also if a user wants to import models or scene, the editor should download the models of a scene. There must be a editor to load and save the scene description file.
+
+\subsubsection{Data format:} 
+\begin{itemize}
+	\item The system must support 2D and 3D input data. 
+	\item Rows in the input data will be linked to entities. Entities will have properties(size of the model) and this will be linked to either static values or columns in the input data.
+\end{itemize}
+\subsubsection{Scene format:} 
+\begin{itemize}
+	\item Specifying placement of entities in 3D(rows, randomly, specified by data or globe/map based on location information).
+	\item Background shoud be a solid colour and/or cubemap.
+	\item Placing entities on globe/map based on location info. 
+\end{itemize}
+
+\subsubsection{Models:} 
+\begin{itemize}
+	\item Each entity will have an associated model. 
+	\item Basic shapes the will be supported (sphere, cylinder and rectangular prism).
+	\item Texturing and colouring will also be supported. 
+	\item Import of various types of models will be supported (Objects will be supported).
+\end{itemize}
+
 \subsection{View scenarios using the Oculus Rift:}
 The user will be able to move around the world and they also should be able to use various controls. The users  allow to change their size can either become bigger or smaller, this ratio to an average human will be displayed if the user or the scenario changed the user's relative size. The user will be able to change the rate atwhich time passes, the speed at which time passes will be displayed if the user or scenario has changed the speed at which time passes.
+
 
 
 \newpage
@@ -165,7 +191,7 @@ Code needs to follow high development standards to produce professional code. So
 	\item \textbf{File type support:}\\
 	The system needs to support a range of different file types for both 2D and 3D files and input data:
 	\begin{itemize}
-		\item \textbf{.csv:} For data input of describing the scene and input files for entities, where each row represents a single entity.
+		\item \textbf{.csv:} For data input of describing the scene and input files for entities, where each row represents a single entity. Rows in the scene descriptor file will contain entity properties, and they will be linked to entities in the input files to obtain values.
 		\item \textbf{.obj:} For object models. Various model stores provide models in this format, and many 3D modelling applications are able to export models in this format.
 		\item \textbf{.fbx:} For other object models. These models would be imported from the SketchUp library when a user specifies them from an input file.
 	\end{itemize}
