@@ -240,17 +240,18 @@ There should be proper unit tests which cover all the contracts of the project. 
 
 \subsection{Microservices Architecture}
 The application will have a hexagonal architecture with the four following components.
+
 \subsubsection{Presentation components}
-We will be using JSON object to recieve data from the user which will be the description of the scene, the preferred format of the output and other information required from the user. 
+CSV files will be used to receive data from the user which will be the description of the scene, the preferred format of the output and other information required from the user. From this data, necessary input files required by the scene descriptor will be retrieved and processed into a tree for use with rendering the required scene.
 
 \subsubsection{Business logic}
 Taking the user's input and processing it to a correct scene.
 
 \subsubsection{Database access logic}
-We will neeed to access the data from Wolfram Alpha and Google Public Data Explorer to create the scene. We have an output file. 
+We will need to access the data from Wolfram Alpha and SketchUp to create the scene, as well as Unreal Blueprints. These would be cached locally onto an optimised CSV file containing all entities in the scene. Only the most recent scenes would be cached. Models will also be temporarily cached locally to reduce traffic and increase efficiency.
 
 \subsubsection{Application integration logic}
-Output of the whole application is to create the scene description given by the user.
+Output of the whole application is to create the scene description given by the user. The editor allows a user to further specify their own scenes.
 
 
 \subsection{Technologies}
@@ -265,8 +266,8 @@ Output of the whole application is to create the scene description given by the 
 		\end{itemize}
 		\textbf{Alternatives considered:}
 		\begin{enumerate}
-			\item Unity 5 %to complete, why choose unreal rather than unity?
-			\item CryEngine %to complete, why choose unreal rather than cryengine?
+			\item \textbf{Unity 5:}  This engine comes with a limited free edition, with licenses required for the full version, whereas Unreal is based on a royalty model and otherwise free.%to complete, why choose unreal rather than unity?
+			\item \textbf{CryEngine:} %to complete, why choose unreal rather than cryengine?
 		\end{enumerate}
 \end{enumerate}
 \subsubsection{Hardware}
