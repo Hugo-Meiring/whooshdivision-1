@@ -2,9 +2,9 @@
 
 #ifndef FILEREADWRITER_H
 #define FILEREADWRITER_H
-#endif
 
-#include <string>
+#include <string.h>
+#include <stdio.h>
 #include <fstream>
 #include <vector>
 
@@ -26,3 +26,4 @@ class FileReadWriter
 		std::fstream FileObject;
 };
 
+#endif

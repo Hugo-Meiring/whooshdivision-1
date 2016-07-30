@@ -1,5 +1,4 @@
 #include "FileReadWriter.h"
-#include <fstream>
 
 using namespace std;
 
@@ -24,13 +23,22 @@ vector<string> FileReadWriter::GetLine()
 	string CurrentLine;
 	vector<string> ToBeReturned;
 	getline(FileObject, CurrentLine);
-	char* CurrentToken = strtok((char*)CurrentLine.c_str(), " ,");
-	vector<string>::iterator it = ToBeReturned.begin();
-	while (CurrentToken != NULL)
+
+	unsigned int i = 0;
+	string CurrentToken = "";
+	while (i < CurrentLine.length()) 
 	{
-		ToBeReturned.insert(it, CurrentToken);
-		CurrentToken = strtok(NULL, " ,");
+		if (CurrentLine[i] != ' ' && CurrentLine[i] != ',' && CurrentLine[i] != '\n' && CurrentLine[i] != NULL)
+		{
+			CurrentToken += CurrentLine[i];
+		}
+		else
+		{
+			ToBeReturned.push_back(CurrentToken);
+		}
+		++i;
 	}
+
 	return ToBeReturned;
 }
 
