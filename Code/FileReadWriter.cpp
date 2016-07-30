@@ -34,7 +34,8 @@ vector<string> FileReadWriter::GetLine()
 		}
 		else
 		{
-			ToBeReturned.push_back(CurrentToken);
+			if(CurrentToken != "") ToBeReturned.push_back(CurrentToken);
+			CurrentToken = "";
 		}
 		++i;
 	}
