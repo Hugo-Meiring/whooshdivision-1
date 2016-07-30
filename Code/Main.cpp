@@ -13,6 +13,7 @@ int main()
 	vector<string> InputFileNames;
 	vector<string> CurrentLine = SceneDescReader.GetLine();
 	string InputFile;
+	string EntityLink;
 
 	while (CurrentLine.size() > 0)
 	{
@@ -31,8 +32,17 @@ int main()
 
 			//the below block is going to change, as the user will provide the input file
 			//bare with me. 
-			if(Shortened == 'o' || Shortened == 'a') InputFile = CurrentLine[2];	//Objects and animations have nonleaf children
-			else InputFile = CurrentLine[1];										//the rest don't. This could be easily changed
+			//assumption: the input file will be in the third column (?)
+			if (Shortened == 'o' || Shortened == 'a')
+			{
+				InputFile = CurrentLine[3];											//Objects and animations have nonleaf children
+				EntityLink = CurrentLine[2];
+			}
+			else
+			{
+				InputFile = CurrentLine[2];											//the rest don't. This could be easily changed
+				EntityLink = CurrentLine[1];
+			}
 			InputFileNames.push_back(InputFile);									//to only specify the immediate parent, not root
 
 			//if object or anim, replace the shortened with the actual type
@@ -51,14 +61,14 @@ int main()
 			}
 
 			//write to file immediately after reading the input file. Do the cartesian product now
-			FileReadWriter *InputFileReader = new FileReadWriter(CurrentLine[2]+".csv", 0);
+			FileReadWriter *InputFileReader = new FileReadWriter(InputFile + ".csv", 0);
 			vector<string> CurrentInputLine = InputFileReader->GetLine();
 			while (/*still reading from the input file*/ CurrentInputLine.size() > 0)
 			{
 				//write to optimised
 				string OptimisedInputLine = (char*)Shortened;
 				OptimisedInputLine += ",";
-				OptimisedInputLine += InputFile + ",";
+				OptimisedInputLine += EntityLink + ",";
 				for (unsigned int i = 0; i < CurrentInputLine.size(); i++)
 				{
 					OptimisedInputLine += CurrentInputLine[i];
@@ -73,7 +83,6 @@ int main()
 		vector<string> CurrentLine = SceneDescReader.GetLine();
 	}
 
-	//TODO: link entities in optimised file before sending to data structure
 	//TODO: handle data structure
 
 	return 0;
