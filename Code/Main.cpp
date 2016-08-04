@@ -11,7 +11,7 @@ int main()
 
 	//scene describer would need to open other files too. Keep the item names in a structure to open and parse the files later.
 	vector<string> InputFileNames;
-	vector<string> CurrentLine = SceneDescReader.GetLine();
+	vector<string> CurrentLine;// = SceneDescReader.GetLine();
 	string InputFile;
 	string EntityLink;
 
@@ -62,7 +62,7 @@ int main()
 
 			//write to file immediately after reading the input file. Do the cartesian product now
 			FileReadWriter *InputFileReader = new FileReadWriter(InputFile + ".csv", 0);
-			vector<string> CurrentInputLine = InputFileReader->GetLine();
+			vector<string> CurrentInputLine;// = InputFileReader->GetLine();
 			while (/*still reading from the input file*/ CurrentInputLine.size() > 0)
 			{
 				//write to optimised
@@ -76,11 +76,11 @@ int main()
 				}
 				OptimisedInputLine += "\n";
 				Writer.WriteLine(OptimisedInputLine);
-				CurrentInputLine = InputFileReader->GetLine();
+				CurrentInputLine;// = InputFileReader->GetLine();
 			}
 		}
 
-		vector<string> CurrentLine = SceneDescReader.GetLine();
+		vector<string> CurrentLine;// = SceneDescReader.GetLine();
 	}
 
 	//TODO: handle data structure
