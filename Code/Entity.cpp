@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-
+using namespace std;
 
 Entity::Entity()
 {
@@ -11,6 +11,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::GetLink()
+string Entity::GetName()
 {
+	return Name;
 }

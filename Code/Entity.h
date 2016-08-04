@@ -7,10 +7,10 @@ public:
 	Entity();
 	~Entity();
 
-	virtual void GetLink();
+	virtual std::string GetName();
 
 private:
-	std::string EntityLink;
+	std::string Name;
 
 };
 
