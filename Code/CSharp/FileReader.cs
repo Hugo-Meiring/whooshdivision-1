@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityProvider
 {
-    abstract class FileReader
+    public class FileReader
     {
         public FileReader()
         {
@@ -14,7 +14,14 @@ namespace EntityProvider
 
         public FileReader(string path)
         {
-            file = new System.IO.StreamReader(path);
+            try
+            {
+                file = new System.IO.StreamReader(path);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public List<string> getLines(string fileName)
@@ -23,7 +30,14 @@ namespace EntityProvider
 
             List<string> toBeReturned = new List<string>();
             string currentLine = "";
-            if (file == null) file = new System.IO.StreamReader(fileName);
+            try
+            {
+                if (file == null) file = new System.IO.StreamReader(fileName);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
 
             do
             {
