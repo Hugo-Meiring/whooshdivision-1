@@ -3,7 +3,7 @@ BumpMap, EntityLink, C://EntityFile.format
 Colour, EntityLink, 0xColour
 Collection, EntityLink, ---
 Viewer, EntityLink, xpos, ypos, zpos
-Light, EntityLink, type, 0xColor, xpos, ypos, zpos, range
+Light, EntityLink, type, 0xColor, xpos, ypos, zpos, range, intensity
 Model, EntityLink, http://EntityFile.obj
 Shape, EntityLink, type, Is3D_Flag, xlength, ylength[, zlength]
 Texture, EntityLink, C://EntityFile.format
