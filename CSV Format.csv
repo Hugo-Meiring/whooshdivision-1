@@ -1,7 +1,7 @@
 Animation, EntityLink, type, ---
 BumpMap, EntityLink, C://EntityFile.format
 Colour, EntityLink, 0xColour
-Collection, EntityLink, ---
+Collection, EntityLink, 500, posX, posY, posZ
 Viewer, EntityLink, xpos, ypos, zpos
 Light, EntityLink, type, 0xColor, xpos, ypos, zpos, range, intensity
 Model, EntityLink, http://EntityFile.obj
