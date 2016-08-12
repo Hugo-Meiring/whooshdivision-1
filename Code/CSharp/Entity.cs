@@ -6,5 +6,6 @@ namespace EntityProvider
 	{
 		private String name;
 		private Entity parent;
+		private GameObject obj;
 	}
 }
