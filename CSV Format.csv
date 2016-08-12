@@ -1,5 +1,5 @@
 Animation, EntityLink, type, ---
-backgroundColour, 0xColour
+BackgroundColour, 0xColour
 Colour, EntityLink, 0xColour
 Collection, EntityLink, COLLECTION_TYPE, 500, posX, posY, posZ
 Viewer, EntityLink, xpos, ypos, zpos
