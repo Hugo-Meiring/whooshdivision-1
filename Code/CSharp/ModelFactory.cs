@@ -11,7 +11,7 @@ namespace EntityProvider
 				typeName =  list[0];
 				Mesh mesh  = new Mesh();
 				ObjImporter newMesh = new ObjImpoter();
-				mesh = newMesh.ImportFile(list[2]);
+				mesh = newMesh.ImportFile(list[3]);
 				
 				GameObject modelGameObject = new GameObject(list[1]);
 				MeshRenderer renderer = modelGameObject.AddComponent<MeshFilter>();
