@@ -8,13 +8,13 @@ namespace EntityProvider
 		public GameObject build(String[] list)
 		{
 			typeName = list[0];
-			bool flag = bool.Parse(list[3]);
+			bool flag = bool.Parse(list[4]);
 			if(flag)
 			{
-				int x = int.Parse(list[5]);
-				int y = int.Parse(list[6]);
-				int z = int.Parse(list[7]);
-				if(list[2] == "plane")
+				int x = int.Parse(list[6]);
+				int y = int.Parse(list[7]);
+				int z = int.Parse(list[8]);
+				if(list[3] == "plane")
 				{
 					GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 					plane.transform.postion = new Vector3(x,y,z);
@@ -22,7 +22,7 @@ namespace EntityProvider
 					return plane;
 					
 				}	
-				else if(list[2] == "cube")
+				else if(list[3] == "cube")
 				{
 					GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Cube);
 					cube.transform.postion = new Vector3(x,y,z);
@@ -30,7 +30,7 @@ namespace EntityProvider
 					return cube;
 					
 				}	
-				else if(list[2] == "sphere")
+				else if(list[3] == "sphere")
 				{
 					GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 					sphere.transform.postion = new Vector3(x,y,z);
@@ -38,7 +38,7 @@ namespace EntityProvider
 					return sphere;
 					
 				}	
-				else if(list[2] == "capsule")
+				else if(list[3] == "capsule")
 				{
 					GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
 					capsule.transform.postion = new Vector3(x,y,z);
@@ -46,7 +46,7 @@ namespace EntityProvider
 					return capsule;
 					
 				}	
-				else if(list[2] == "cylinder")
+				else if(list[3] == "cylinder")
 				{
 					GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 					cylinder.transform.postion = new Vector3(x,y,z);
@@ -54,7 +54,7 @@ namespace EntityProvider
 					return cylinder;
 					
 				}	
-				else if(list[2] == "quad")
+				else if(list[3] == "quad")
 				{
 					GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 					quad.transform.postion = new Vector3(x,y,z);
@@ -65,18 +65,18 @@ namespace EntityProvider
 			}
 			else
 			{
-				int x = int.Parse(list[5]);
-				int y = int.Parse(list[6]);
+				int x = int.Parse(list[6]);
+				int y = int.Parse(list[7]);
 				
-				if(list[2] == "triangle")
+				if(list[3] == "triangle")
 				{
 				}
 				
-				else if(list[2] == "square" || list[2] == "rectangle")
+				else if(list[3] == "square" || list[3] == "rectangle")
 				{
 				}
 				
-				else if(list[2] == "cycle")
+				else if(list[3] == "cycle")
 				{
 				}
 			}
