@@ -4,11 +4,11 @@ using System.Collections;
 
 namespace EntityProvider
 {
-	class CollectionFactory : EnityFactory
+	class CollectionFactory : EntityFactory
 	{
-		public GameObject build(String[] list)
+		public override GameObject build(String[] list)
 		{
-			
+            return new GameObject();
 		}
 		
 	}

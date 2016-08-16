@@ -7,22 +7,25 @@ namespace EntityProvider
 {
 	class LightFactory : EntityFactory
 	{
-		public GameObject build(String[] list)
+		public override GameObject build(String[] list)
 		{
 			typeName = list[0];
 			GameObject lightGameObject = new GameObject(list[1]);
 			Light lightComponent = lightGameObject.AddComponent<Light>();
-			lightComponent.color = list[3];
-			lightComponent.type = list[2];
+            Colour color = new Colour(list[1], list[3]);
+			lightComponent.color = color.getColour();
+            if (list[2] == "Spot") lightComponent.type = LightType.Spot;
+            else if (list[2] == "Area") lightComponent.type = LightType.Area;
+            else if (list[2] == "Directional") lightComponent.type = LightType.Directional;
+            else if (list[2] == "Point") lightComponent.type = LightType.Point;
 			int x = int.Parse(list[4]);
 			int y = int.Parse(list[5]);
 			int z = int.Parse(list[6]);
 			lightGameObject.transform.position = new Vector3(x,y,z);
 			lightComponent.range = float.Parse(list[7]);
 			lightComponent.intensity = float.Parse(list[8]);
-			entityPool.Add(lightGameObject);
 			
-			return lightGameObject;
+			return lightGameObject; 
 		}
 	}
 }
