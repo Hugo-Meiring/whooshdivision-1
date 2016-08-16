@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace EntityProvider
 {
@@ -6,11 +7,11 @@ namespace EntityProvider
 	{
 		public ModelFactory()
 		{
-			public Entity build(String[] list)
+			public override GameObject build(String[] list)
 			{
 				typeName =  list[0];
 				Mesh mesh  = new Mesh();
-				ObjImporter newMesh = new ObjImpoter();
+				ObjImporter newMesh = new ObjImporter();
 				mesh = newMesh.ImportFile(list[3]);
 				
 				GameObject modelGameObject = new GameObject(list[1]);

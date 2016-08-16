@@ -14,10 +14,10 @@ namespace EntityProvider
 			Light lightComponent = lightGameObject.AddComponent<Light>();
             Colour color = new Colour(list[1], list[3]);
 			lightComponent.color = color.getColour();
-            if (list[2] == "Spot") lightComponent.type = LightType.Spot;
-            else if (list[2] == "Area") lightComponent.type = LightType.Area;
-            else if (list[2] == "Directional") lightComponent.type = LightType.Directional;
-            else if (list[2] == "Point") lightComponent.type = LightType.Point;
+            if (list[2] == "spot") lightComponent.type = LightType.Spot;
+            else if (list[2] == "area") lightComponent.type = LightType.Area;
+            else if (list[2] == "directional") lightComponent.type = LightType.Directional;
+            else if (list[2] == "point") lightComponent.type = LightType.Point;
 			int x = int.Parse(list[4]);
 			int y = int.Parse(list[5]);
 			int z = int.Parse(list[6]);
