@@ -1,3 +1,4 @@
+SceneName, sceneName
 Animation, EntityLink, type, ---
 BackgroundColour, 0xColour
 Colour, EntityLink, colourName, 0xColour
