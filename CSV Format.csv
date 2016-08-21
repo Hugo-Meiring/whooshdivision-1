@@ -4,8 +4,8 @@ Colour, EntityLink, colourName, 0xColour
 Collection, EntityLink, COLLECTION_TYPE, 500, posX, posY, posZ
 Viewer, EntityLink, xpos, ypos, zpos
 Light, EntityLink, type, 0xColor, xpos, ypos, zpos, range, intensity
-Model, EntityLink, http://EntityFile.obj
-Shape, EntityLink, ParentName, type, Is3D_Flag, xlength, ylength[, zlength]
+Model, EntityLink, http://EntityFile.obj, posX, posY, posZ
+Shape, EntityLink, ParentName, type, Is3D_Flag, xlength, ylength[, zlength], posX, posY, posZ
 Texture, EntityLink, BUMPMAP_FLAG, C://EntityFile.format
 Attributes, EntityLink, C://InputFile.csv, ---
 Variables, EntityLink, ---
