@@ -13,13 +13,13 @@ namespace EntityProvider
             bool flag = bool.Parse(list[4]);
             if (flag)
             {
-                float x = float.Parse(list[6]);
-                float y = float.Parse(list[7]);
-                float z = float.Parse(list[8]);
+                float x = float.Parse(list[5]);
+                float y = float.Parse(list[6]);
+                float z = float.Parse(list[7]);
 
-                float xPos = float.Parse(list[9]);
-                float yPos = float.Parse(list[10]);
-                float zPos = float.Parse(list[11]);
+                float xPos = float.Parse(list[8]);
+                float yPos = float.Parse(list[9]);
+                float zPos = float.Parse(list[10]);
 
                 if (list[3] == "plane")
                 {
@@ -78,12 +78,12 @@ namespace EntityProvider
             }
             else //coming soon
             {
-                int x = int.Parse(list[6]);
-                int y = int.Parse(list[7]);
+                int x = int.Parse(list[5]);
+                int y = int.Parse(list[6]);
 
-                float xPos = float.Parse(list[8]);
-                float yPos = float.Parse(list[9]);
-                float zPos = float.Parse(list[10]);
+                float xPos = float.Parse(list[7]);
+                float yPos = float.Parse(list[8]);
+                float zPos = float.Parse(list[9]);
 
                 if (list[3] == "triangle")
                 {

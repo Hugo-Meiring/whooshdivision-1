@@ -17,6 +17,7 @@ namespace EntityProvider
 		
 		public EntityFactory getFactory(String typeName)
         {
+            Console.WriteLine("TypeName: " + typeName);
             for(int i = 0; i < factoryIndices.Count; ++i)
             {
                 if (typeName == factoryIndices[i]) return factoryPool[i];
@@ -62,7 +63,7 @@ namespace EntityProvider
                 return currentFactory;
             }
 
-            return null;
+            throw new System.ArgumentException(typeName + " not found");
         }
 	}
 	
