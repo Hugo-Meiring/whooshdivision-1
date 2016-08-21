@@ -9,6 +9,6 @@ namespace EntityProvider
 		
 		public String typeName;
 		
-		public abstract GameObject build(String[] list);
+		public abstract Entity build(string[] list);
 	}
 }

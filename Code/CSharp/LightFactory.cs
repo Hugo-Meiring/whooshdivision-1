@@ -7,7 +7,7 @@ namespace EntityProvider
 {
 	class LightFactory : EntityFactory
 	{
-		public override GameObject build(String[] list)
+		public override Entity build(String[] list)
 		{
 			typeName = list[0];
 			GameObject lightGameObject = new GameObject(list[1]);
@@ -24,8 +24,13 @@ namespace EntityProvider
 			lightGameObject.transform.position = new Vector3(x,y,z);
 			lightComponent.range = float.Parse(list[7]);
 			lightComponent.intensity = float.Parse(list[8]);
+
+            Entity newEntity = new Entity();
+            newEntity.setName(list[1]);
+            newEntity.setGameObject(lightGameObject);
+
 			
-			return lightGameObject; 
+			return newEntity; 
 		}
 	}
 }

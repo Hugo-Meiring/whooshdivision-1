@@ -38,13 +38,13 @@ namespace EntityProvider
                 return currentFactory;
             }
 
-            if (typeName == "Model")
-            {
-                factoryIndices.Add(typeName);
-                currentFactory = new ModelFactory();
-                factoryPool.Add(currentFactory);
-                return currentFactory;
-            }
+            //if (typeName == "Model")
+            //{
+            //    factoryIndices.Add(typeName);
+            //    currentFactory = new ModelFactory();
+            //    factoryPool.Add(currentFactory);
+            //    return currentFactory;
+            //}
 
             if (typeName == "Shape")
             {

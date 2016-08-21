@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace EntityProvider
 {
@@ -37,5 +38,22 @@ namespace EntityProvider
 		{
 			return this.parent;
 		}
+
+        public void addColour(Colour colour)
+        {
+            obj.GetComponent<Renderer>().material.color = colour.getColour();
+        }
+
+        public void addTexture(string path, bool bumpMap)
+        {
+            Texture2D texture = (Texture2D)Resources.Load(path) as Texture2D;
+            //accesss renderer
+            obj.GetComponent<Renderer>().material.mainTexture = texture;
+        }
+
+        public virtual void handleAttributes(List<string> attributes)
+        {
+            //tokenise
+        }
 	}
 }

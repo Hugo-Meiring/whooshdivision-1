@@ -8,7 +8,7 @@ namespace EntityProvider
 {
     class ViewerFactory: EntityFactory
     {
-        public override GameObject build(string[] list)
+        public override Entity build(string[] list)
         {
             throw new NotImplementedException();
         }
