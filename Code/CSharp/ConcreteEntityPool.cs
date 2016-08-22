@@ -15,7 +15,7 @@ namespace EntityProvider
                 throw new DuplicateEntityException();
         }
 
-        public void fetch(ref string entityName) 
+        public ref Entity fetch(ref string entityName) 
         {
             int index = this.indexOf(entityName);
             if (index >= 0)
