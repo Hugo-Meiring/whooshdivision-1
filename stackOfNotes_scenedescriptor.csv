@@ -1,0 +1,6 @@
+Model,noteModel,http://url.to.some.modelstore/banknote.obj
+MaterialAttributes,noteAttributes,C://url.to.some.texturefolder/banknotetexture.jpg,0xFFFFFF
+Object,noteObject,noteModel,USE_ATTRIBUTES,noteAttributes,DEFERRED_POSITION_X,DEFERRED_POSITION_Y,DEFERRED_POSITION_Z
+Collection,noteStack,STACK_COLLECTION,500,500,500,posX,posY,posZ
+Attributes,backgroundAttributes,NULL,0x0000FF
+BackgroundObject,sceneBackground,backgroundModel,USE_ATTRIBUTES,backgroundAttributes
