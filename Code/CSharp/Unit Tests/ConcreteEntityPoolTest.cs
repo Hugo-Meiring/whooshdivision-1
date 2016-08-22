@@ -73,5 +73,13 @@ namespace EntityProviderTests
 
             Assert.areEqual(foo, actual, "Entity is not fetched despite being present.");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(EntityNotFoundException))]
+        public void fetch_EntityNotExist_ThrowsException()
+        {
+            ConcreteEntityPool ce_pool = new ConcreteEntityPool();
+            Entity foo = ce_pool.fetch("notfound");
+        }
     }
 }
