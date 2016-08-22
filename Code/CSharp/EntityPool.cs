@@ -20,7 +20,7 @@ namespace EntityProvider
         /// The definition of a method used to fetch references to entities from the EntityPool. Concrete classes implementing this method
         /// must disallow fetching entities which are not present in the EntityPool. If the name of an absent entity is provided, an
         /// EntityNotFoundException must be raised. 
-        /// <seealso cref="DuplicateEntityException"/>
+        /// <seealso cref="EntityNotFoundException"/>
         /// </summary>
         public ref Entity fetch(ref string entityName);
     }
