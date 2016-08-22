@@ -32,5 +32,20 @@ namespace EntityProviderTests
 
             Assert.areEqual(expected, actual, "Correct index is not returned when a present entity is searched for.");
         }
+
+        [TestMethod]
+        public void store_NoDuplicates_StoresEntity()
+        {
+            int expected = 0;
+
+            ConcreteEntityPool ce_pool = new ConcreteEntityPool();
+            Entity foo = new Entity();
+            foo.setname("added");
+            ce_pool.store(foo);
+
+            int actual = ce_pool.indexOf("foo");
+
+            Assert.areEqual(expected, actual, "Entity is not added to the pool despite not being a duplicate.");
+        }
     }
 }
