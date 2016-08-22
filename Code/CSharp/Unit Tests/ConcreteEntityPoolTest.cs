@@ -47,5 +47,18 @@ namespace EntityProviderTests
 
             Assert.areEqual(expected, actual, "Entity is not added to the pool despite not being a duplicate.");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicateEntityException))]
+        public void store_Duplicates_ThrowsException()
+        {
+            ConcreteEntityPool ce_pool = new ConcreteEntityPool();
+            Entity foo = new Entity();
+            Entity bar = new Entity();
+            foo.setname("added");
+            bar.setname("added");
+            ce_pool.store(foo);
+            ce_pool.store(bar);
+        }
     }
 }
