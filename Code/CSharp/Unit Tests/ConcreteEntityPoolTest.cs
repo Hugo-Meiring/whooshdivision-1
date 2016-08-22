@@ -60,5 +60,18 @@ namespace EntityProviderTests
             ce_pool.store(foo);
             ce_pool.store(bar);
         }
+
+        [TestMethod]
+        public void fetch_EntityExists_FetchesCorrectReference()
+        {
+            ConcreteEntityPool ce_pool = new ConcreteEntityPool();
+            Entity foo = new Entity();
+            foo.setname("added");
+            ce_pool.store(foo);
+
+            Entity actual = ce_pool.fetch("foo");
+
+            Assert.areEqual(foo, actual, "Entity is not fetched despite being present.");
+        }
     }
 }
