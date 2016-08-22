@@ -44,7 +44,7 @@ namespace EntityProvider
         /// <summary>
         /// Returns the index of the entity identified by entityName. If no such entity is found, -1 is returned.
         /// </summary>
-        private int indexOf(ref string entityName)
+        public int indexOf(ref string entityName)
         {
             Predicate<Entity> predicate = (Entity e) => {return e.getName() == entityName;};
             return pool.findIndex(predicate);
