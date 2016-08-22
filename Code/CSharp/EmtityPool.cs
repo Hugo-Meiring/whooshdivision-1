@@ -2,7 +2,7 @@ namespace EntityProvider
 {
     interface EntityPool
     {
-        public void store(Entity entity);
-        public void fetch(string entityName);
+        public void store(ref Entity entity);
+        public void fetch(ref string entityName);
     }
 }
