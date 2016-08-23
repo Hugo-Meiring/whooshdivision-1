@@ -23,7 +23,11 @@ namespace EntityProvider
         public void generateEntities(string fileName)
         {
             loadingImage.SetActive(true);
+            //SceneManager.LoadScene(1);
+            //scene = SceneManager.GetSceneAt(1);
             scene = SceneManager.GetActiveScene();
+            //SceneManager.UnloadScene(0);
+            //SceneManager.LoadScene(0);
             if (scene.name == "main")
             {
                 SceneManager.LoadScene(1, LoadSceneMode.Single);
@@ -198,15 +202,22 @@ namespace EntityProvider
             //scene = SceneManager.GetSceneByPath("Scenes\\scene.unity");
 
             //SceneManager.UnloadScene(scene);
+            //SceneManager.LoadScene(1);
 
             for (int i = 0; i < entityPool.Count; ++i)
             {
-                //SceneManager.MoveGameObjectToScene(entityPool[i].getGameObject(), scene);
-                Instantiate(entityPool[i].getGameObject());
+                SceneManager.MoveGameObjectToScene(entityPool[i].getGameObject(), scene);
+                //Instantiate(entityPool[i].getGameObject());
             }
 
             //SceneManager.SetActiveScene(scene);
             //SceneManager.LoadScene(scene.name);
+            SceneManager.LoadScene(1);
+        }
+
+        public void Awake()
+        {
+            generateEntities("Assets\\Code\\SceneDescriptor.csv");
         }
 
     }
