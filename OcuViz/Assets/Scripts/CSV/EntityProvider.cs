@@ -18,11 +18,13 @@ namespace EntityProvider
         private List<string> listRead;
         protected Scene scene;
         //public string[] getEntity;
-        public GameObject loadingImage;
+        //public GameObject loadingImage;
+        //private bool generated = false;
 
         public void generateEntities(string fileName)
         {
-            loadingImage.SetActive(true);
+            //if (generated) return;
+            //loadingImage.SetActive(true);
             //SceneManager.LoadScene(1);
             //scene = SceneManager.GetSceneAt(1);
             scene = SceneManager.GetActiveScene();
@@ -57,13 +59,20 @@ namespace EntityProvider
                     else if (list[0] == "BackgroundColour")
                     {
                         //string[] splitColours = list[1].Split('-');
-                        Colour colour = new Colour(list[1], list[2]);
+                        if (list[1] == "skybox")
+                        {
+                            Camera camera = GetComponent<Camera>();
+                            camera.clearFlags = CameraClearFlags.Skybox;
+                        }
+                        else{ 
+                            Colour colour = new Colour(list[1], list[2]);
 
-                        Color background = colour.getColour();
-                        Camera camera = GetComponent<Camera>();
+                            Color background = colour.getColour();
+                            Camera camera = GetComponent<Camera>();
 
-                        camera.clearFlags = CameraClearFlags.SolidColor;
-                        camera.backgroundColor = background;
+                            camera.clearFlags = CameraClearFlags.SolidColor;
+                            camera.backgroundColor = background;
+                        }
                     }
 
                     else if (list[0] == "Colour")
@@ -98,12 +107,14 @@ namespace EntityProvider
                         //get the game object (maybe from the pool, check EntityLink)
                         for (int i = 0; i < entityPool.Count; ++i)
                         {
-                            if (entityPool[i].getName() == list[1])
+                            if (entityPool[i].getName() == list[1]) //if EntityLinks match
                             {
                                 collection.setEntity(entityPool[i]);
+                                //entityPool.RemoveAt(i);             //delete it from being duplicated
                                 break;
                             }
                         }
+                        collection.createCollection();
                         //store it in the entity pool
                         entityPool.Add(collection);
 
@@ -140,7 +151,7 @@ namespace EntityProvider
                             if (entityPool[i].getName() == list[1]) // collection/entity would already be created
                             {
                                 foundEntity = true;
-                                entityPool[i].handleAttributes(attributes);
+                                entityPool[i].handleAttributes(attributes.ToArray());
                                 break;
                             }
                         }
@@ -206,18 +217,20 @@ namespace EntityProvider
 
             for (int i = 0; i < entityPool.Count; ++i)
             {
-                SceneManager.MoveGameObjectToScene(entityPool[i].getGameObject(), scene);
+                if(entityPool[i].getGameObject() != null)
+                    SceneManager.MoveGameObjectToScene(entityPool[i].getGameObject(), scene);
                 //Instantiate(entityPool[i].getGameObject());
             }
 
             //SceneManager.SetActiveScene(scene);
             //SceneManager.LoadScene(scene.name);
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
+           // generated = true;
         }
 
-        public void Awake()
+        public void Start()
         {
-            generateEntities("Assets\\Code\\SceneDescriptor.csv");
+            generateEntities("Assets\\CSV\\SceneDescriptor.csv");
         }
 
     }
