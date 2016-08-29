@@ -1,6 +1,6 @@
 SceneName, sceneName
 Animation, EntityLink, type, ---
-BackgroundColour, colourName, 0xColour
+Light, EntityLink, parent, type, #colour, x, y, z, range, intensity
 Colour, EntityLink, colourName, 0xColour
 Collection, EntityLink, COLLECTION_TYPE, 500, posX, posY, posZ
 Viewer, EntityLink, xpos, ypos, zpos
