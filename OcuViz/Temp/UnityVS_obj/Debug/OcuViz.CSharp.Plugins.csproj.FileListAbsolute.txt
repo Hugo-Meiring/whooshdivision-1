@@ -1,0 +1,13 @@
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_obj\Debug\OcuViz.CSharp.Plugins.csprojResolveAssemblyReference.cache
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Temp\UnityVS_obj\Debug\Assembly-CSharp-firstpass.pdb
