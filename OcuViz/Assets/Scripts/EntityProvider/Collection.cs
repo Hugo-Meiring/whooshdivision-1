@@ -73,9 +73,9 @@ namespace EntityProvider
 
             else if(type == "2d")
             {
-                float oX = original.getGameObject().transform.position.x;
-                float oY = original.getGameObject().transform.position.y;
-                float oZ = original.getGameObject().transform.position.z;
+                float oX = original.getGameObject().transform.localScale.x;
+                float oY = original.getGameObject().transform.localScale.y;
+                float oZ = original.getGameObject().transform.localScale.z;
 
                 for (int i = 0; i < dimension; ++i)
                 {
