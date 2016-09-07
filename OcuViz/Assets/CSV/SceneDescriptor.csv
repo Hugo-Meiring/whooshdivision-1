@@ -7,4 +7,4 @@ Colour,Sphere,blue,#0ff
 Shape,Cube,null,cube,true,true,3,10,10,10,3,200,400
 Light,light,null,directional,#fff,0,510,510,1000,1
 Colour,Cube,black,#000
-Collection,Cube,random,500,500,100,1000
+Collection,Cube,2d,100,500,100,1000

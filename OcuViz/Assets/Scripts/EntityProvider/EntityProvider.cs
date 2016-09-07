@@ -138,6 +138,7 @@ namespace EntityProvider
                         if (!foundEntity)
                         {
                             //something went wrong
+                            throw new System.ArgumentException(list[1] + " was not found.");
                         }
                     }
 

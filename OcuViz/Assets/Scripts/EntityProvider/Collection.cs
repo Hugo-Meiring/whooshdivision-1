@@ -70,6 +70,23 @@ namespace EntityProvider
                     original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos * i);
                 }
             }
+
+            else if(type == "2d")
+            {
+                float oX = original.getGameObject().transform.position.x;
+                float oY = original.getGameObject().transform.position.y;
+                float oZ = original.getGameObject().transform.position.z;
+
+                for (int i = 0; i < dimension; ++i)
+                {
+                    for(int j = 0; j < dimension; ++j)
+                    {
+                        UnityEngine.Object.Instantiate(original.getGameObject());
+                        original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos, zPos + (oZ * j));
+                    }
+                }
+            }
+
             return collection;
         }
 
