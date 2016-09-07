@@ -86,6 +86,24 @@ namespace EntityProvider
                     }
                 }
             }
+            else if(type == "3d")
+            {
+                float oX = original.getGameObject().transform.localScale.x;
+                float oY = original.getGameObject().transform.localScale.y;
+                float oZ = original.getGameObject().transform.localScale.z;
+
+                for (int k = 0; k < dimension; ++k)
+                {
+                    for (int i = 0; i < dimension; ++i)
+                    {
+                        for (int j = 0; j < dimension; ++j)
+                        {
+                            UnityEngine.Object.Instantiate(original.getGameObject());
+                            original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos + (oY * k), zPos + (oZ * j));
+                        }
+                    }
+                }
+            }
 
             return collection;
         }

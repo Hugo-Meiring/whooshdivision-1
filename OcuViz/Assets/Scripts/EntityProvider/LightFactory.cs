@@ -32,5 +32,27 @@ namespace EntityProvider
 			
 			return newEntity; 
 		}
-	}
+
+        public override Entity buildBasic(string button, string entityLink, string type)
+        {
+            GameObject lightGameObject = new GameObject(entityLink);
+            Light lightComponent = lightGameObject.AddComponent<Light>();
+            Colour color = new Colour(entityLink, "#fff");
+            lightComponent.color = color.getColour();
+            if (type == "spot") lightComponent.type = LightType.Spot;
+            else if (type == "area") lightComponent.type = LightType.Area;
+            else if (type == "directional") lightComponent.type = LightType.Directional;
+            else if (type == "point") lightComponent.type = LightType.Point;
+            lightGameObject.transform.position = new Vector3(0, 0, 0);
+            lightComponent.range = 1000;
+            lightComponent.intensity = 1;
+
+            Entity newEntity = new Entity();
+            newEntity.setName(entityLink);
+            newEntity.setGameObject(lightGameObject);
+
+
+            return newEntity;
+        }
+    }
 }

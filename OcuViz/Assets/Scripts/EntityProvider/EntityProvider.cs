@@ -234,5 +234,62 @@ namespace EntityProvider
             generateEntities("Assets\\CSV\\SceneDescriptor.csv");
         }
 
+        public Entity CreateGameObject(string button, string entityLink, string type)
+        {
+            if (button == "shapes" || button == "models")
+            {
+                Collection collection = new Collection();
+
+                for (int i = 0; i < entityPool.Count; ++i)
+                {
+                    if (entityPool[i].getName() == entityLink)
+                    {
+                        return factoryShop.getFactory("Collection").buildBasic(button, entityLink, type);
+                    }
+                }
+                throw new Exception("Entity does not exists.");
+            }
+            else if (button == "2d" || button == "3d")
+            {
+                if (type == "model")
+                {
+                    return factoryShop.getFactory("Model").buildBasic(button, entityLink, type);
+                }
+                else
+                    return factoryShop.getFactory("Shape").buildBasic(button, entityLink, type);
+            }
+            else if(button == "point" || button == "spot" || button == "directional" || button == "area")
+            {
+                return factoryShop.getFactory("Light").buildBasic(button, entityLink, type);
+            }
+
+            throw new ArgumentException("Button not recognised.");
+        }
+
+        public void SetBackground(string colour)
+        {
+            if(colour == "skybox")
+            {
+                Camera camera = GetComponent<Camera>();
+                camera.clearFlags = CameraClearFlags.Skybox;
+            }
+            else
+            { 
+                Colour colr = new Colour(list[1], list[2]);
+
+                Color background = colr.getColour();
+                Camera camera = GetComponent<Camera>();
+
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = background;
+            }
+            
+        }
+
+        public void StoreEntity(Entity entity)
+        {
+            entityPool.Add(entity);
+        }
+
     }
 }

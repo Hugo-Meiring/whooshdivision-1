@@ -10,5 +10,7 @@ namespace EntityProvider
 		public String typeName;
 		
 		public abstract Entity build(string[] list);
+
+        public abstract Entity buildBasic(string button, string entityLink, string type);
 	}
 }

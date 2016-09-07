@@ -1,10 +1,9 @@
 SceneName,moon
 BackgroundColour,skybox,#fff
-Shape,Planet,null,cube,true,false,1,100000,100000,1,0,0,0
-Colour,Planet,grey,#ddd
-Shape,Sphere,null,sphere,true,false,1000,500,500,500,0,250,1000
+Shape,Sphere,null,sphere,true,false,1000,500,500,500,0,2500,1000
 Colour,Sphere,blue,#0ff
-Shape,Cube,null,cube,true,true,3,10,10,10,3,200,400
+Shape,Cube,null,cube,true,true,3,20,20,20,3,200,400
 Light,light,null,directional,#fff,0,510,510,1000,1
 Colour,Cube,black,#000
-Collection,Cube,2d,100,500,100,1000
+Shape,Building,null,cube,true,true,50,50,250,50,400,100,250
+Colour,Building,red,#f00
