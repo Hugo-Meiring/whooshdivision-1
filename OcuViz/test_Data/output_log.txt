@@ -6,31 +6,31 @@ Direct3D:
     Vendor:   Intel
     VRAM:     1792 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.081 seconds
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\OcuViz\test_Data\Managed\System.dll (this message is harmless)
-desktop: 1024x768 60Hz; virtual: 1024x768 at 0,0
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.297 seconds
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\test_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.057110 ms
+Failed to create Oculus Session.Compositor failed to initialize.Failed to create Oculus Session.Compositor failed to initialize.UnloadTime: 0.973294 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 3b3c -> priority: 1 
+  Thread -> id: 2924 -> priority: 1 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.200923 ms
+UnloadTime: 9.076956 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 222.
-Total: 0.301909 ms (FindLiveObjects: 0.033355 ms CreateObjectMapping: 0.041052 ms MarkObjects: 0.208685 ms  DeleteObjects: 0.017105 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 238.
+Total: 0.198849 ms (FindLiveObjects: 0.025658 ms CreateObjectMapping: 0.013256 ms MarkObjects: 0.147961 ms  DeleteObjects: 0.011118 ms)
 
 Handling SceneName
 Handling BackgroundColour
@@ -41,6 +41,16 @@ Handling Shape
 TypeName: Shape
 Handling Light
 TypeName: Light
+Handling Colour
+Handling Shape
+TypeName: Shape
+Handling Colour
+Handling Collection
+TypeName: Collection
+Handling Collection
+TypeName: Collection
+Handling Shape
+TypeName: Shape
 Handling Colour
 Handling Collection
 TypeName: Collection

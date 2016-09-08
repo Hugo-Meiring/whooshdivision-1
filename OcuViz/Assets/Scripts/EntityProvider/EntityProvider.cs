@@ -236,6 +236,8 @@ namespace EntityProvider
                     SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
                 //Instantiate(entityPool[i].getGameObject());
             }
+            Camera camera = GetComponent<Camera>();
+            camera.transform.gameObject.SetActive(false);
 
             //SceneManager.SetActiveScene(scene);
             //SceneManager.LoadScene(scene.name);

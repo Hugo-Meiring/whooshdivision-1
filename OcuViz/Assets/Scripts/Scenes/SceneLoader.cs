@@ -7,10 +7,11 @@ public class SceneLoader: MonoBehaviour {
 
     // Use this for initialization
     public GameObject loadingImage;
-	public void onClick() {
+	public void one() {
 	    if(SceneManager.GetActiveScene().name == "main")
         {
             loadingImage.SetActive(true);
+            
             SceneManager.LoadScene(1);
         }
 

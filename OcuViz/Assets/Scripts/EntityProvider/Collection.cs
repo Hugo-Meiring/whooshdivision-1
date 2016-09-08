@@ -56,8 +56,9 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range(0, Math.Abs(xPos)),
-                        UnityEngine.Random.Range(0, Math.Abs(yPos)), UnityEngine.Random.Range(0, Math.Abs(zPos)));
+                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0)? xPos: 0, (xPos < 0) ? 0 : xPos),
+                        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos), 
+                        UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                 }
             }
             else if(type == "row")

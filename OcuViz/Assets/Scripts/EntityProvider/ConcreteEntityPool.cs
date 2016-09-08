@@ -20,10 +20,10 @@ namespace EntityProvider
         /// </summary>
         public void store(Entity entity) 
         {
-            if (this.indexOf(entity.getName()) == -1)
+            //if (this.indexOf(entity.getName()) == -1)
                 pool.Add(entity);
-            else
-                throw new DuplicateEntityException();
+            //else
+                //throw new DuplicateEntityException();
         }
 
         /// <summary>
