@@ -49,5 +49,25 @@ namespace EntityProvider
             Predicate<Entity> predicate = (Entity e) => {return e.getName() == entityName;};
             return pool.FindIndex(predicate);
         }
+
+        /// <summary>
+        /// Returns the entity at the specified index. If the index is invalid, an exception is thrown.
+        /// </summary>
+        /// <param name="index">The integer specifying entity to be returned</param>
+        /// <returns>Found Entity</returns>
+        public Entity get(int index)
+        {
+            if (index < pool.Count && index >= 0) return pool[index];
+            throw new IndexOutOfRangeException();
+        }
+
+        /// <summary>
+        /// Retuns the size of the entity pool.
+        /// </summary>
+        /// <returns>Entity pool size.</returns>
+        public int size()
+        {
+            return pool.Count;
+        }
     }
 }

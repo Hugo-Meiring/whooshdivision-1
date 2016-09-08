@@ -8,7 +8,7 @@ namespace EntityProvider
     class EntityProvider: MonoBehaviour
     {
         private EntityFactory entityFactory;
-        private List<Entity> entityPool = new List<Entity>();
+        private EntityPool entityPool = new ConcreteEntityPool();
         //private GameObject newGameObject;
         private Entity newEntity;
         private string[] list;
@@ -82,21 +82,19 @@ namespace EntityProvider
                         Colour colour = new Colour(list[2], list[3]);
 
                         //find the entity with the matching link in the pool
-                        bool foundEntity = false;
-                        for (int i = 0; i < entityPool.Count; ++i)
-                        {
-                            if (entityPool[i].getName() == list[1])
-                            {
-                                foundEntity = true;
-                                entityPool[i].addColour(colour);
-                                break;
-                            }
-                        }
+                        //bool foundEntity = false;
+                        //for (int i = 0; i < entityPool.Count; ++i)
+                        //{
+                        //    if (entityPool[i].getName() == list[1])
+                        //    {
+                        //        foundEntity = true;
+                        //        entityPool[i].addColour(colour);
+                        //        break;
+                        //    }
+                        //}
 
-                        if (!foundEntity)
-                        {
-                            //something went wrong
-                        }
+                        //rewrite
+                        entityPool.fetch(list[1]).addColour(colour);                        
                     }
 
                     else if (list[0] == "Collection")
@@ -104,19 +102,26 @@ namespace EntityProvider
                         //look for collection factory in factory shop
                         entityFactory = factoryShop.getFactory(list[0]);
                         Collection collection = (Collection)entityFactory.build(list);
+
                         //get the game object (maybe from the pool, check EntityLink)
-                        for (int i = 0; i < entityPool.Count; ++i)
-                        {
-                            if (entityPool[i].getName() == list[1]) //if EntityLinks match
-                            {
-                                collection.setEntity(entityPool[i]);
-                                //entityPool.RemoveAt(i);             //delete it from being duplicated
-                                break;
-                            }
-                        }
+                        //for (int i = 0; i < entityPool.Count; ++i)
+                        //{
+                        //    if (entityPool[i].getName() == list[1]) //if EntityLinks match
+                        //    {
+                        //        collection.setEntity(entityPool[i]);
+                        //        //entityPool.RemoveAt(i);             //delete it from being duplicated
+                        //        break;
+                        //    }
+                        //}
+
+                        //rewrite
+                        collection.setEntity(entityPool.fetch(list[1]));
+
                         collection.createCollection();
                         //store it in the entity pool
-                        entityPool.Add(collection);
+                        //entityPool.Add(collection);
+
+                        entityPool.store(collection);
 
                         //allow collection to be created remotely
                     }
@@ -125,21 +130,26 @@ namespace EntityProvider
                     {
                         bool foundEntity = false;
                         bool bumpMap = bool.Parse(list[2]);
-                        for (int i = 0; i < entityPool.Count; ++i)
-                        {
-                            if (entityPool[i].getName() == list[1])
-                            {
-                                foundEntity = true;
-                                entityPool[i].addTexture(list[3], bumpMap);
-                                break; //yes? no? 
-                            }
-                        }
 
-                        if (!foundEntity)
-                        {
-                            //something went wrong
-                            throw new System.ArgumentException(list[1] + " was not found.");
-                        }
+                        //old
+                        //for (int i = 0; i < entityPool.Count; ++i)
+                        //{
+                        //    if (entityPool[i].getName() == list[1])
+                        //    {
+                        //        foundEntity = true;
+                        //        entityPool[i].addTexture(list[3], bumpMap);
+                        //        break; //yes? no? 
+                        //    }
+                        //}
+
+                        //new
+                        entityPool.fetch(list[1]).addTexture(list[3], bumpMap);
+
+                        //if (!foundEntity)
+                        //{
+                        //    //something went wrong
+                        //    throw new System.ArgumentException(list[1] + " was not found.");
+                        //}
                     }
 
                     else if (list[0] == "Attributes")
@@ -147,20 +157,24 @@ namespace EntityProvider
                         List<string> attributes = reader.getLines(list[2]);
                         bool foundEntity = false;
 
-                        for (int i = 0; i < entityPool.Count; ++i)
-                        {
-                            if (entityPool[i].getName() == list[1]) // collection/entity would already be created
-                            {
-                                foundEntity = true;
-                                entityPool[i].handleAttributes(attributes.ToArray());
-                                break;
-                            }
-                        }
+                        //old
+                        //for (int i = 0; i < entityPool.Count; ++i)
+                        //{
+                        //    if (entityPool[i].getName() == list[1]) // collection/entity would already be created
+                        //    {
+                        //        foundEntity = true;
+                        //        entityPool[i].handleAttributes(attributes.ToArray());
+                        //        break;
+                        //    }
+                        //}
 
-                        if (!foundEntity)
-                        {
-                            //something went wrong
-                        }
+                        //new
+                        entityPool.fetch(list[1]).handleAttributes(attributes.ToArray());
+
+                        //if (!foundEntity)
+                        //{
+                        //    //something went wrong
+                        //}
                     }
 
                     else if (list[0] == "Variables")
@@ -173,7 +187,7 @@ namespace EntityProvider
                         entityFactory = factoryShop.getFactory(list[0]);
                         newEntity = entityFactory.build(list);
                         newEntity.setParent(getEntityParent(list[2]));
-                        entityPool.Add(newEntity);
+                        entityPool.store(newEntity);
                     }
                     //Link entities: loop through the listRead
 
@@ -185,7 +199,7 @@ namespace EntityProvider
             }
         }
 
-        public List<Entity> getEntityPool()
+        public EntityPool getEntityPool()
         {
             return this.entityPool;
         }
@@ -196,9 +210,9 @@ namespace EntityProvider
             {
                 return null;
             }
-            else if (entityPool.Exists(x => x.getName() == name))
+            else if (entityPool.fetch(name) != null)
             {
-                return entityPool.Find(x => x.getName() == name);
+                return entityPool.fetch(name);
             }
             else
             {
@@ -216,10 +230,10 @@ namespace EntityProvider
             //SceneManager.UnloadScene(scene);
             //SceneManager.LoadScene(1);
 
-            for (int i = 0; i < entityPool.Count; ++i)
+            for (int i = 0; i < entityPool.size(); ++i)
             {
-                if(entityPool[i].getGameObject() != null)
-                    SceneManager.MoveGameObjectToScene(entityPool[i].getGameObject(), scene);
+                if(entityPool.get(i).getGameObject() != null)
+                    SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
                 //Instantiate(entityPool[i].getGameObject());
             }
 
@@ -238,16 +252,7 @@ namespace EntityProvider
         {
             if (button == "shapes" || button == "models")
             {
-                Collection collection = new Collection();
-
-                for (int i = 0; i < entityPool.Count; ++i)
-                {
-                    if (entityPool[i].getName() == entityLink)
-                    {
-                        return factoryShop.getFactory("Collection").buildBasic(button, entityLink, type);
-                    }
-                }
-                throw new Exception("Entity does not exists.");
+                    return factoryShop.getFactory("Collection").buildBasic(button, entityLink, type);
             }
             else if (button == "2d" || button == "3d")
             {
@@ -288,7 +293,7 @@ namespace EntityProvider
 
         public void StoreEntity(Entity entity)
         {
-            entityPool.Add(entity);
+            entityPool.store(entity);
         }
 
     }
