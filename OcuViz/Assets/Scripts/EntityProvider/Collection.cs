@@ -56,8 +56,9 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range(0, Math.Abs(xPos)),
-                        UnityEngine.Random.Range(0, Math.Abs(yPos)), UnityEngine.Random.Range(0, Math.Abs(zPos)));
+                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0)? xPos: 0, (xPos < 0) ? 0 : xPos),
+                        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos), 
+                        UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                 }
             }
             else if(type == "row")
@@ -70,6 +71,41 @@ namespace EntityProvider
                     original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos * i);
                 }
             }
+
+            else if(type == "2d")
+            {
+                float oX = original.getGameObject().transform.localScale.x;
+                float oY = original.getGameObject().transform.localScale.y;
+                float oZ = original.getGameObject().transform.localScale.z;
+
+                for (int i = 0; i < dimension; ++i)
+                {
+                    for(int j = 0; j < dimension; ++j)
+                    {
+                        UnityEngine.Object.Instantiate(original.getGameObject());
+                        original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos, zPos + (oZ * j));
+                    }
+                }
+            }
+            else if(type == "3d")
+            {
+                float oX = original.getGameObject().transform.localScale.x;
+                float oY = original.getGameObject().transform.localScale.y;
+                float oZ = original.getGameObject().transform.localScale.z;
+
+                for (int k = 0; k < dimension; ++k)
+                {
+                    for (int i = 0; i < dimension; ++i)
+                    {
+                        for (int j = 0; j < dimension; ++j)
+                        {
+                            UnityEngine.Object.Instantiate(original.getGameObject());
+                            original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos + (oY * k), zPos + (oZ * j));
+                        }
+                    }
+                }
+            }
+
             return collection;
         }
 

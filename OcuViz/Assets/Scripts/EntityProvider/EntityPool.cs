@@ -23,5 +23,20 @@ namespace EntityProvider
         /// <seealso cref="EntityNotFoundException"/>
         /// </summary>
         Entity fetch(string entityName);
+
+        /// <summary>
+        /// The definition of a method used to fetch references to entities from the EntityPool. Concrete classes implementing this method
+        /// must disallow fetching entities which are not present in the EntityPool. If the index provided is out of bounds, an
+        /// IndexOutOfRangeException must be raised. 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        Entity get(int index);
+
+        /// <summary>
+        /// The definition of a method used to fetch the size of the EntityPool.
+        /// </summary>
+        /// <returns></returns>
+        int size();
     }
 }

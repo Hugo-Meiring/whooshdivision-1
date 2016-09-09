@@ -16,5 +16,16 @@ namespace EntityProvider
 
             return collection;
         }
-	}
+
+        public override Entity buildBasic(string button, string entityLink, string type)
+        {
+            Collection collection = new Collection();
+            collection.setName(entityLink);
+            collection.setType(type);
+            collection.setDimension(1);
+            collection.setPos(0, 0, 0);
+
+            return collection;
+        }
+    }
 }

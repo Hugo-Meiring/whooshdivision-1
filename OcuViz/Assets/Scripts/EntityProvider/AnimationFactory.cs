@@ -8,5 +8,10 @@ namespace EntityProvider
         {
             throw new NotImplementedException();
         }
+
+        public override Entity buildBasic(string button, string entityLink, string type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
