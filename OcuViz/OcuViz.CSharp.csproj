@@ -89,7 +89,9 @@
     <Compile Include="Assets\Scripts\EntityProvider\ShapeFactory.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\Tokeniser.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ViewerFactory.cs" />
+    <Compile Include="Assets\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Scenes\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\ToggleDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
