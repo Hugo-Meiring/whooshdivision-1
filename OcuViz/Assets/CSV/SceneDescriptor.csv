@@ -8,7 +8,7 @@ Colour,block,black,#000
 Shape,Building,null,cube,true,true,50,50,250,50,400,100,250
 Colour,Building,blue,#2222ff
 Collection,block,stack,80,70,50,-150
-Collection,Building,random,100,3000,300,3000
+Collection,Building,random, 100,3000,300,3000
 Shape,balls,null,sphere,true,true,1,1,1,1,-30,2,-400
-Colour,balls,white,#fff
-Collection,balls,3d,15,-250,300,-2
+Colour,balls,white,#ff000009
+Collection,balls,3d,10,10,300,10
