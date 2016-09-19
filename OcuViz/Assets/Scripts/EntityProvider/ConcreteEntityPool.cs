@@ -62,6 +62,21 @@ namespace EntityProvider
         }
 
         /// <summary>
+        /// Removes the entity passed as a parameter from the pool.
+        /// </summary>
+        /// <param name="entity">
+        /// Entity reference to be removed.
+        /// </param>
+        public void remove(Entity entity)
+        {
+            if (pool.Contains(entity))
+            {
+                pool.Remove(entity);
+            }
+            else throw new EntityNotFoundException();
+        }
+
+        /// <summary>
         /// Retuns the size of the entity pool.
         /// </summary>
         /// <returns>Entity pool size.</returns>

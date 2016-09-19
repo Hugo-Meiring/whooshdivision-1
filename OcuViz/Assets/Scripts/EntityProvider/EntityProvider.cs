@@ -117,7 +117,7 @@ namespace EntityProvider
 
                         //rewrite
                         Entity prototype = entityPool.fetch(list[1]);
-                        //entityPool.remove(prototype);
+                        entityPool.remove(prototype);
                         collection.setEntity(prototype);
 
                         collection.createCollection();
@@ -240,7 +240,7 @@ namespace EntityProvider
                 //Instantiate(entityPool[i].getGameObject());
             }
             Camera camera = GetComponent<Camera>();
-            //camera.transform.gameObject.SetActive(false);
+            camera.transform.gameObject.SetActive(false);
 
             //SceneManager.SetActiveScene(scene);
             //SceneManager.LoadScene(scene.name);

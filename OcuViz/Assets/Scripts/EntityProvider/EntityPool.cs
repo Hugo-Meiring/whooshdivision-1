@@ -29,14 +29,30 @@ namespace EntityProvider
         /// must disallow fetching entities which are not present in the EntityPool. If the index provided is out of bounds, an
         /// IndexOutOfRangeException must be raised. 
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="index">
+        /// The index of the entity in the Pool to be returned.
+        /// </param>
+        /// <returns>
+        /// Found entity.
+        /// </returns>
         Entity get(int index);
+
+        /// <summary>
+        /// Method definition used to remove an instance of an entity from the EntityPool. 
+        /// Concrete classes implementing this method should not allow removing a non-present entity from the EntityPool.
+        /// If the entity is not found, then EntityNotFoundException should be raised.
+        /// </summary>
+        /// <param name="entity">
+        /// A reference to the Entity to be removed from the pool.
+        /// </param>
+        void remove(Entity entity);
 
         /// <summary>
         /// The definition of a method used to fetch the size of the EntityPool.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The size of the pool.
+        /// </returns>
         int size();
     }
 }
