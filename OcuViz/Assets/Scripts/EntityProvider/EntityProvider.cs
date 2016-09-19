@@ -17,6 +17,7 @@ namespace EntityProvider
         private FactoryShop factoryShop = new FactoryShop();
         private List<string> listRead;
         protected Scene scene;
+        public static int sceneNumber;
         //public string[] getEntity;
         //public GameObject loadingImage;
         //private bool generated = false;
@@ -59,7 +60,7 @@ namespace EntityProvider
                     else if (list[0] == "BackgroundColour")
                     {
                         //string[] splitColours = list[1].Split('-');
-                        if (list[1] == "skybox")
+                        if (list[1].ToLower() == "skybox")
                         {
                             Camera camera = GetComponent<Camera>();
                             camera.clearFlags = CameraClearFlags.Skybox;
@@ -115,7 +116,9 @@ namespace EntityProvider
                         //}
 
                         //rewrite
-                        collection.setEntity(entityPool.fetch(list[1]));
+                        Entity prototype = entityPool.fetch(list[1]);
+                        //entityPool.remove(prototype);
+                        collection.setEntity(prototype);
 
                         collection.createCollection();
                         //store it in the entity pool
@@ -237,7 +240,7 @@ namespace EntityProvider
                 //Instantiate(entityPool[i].getGameObject());
             }
             Camera camera = GetComponent<Camera>();
-            camera.transform.gameObject.SetActive(false);
+            //camera.transform.gameObject.SetActive(false);
 
             //SceneManager.SetActiveScene(scene);
             //SceneManager.LoadScene(scene.name);
@@ -247,7 +250,8 @@ namespace EntityProvider
 
         public void Start()
         {
-            generateEntities("Assets\\CSV\\SceneDescriptor.csv");
+            if (sceneNumber == 1) generateEntities("Assets\\CSV\\Scene1.csv");
+            else if (sceneNumber == 2) generateEntities("Assets\\CSV\\Scene2.csv");
         }
 
         public Entity CreateGameObject(string button, string entityLink, string type)

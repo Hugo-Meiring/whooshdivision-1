@@ -11,7 +11,7 @@ public class SceneLoader: MonoBehaviour {
 	    if(SceneManager.GetActiveScene().name == "main")
         {
             loadingImage.SetActive(true);
-            
+            EntityProvider.EntityProvider.sceneNumber = 1;
             SceneManager.LoadScene(1);
         }
 
@@ -20,4 +20,11 @@ public class SceneLoader: MonoBehaviour {
 
         }
 	}
+
+    public void two()
+    {
+        loadingImage.SetActive(true);
+        EntityProvider.EntityProvider.sceneNumber = 2;
+        SceneManager.LoadScene(1);
+    }
 }
