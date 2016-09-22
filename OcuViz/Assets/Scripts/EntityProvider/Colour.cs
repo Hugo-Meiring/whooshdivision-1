@@ -6,8 +6,20 @@ using UnityEngine;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// This class is used to handle colour creation used in the scene by GameObjects.
+    /// </summary>
     class Colour
     {
+        /// <summary>
+        /// Constructor. Creates a colour based on the name of the colour requested, 
+        /// or the hexadecimal colour provided to the constructor.
+        /// </summary>
+        /// <param name="n">The name of the colour. If this is detected to be a name of
+        /// a colour already known, then the hexadecimal value is ignored and a default 
+        /// value is used to colour the GameObject.</param>
+        /// <param name="hex">The hexadecimal value of the colour. This will be used if 
+        /// the name provided to the constructor is not recognised.</param>
         public Colour(string n, string hex)
         {
             name = n;
@@ -25,15 +37,31 @@ namespace EntityProvider
             else ColorUtility.TryParseHtmlString(hex, out colour);
         }
 
+        /// <summary>
+        /// Color object that will be used to render the GameObjects
+        /// </summary>
         protected Color colour;
+
+        /// <summary>
+        /// The name of the colour.
+        /// </summary>
         protected string name;
 
 
+        /// <summary>
+        /// Returns the Color object. This method should be used to
+        /// retrieve the value stored for colouring GameObjects.
+        /// </summary>
+        /// <returns>Unity Color object.</returns>
         public Color getColour()
         {
             return colour;
         }
 
+        /// <summary>
+        /// Returns the name of the colour.
+        /// </summary>
+        /// <returns>Colour name.</returns>
         public string getName()
         {
             return name;
