@@ -4,8 +4,18 @@ using System.Collections;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// Concrete implementation of EntityFactory that creates and handles collections of a
+    /// predefined Entity. Collections are a composite of Entities. 
+    /// </summary>
 	class CollectionFactory : EntityFactory
 	{
+        /// <summary>
+        /// Builds a collection of Entities based on parameters. A prototype Entity needs to exist
+        /// in the pool beforehand.
+        /// </summary>
+        /// <param name="list">List of parameters to specify creation of collection properties</param>
+        /// <returns>A new collection.</returns>
 		public override Entity build(String[] list)
 		{
             Collection collection = new Collection();
@@ -16,7 +26,13 @@ namespace EntityProvider
 
             return collection;
         }
-
+        /// <summary>
+        /// Creates a single-Entity collection.
+        /// </summary>
+        /// <param name="button">Input button used.</param>
+        /// <param name="entityLink">Name of the Collection's Entity (always required).</param>
+        /// <param name="type">Type of Entity to return.</param>
+        /// <returns>Basic functional Collection</returns>
         public override Entity buildBasic(string button, string entityLink, string type)
         {
             Collection collection = new Collection();

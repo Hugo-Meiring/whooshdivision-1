@@ -5,8 +5,16 @@ using System.Collections;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// Concrete implementation of EntityFactory that creates lights in the scene.
+    /// </summary>
 	class LightFactory : EntityFactory
 	{
+        /// <summary>
+        /// Method builds a light GameObject and places it in an Entity. 
+        /// </summary>
+        /// <param name="list">List specifying how the Entity should be built.</param>
+        /// <returns>A new Entity containing a new GameObject.</returns>
 		public override Entity build(String[] list) //Light, EntityLink, parent, type, #colour, x, y, z, range, intensity
 		{
 			typeName = list[0];
@@ -33,6 +41,13 @@ namespace EntityProvider
 			return newEntity; 
 		}
 
+        /// <summary>
+        /// Creates a white light with 1 km range and full intensity.
+        /// </summary>
+        /// <param name="button">Input button used.</param>
+        /// <param name="entityLink">Name of the Entity (always required).</param>
+        /// <param name="type">Type of Entity to return.</param>
+        /// <returns>Basic functional Light GameObject within an Entity.</returns>
         public override Entity buildBasic(string button, string entityLink, string type)
         {
             GameObject lightGameObject = new GameObject(entityLink);

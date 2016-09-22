@@ -4,8 +4,16 @@ using System;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// Concrete implementation of EntityFactory that creates shapes of GameObjects.
+    /// </summary>
     class ShapeFactory : EntityFactory
     {
+        /// <summary>
+        /// Method used to create a 2D and 3D shapes from a list of parameters.
+        /// </summary>
+        /// <param name="list">List of parameters used to specify the Entity.</param>
+        /// <returns>Entity containing a shape GameObject.</returns>
         public override Entity build(string[] list) //Shape, EntityLink, parent, type, 3D_FLAG, USE_GRAVITY, mass, xlen, ylen[, zlen], xpos, ypos, zpos
         {
             Entity entity = new Entity();
@@ -133,6 +141,13 @@ namespace EntityProvider
             return new Entity(); //must be fixed!
         }
 
+        /// <summary>
+        /// Method creates a basic shape depending on the type passed.
+        /// </summary>
+        /// <param name="button">Input button used.</param>
+        /// <param name="entityLink">Name of the Entity (always required).</param>
+        /// <param name="type">Type of Entity to return.</param>
+        /// <returns>Basic functional Entity</returns>
         public override Entity buildBasic(string button, string entityLink, string type)
         {
             Entity entity = new Entity();
