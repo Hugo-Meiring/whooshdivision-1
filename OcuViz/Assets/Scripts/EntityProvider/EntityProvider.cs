@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// This class is used to convert a CSV file into a scene. It coordinates
+    /// with other helper classes to render the scene as specified to create
+    /// the necessary entities.
+    /// </summary>
     class EntityProvider: MonoBehaviour
     {
         private EntityFactory entityFactory;
@@ -22,6 +27,12 @@ namespace EntityProvider
         //public GameObject loadingImage;
         //private bool generated = false;
 
+        /// <summary>
+        /// This method opens the input file and begins reading the content. This
+        /// content is then created into Entities using various factories. Once 
+        /// creation is complete, the scene is populated with the GameObjects.
+        /// </summary>
+        /// <param name="fileName"></param>
         public void generateEntities(string fileName)
         {
             //if (generated) return;
@@ -202,11 +213,22 @@ namespace EntityProvider
             }
         }
 
+        /// <summary>
+        /// Method used to obtain the EntityPool
+        /// </summary>
+        /// <returns>The EntityPool instance.</returns>
         public EntityPool getEntityPool()
         {
             return this.entityPool;
         }
 
+        /// <summary>
+        /// Returns the parent of the given Entity.
+        /// </summary>
+        /// <param name="name">The name of the parent Entity.</param>
+        /// <returns>Parent's Entity if found, null if the Entity does
+        /// not have a parent, and throws an Exception is the specified
+        /// parent doesn't exist.</returns>
         public Entity getEntityParent(String name)
         {
             if (name == "null")
@@ -223,6 +245,11 @@ namespace EntityProvider
             }
         }
 
+        /// <summary>
+        /// Method is used to traverse the EntityPool and place the GameObjects within
+        /// the Entities into the scene.
+        /// </summary>
+        /// <param name="sceneName">Name of the scene to place the GameObjects.</param>
         protected void renderScene(string sceneName)
         {
             //loop through pool and place entities
@@ -248,12 +275,24 @@ namespace EntityProvider
            // generated = true;
         }
 
+        /// <summary>
+        /// Unity method for scripts. This method is called when a scene or GameObject that contains this
+        /// script as a component is first loaded. It is used to begin generating Entities.
+        /// </summary>
         public void Start()
         {
             if (sceneNumber == 1) generateEntities("Assets\\CSV\\Scene1.csv");
             else if (sceneNumber == 2) generateEntities("Assets\\CSV\\Scene2.csv");
         }
 
+        /// <summary>
+        /// Method to be used by the Editor to create Entities without specifying a CSV file.
+        /// This only returns basic Entities to be customised by the users.
+        /// </summary>
+        /// <param name="button">The button clicked by the user.</param>
+        /// <param name="entityLink">The name of the Entity being created or linked.</param>
+        /// <param name="type">The type of Factory required to create the Entity.</param>
+        /// <returns></returns>
         public Entity CreateGameObject(string button, string entityLink, string type)
         {
             if (button == "shapes" || button == "models")
@@ -277,6 +316,12 @@ namespace EntityProvider
             throw new ArgumentException("Button not recognised.");
         }
 
+        /// <summary>
+        /// Method used to set the background colour of the scene. If the parameter is a
+        /// "skybox", then a Unity skybox will be added to the scene, else a solid colour 
+        /// will be set.
+        /// </summary>
+        /// <param name="colour">Name of the colour to be set.</param>
         public void SetBackground(string colour)
         {
             if(colour == "skybox")
@@ -297,6 +342,10 @@ namespace EntityProvider
             
         }
 
+        /// <summary>
+        /// Method used to store Entities in the EntityPool.
+        /// </summary>
+        /// <param name="entity">Reference to the Entity being stored.</param>
         public void StoreEntity(Entity entity)
         {
             entityPool.store(entity);

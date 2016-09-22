@@ -5,12 +5,23 @@ using System.Text;
 
 namespace EntityProvider
 {
+    /// <summary>
+    /// Class is used to read lines from an input file, mostly CSV format.
+    /// </summary>
     public class FileReader
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public FileReader()
         {
+
         }
 
+        /// <summary>
+        /// Creates a file reader that will read from a specific file.
+        /// </summary>
+        /// <param name="path">Input file's path.</param>
         public FileReader(string path)
         {
             try
@@ -23,6 +34,12 @@ namespace EntityProvider
             }
         }
 
+        /// <summary>
+        /// Method reads the lines from the input file and returns a list of
+        /// lines read from the file.
+        /// </summary>
+        /// <param name="fileName">Input file's path and name.</param>
+        /// <returns>List of lines read.</returns>
         public List<string> getLines(string fileName)
         {
             if (fileName == null) throw new NullReferenceException();
@@ -49,6 +66,9 @@ namespace EntityProvider
             return toBeReturned;
         }
 
+        /// <summary>
+        /// The file being read.
+        /// </summary>
         System.IO.StreamReader file;
     }
 }
