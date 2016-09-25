@@ -65,6 +65,14 @@ namespace EntityProvider
                 return currentFactory;
             }
 
+            if(typeName == "CustomCollection")
+            {
+                factoryIndices.Add(typeName);
+                currentFactory = new CustomCollectionFactory();
+                factoryPool.Add(currentFactory);
+                return currentFactory;
+            }
+
             if(typeName == "Light")
             {
                 factoryIndices.Add(typeName);

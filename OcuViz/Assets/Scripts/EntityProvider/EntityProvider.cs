@@ -140,6 +140,17 @@ namespace EntityProvider
                         //allow collection to be created remotely
                     }
 
+                    else if (list[0] == "CustomCollection")
+                    {
+                        Entity prototype = entityPool.fetch(list[1]);
+
+                        CustomCollectionFactory customCollectionFactory = (CustomCollectionFactory)factoryShop.getFactory(list[0]);
+                        customCollectionFactory.setOriginal(prototype, tokeniser, reader);
+                        entityPool.remove(prototype);
+                        CustomCollection collection = (CustomCollection)customCollectionFactory.build(list);
+                        entityPool.store(collection);
+                    }
+
                     else if (list[0] == "Texture")
                     {
                         bool foundEntity = false;
