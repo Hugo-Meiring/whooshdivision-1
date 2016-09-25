@@ -25,7 +25,7 @@ namespace EntityProvider
         /// <param name="entity">Entity to be added to the Collection.</param>
         public void addEntity(Entity entity)
         {
-            if(entity != null) collection.Add(entity);
+            //if(entity != null) collection.Add(entity);
         }
     }
 }

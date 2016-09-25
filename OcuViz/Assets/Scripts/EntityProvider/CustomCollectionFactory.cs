@@ -68,6 +68,8 @@ namespace EntityProvider
             dX = original.getGameObject().transform.localScale.x;
             dY = original.getGameObject().transform.localScale.y;
             dZ = original.getGameObject().transform.localScale.z;
+
+            oColour = original.getGameObject().GetComponent<Renderer>().material.color;
         }
 
         /// <summary>
@@ -97,8 +99,8 @@ namespace EntityProvider
                 posZ = float.Parse(parameters[2]);
 
                 dimX = (float.Parse(parameters[3]) == -1) ? dX : float.Parse(parameters[3]);
-                dimY = (float.Parse(parameters[4]) == -1) ? dX : float.Parse(parameters[4]);
-                dimZ = (float.Parse(parameters[5]) == -1) ? dX : float.Parse(parameters[5]);
+                dimY = (float.Parse(parameters[4]) == -1) ? dY : float.Parse(parameters[4]);
+                dimZ = (float.Parse(parameters[5]) == -1) ? dZ : float.Parse(parameters[5]);
 
                 if (parameters[6] == "null") colour = oColour;
                 else ColorUtility.TryParseHtmlString(parameters[6], out colour);
@@ -106,6 +108,7 @@ namespace EntityProvider
                 GameObject go = UnityEngine.Object.Instantiate(original.getGameObject());
                 go.transform.position = new Vector3(posX, posY, posZ);
                 go.transform.localScale = new Vector3(dimX, dimY, dimZ);
+                go.GetComponent<Renderer>().material.color = colour;
 
                 entity.setGameObject(go);
                 collection.addEntity(entity);

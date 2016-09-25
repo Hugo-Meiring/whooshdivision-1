@@ -1,6 +1,7 @@
 SceneName,notDefined
 BackgroundColour,skybox,#000
-Shape,block,null,cube,true,true,3,10,2,10,3,20,40
-Light,light,null,directional,#fbb,100,510,510,1000,1
-Colour,block,black,#000
+Shape,block,null,cube,true,true,3,10,2,16,3,20,40
+Light,light,null,directional,#fbb,0,51000,20,100000,1
+Light,ambient,null,ambient,#fff,0,0,0,1000,0.7
+Colour,block,white,#fff
 CustomCollection,block,Assets/CSV/Scene2Input1.csv

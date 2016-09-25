@@ -130,11 +130,8 @@ namespace EntityProvider
                         Entity prototype = entityPool.fetch(list[1]);
                         entityPool.remove(prototype);
                         collection.setEntity(prototype);
-
+                        Destroy(prototype.getGameObject());
                         collection.createCollection();
-                        //store it in the entity pool
-                        //entityPool.Add(collection);
-
                         entityPool.store(collection);
 
                         //allow collection to be created remotely
@@ -149,6 +146,7 @@ namespace EntityProvider
                         entityPool.remove(prototype);
                         CustomCollection collection = (CustomCollection)customCollectionFactory.build(list);
                         entityPool.store(collection);
+                        Destroy(prototype.getGameObject());
                     }
 
                     else if (list[0] == "Texture")
@@ -274,9 +272,10 @@ namespace EntityProvider
             for (int i = 0; i < entityPool.size(); ++i)
             {
                 if(entityPool.get(i).getGameObject() != null)
-                    SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+                SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
                 //Instantiate(entityPool[i].getGameObject());
             }
+
             Camera camera = GetComponent<Camera>();
             camera.transform.gameObject.SetActive(false);
 
