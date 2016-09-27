@@ -22,7 +22,7 @@ namespace EntityProvider
         private FactoryShop factoryShop = new FactoryShop();
         private List<string> listRead;
         protected Scene scene;
-        public static int sceneNumber;
+        public static int sceneNumber = 1;
         //public string[] getEntity;
         //public GameObject loadingImage;
         //private bool generated = false;
