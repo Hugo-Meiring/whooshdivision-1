@@ -1,7 +1,20 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{General Information}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{System Overview}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Description}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection.2.2.1}{System Configuration}{subsection.2.2}% 5
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Installation}{subsection.2.2}% 6
-\BOOKMARK [3][-]{subsubsection.2.2.3}{Getting Started}{subsection.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{System Configuration}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Installation}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Getting Started}{}% 6
+\BOOKMARK [1][-]{section.4}{Using the system}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Predefined Scenes}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Editor}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Recent Scene}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Scene Descriptor File}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Shape}{subsection.4.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Light}{subsection.4.4}% 13
+\BOOKMARK [2][-]{subsection.4.5}{Model}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Colour}{subsection.4.5}% 15
+\BOOKMARK [2][-]{subsection.4.6}{Texture}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.6.1}{Collection}{subsection.4.6}% 17
+\BOOKMARK [3][-]{subsubsection.4.6.2}{CustomCollection}{subsection.4.6}% 18
+\BOOKMARK [3][-]{subsubsection.4.6.3}{SceneName}{subsection.4.6}% 19
+\BOOKMARK [3][-]{subsubsection.4.6.4}{BackgroundColour}{subsection.4.6}% 20
