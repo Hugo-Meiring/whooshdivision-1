@@ -109,11 +109,10 @@ The aim of OcuViz is to create a platform for the visualization of data in 3D sp
 
 \section{General Information}
 \subsection{System Overview}
-\subsubsection{Description}
 
 OcuViz is a platform for the visualisation of data in a virtual 3D space to allow users to conceptualise large numbers more accurately and naturally. Leveraging the power of VR we are able to create awe-inspiring and immersive scenes for users to experience. As well as, allowing users to create their own scenes through either modular CSV files which are interpreted into 3D scenes or a simplified editor without requiring the user having to be a graphics experts.
 
-\subsubsection{System Configuration}
+\subsection{System Configuration}
 
 Minimum hardware requirements to run OcuViz
 \begin{itemize}
@@ -140,7 +139,7 @@ Finally graphics output is pushed to both the screen and the Oculus Rift headset
 \item Oculus Rift Runtime Setup - \url{https://www3.oculus.com/en-us/setup/}
 \end{itemize}
 
-OcuViz will be provide in both portable and installer formats. To install simply unzip the files (portable format) or follow in the installation instructions.
+OcuViz will be provided in both portable and installer formats. To install simply unzip the files (portable format) or follow in the installation instructions.
 
 \section{Getting Started}
 OcuViz is straight forward to use. Ensure your Oculus Rift Headset, controller and head tracker are plugged in. Then launch Oculus Store. Ensure that your headset is showing a blue light. If not check Oculus Store to see the issues that exist. Also accept the health warning message displayed by the h Finally simply run OcuViz.exe to use the software. No login is required and would not make sense for this system.
@@ -159,33 +158,116 @@ OcuViz aims to be a user friendly experience. To start using OcuViz is a straigh
 
 \end{enumerate}
 
-
 \section{Using the system}
 
-\section{Troubleshooting}
+There are multiple ways to use the system. Upon startup, the user would have to use the menu scene to select one of the following:
 
+\begin{itemize}
+\item A predefined scene
+\item Use the editor to create a scene
+\item Select a recently created scene or
+\item Specify a directory containing a CSV file which will describe the scene's content.
+\end{itemize}
 \textbf{Why is the headset is not displaying an image?} \\ 
 Firstly ensure that the headset is showing a blue light. If an orange light is being displayed, exit OcuViz. Restart Oculus Rift Runtime and relaunch OcuViz.\\
 
+\subsection{Predefined Scenes}
 \textbf{Why am I feeling motion sick?} \\
 Firstly with OcuViz you are not limited with what you can place in the scene. Thus if you try and add a billion objects, your computer will attempt to render it, albeit poorly.
 
+\newpage
+\subsection{Editor}
 With VR performance is vital to ensure not only a smooth performance but also one free from motion sickness. Specifically OcuViz is intended to run at a minimum of 75 fps (frames per second) for DK2 and 90 fps for CV1. Besides this, a maximum latency of 16.6 ms needs to be maintained to prevent motion sickness.
 
+\newpage
+\subsection{Recent Scene}
 In order to see a scene's performance, go to settings in OcuViz and enable the performance option. In your scene HUD you will now see both the scene's fps and latency. If these numbers are green it means that motion sickness is not a result of hardware.
 
+\newpage
+\subsection{Scene Descriptor File}
 What else can cause motion sickness? Well how long have you been using OcuViz? Using it for an extended period of time can result in motion sickness but this is user and scene dependant. 
 
+In this use case, the user would specify the location of the scene descriptor file containing all the data to be rendered. But before we continue, we need to introduce the concept of an Entity. 
+\\\\
+An Entity is the final object that appears in the scene. An Entity is created using a line in a CSV file (these parameters will be specified shortly). You can further add to an Entity by using other lines to change colour, add texture, or even create a collection of the Entity containing multiple copies. In order to tell OcuViz what you want to decorate, an EntityLink is used. This is the unique name given to the Entity being rendered. So decorations are applied to an Entity that contains the given EntityLink.
+\\
+\\
+Now onto how to specify an Entity. You can have one of the following base Entities:
+\begin{itemize}
+\item Shape: 3D objects such as spheres and cubes
+\item Light: different light sources in the scene, including directional and ambient lights
+\item Model: 3D models such as .obj files that are created
+\end{itemize}
 Finally if someone else moves you this will cause motion sickness.
 
+Certain Entities such as Shapes can then be further decorated with additional properties:
+\begin{itemize}
+\item Colour: the colour of the Entity
+\item Texture: add a texture to an Entity.
+\end{itemize}
 
+These decorated Entities can be used as prototypes for creating a collection of Entities. There exist two kinds of Entities:
+\begin{itemize}
+\item Collection: a basic collection with predefined types
+\item CustomCollection: a specialised collection with only the prototype as a predetermined property.
+\end{itemize}
 
+Scene-specific properties can be altered too. These are:
+\begin{itemize}
+\item SceneName: the name of the scene
+\item BackgroundColour: this changes the background colour of the scene.
+\end{itemize}
 
+\subsubsection{Shape}
 
+\textbf{Shape,EntityLink,type,GRAVITY,mass,xlen,ylen,zlen,xpos,ypos,zpos}\\\\
+The above is the format required to specify a shape. Note the lack of spaces in the format. The parameters are discussed below.\\
+\textbf{Shape:} This specifies the type of Entity being created. This value never changes for all shapes.\\
+\textbf{EntityLink:} As discussed above, this string is used to identify the entity being created.\\
+\textbf{type:} This says the type of shape being created. Types acceptable are 
+\begin{itemize}
+\item plane
+\item cube
+\item sphere
+\item capsule
+\item cylinder
+\item quad
+\end{itemize}
+\textbf{GRAVITY:} This is a flag indicating whether the Entity should use gravity or not. Values accepted are true or false.
+\newline
+\textbf{mass:} Floating point value indicating the mass of the Entity in kilograms.\\
+\textbf{xlen:} The length of the Entity in the x plane in metres.\\
+\textbf{ylen:} The length of the Entity in the y plane in metres.\\
+\textbf{zlen:} The length of the Entity in the z plane in metres.\\
+\textbf{xpos:} The position of the Entity in the x plane (measured in metres).\\
+\textbf{ypos:} The position of the Entity in the y plane (measured in metres).\\
+\textbf{zpos:} The position of the Entity in the z plane (measured in metres).\\
 
+\subsubsection{Light}
 
+\textbf{Light,EntityLink,type,\#colour,xpos,ypos,zpos,range,intensity}\\\\
 
+The line above is used to create a light in the scene.
 
+\textbf{Light:} This specifies the type of Entity being created. This value never changes for all lights.\\
+\textbf{EntityLink:} As discussed above, this string is used to identify the entity being created.\\
+\textbf{type:} The type of light being created. Possible types are
+\begin{itemize}
+\item spot
+\item area
+\item directional
+\item point
+\end{itemize}
+\textbf{\#colour:} No, this is not a hashtag. This is the hexadecimal colour used for the light.\\
+\textbf{xpos:} The source of the light in the x plane.\\
+\textbf{ypos:} The source of the light in the y plane.\\
+\textbf{zpos:} The source of the light in the z plane.\\
+\textbf{range:} Floating point number indicating how far the light should travel.\\
+\textbf{intensity}: This value between 0 and 1 indicates how strong the light is.
+
+\subsection{Model}
+
+\textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ}
 
 %
 % End of Document
