@@ -135,8 +135,8 @@ OcuViz is able to retrieve models for scenes from either local storage or via th
 
 Finally graphics output is pushed to both the screen and the Oculus Rift headset.
 
-\subsection{Installation}
-OcuViz Prerequisite
+\subsubsection{Installation}
+\textbf{OcuViz Prerequisite}
 \begin{itemize}
 \item Oculus Rift Runtime Setup - \url{https://www3.oculus.com/en-us/setup/}
 \end{itemize}
@@ -145,6 +145,10 @@ OcuViz will be provided in both portable and installer formats. To install simpl
 
 \section{Getting Started}
 OcuViz is straight forward to use. Ensure your Oculus Rift Headset, controller and head tracker are plugged in. Then launch Oculus Store. Ensure that your headset is showing a blue light. If not check Oculus Store to see the issues that exist. Also accept the health warning message displayed by the h Finally simply run OcuViz.exe to use the software. No login is required and would not make sense for this system.
+
+\newpage
+
+\textbf{Launching OcuViz}
 
 OcuViz aims to be a user friendly experience. To start using OcuViz is a straight forward procedure.
 
@@ -169,13 +173,13 @@ There are multiple ways to use the system. Upon startup, the user would have to 
 
 \subsection{Predefined Scenes}
 
-\newpage
+
 \subsection{Editor}
 
-\newpage
-\subsection{Recent Scene}
 
-\newpage
+\subsection{Recent Scene}
+OcuViz tracks all scenes recently used / created. It allows for quick access to such scenes preventing the user from needing to search for a scene via explorer.
+
 \subsection{Scene Descriptor File}
 
 In this use case, the user would specify the location of the scene descriptor file containing all the data to be rendered. But before we continue, we need to introduce the concept of an Entity. 
@@ -362,6 +366,22 @@ This changes the colour of the background in the scene.
 \textbf{BackgroundColour:} This specifies the type of action being done. This value never changes for all scene names.\\
 \textbf{colourName:} The name of the colour. If the name is skybox, then a tropical sky will be rendered, complete with clouds and and a sun. Else the colour will be created as with Colour.
 \textbf{\#colour:} The hexadecimal colour being added. See Colour for more info.
+
+\section{Troubleshooting}
+
+\textbf{Why is the headset is not displaying an image?} \\ 
+Firstly ensure that the headset is showing a blue light. If an orange light is being displayed, exit OcuViz. Restart Oculus Rift Runtime and relaunch OcuViz.\\
+
+\textbf{Why am I feeling motion sick?} \\
+Firstly with OcuViz you are not limited with what you can place in the scene. Thus if you try and add a billion objects, your computer will attempt to render it, albeit poorly.
+
+With VR performance is vital to ensure not only a smooth performance but also one free from motion sickness. Specifically OcuViz is intended to run at a minimum of 75 fps (frames per second) for DK2 and 90 fps for CV1. Besides this, a maximum latency of 16.6 ms needs to be maintained to prevent motion sickness.
+
+In order to see a scene's performance, go to settings in OcuViz and enable the performance option. In your scene HUD you will now see both the scene's fps and latency. If these numbers are green it means that motion sickness is not a result of hardware.
+
+What else can cause motion sickness? Well how long have you been using OcuViz? Using it for an extended period of time can result in motion sickness but this is user and scene dependant. 
+
+Finally if someone else moves you this will cause motion sickness.
 
 %
 % End of Document

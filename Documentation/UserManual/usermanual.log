@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.30)  30 SEP 2016 22:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.30)  30 SEP 2016 22:59
 entering extended mode
 **./usermanual.tex
 (usermanual.tex
@@ -314,10 +314,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {C:/Users/whmei/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../Spec/ima
-ges/up-logo.jpg>]
-
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
+ges/up-logo.jpg>] (usermanual.toc)
 \tf@toc=\write5
 \openout5 = `usermanual.toc'.
 
@@ -336,70 +333,83 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
 
-[2] <communication.png, id=101, 4236.51724pt x 2621.65656pt>
+[2] <communication.png, id=121, 4236.51724pt x 2621.65656pt>
 File: communication.png Graphic file (type png)
 
 <use communication.png>
 Package pdftex.def Info: communication.png used on input line 130.
 (pdftex.def)             Requested size: 423.67654pt x 262.18102pt.
- [3 <./communication.png>] [4] [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 181--187
+ [3 <./communication.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 185--191
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--187
+Underfull \hbox (badness 10000) in paragraph at lines 185--191
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 217--222
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 230--239
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--218
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 226--235
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 268--274
 
  []
 
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 264--270
+[6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 337--340
 
  []
 
-[9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 333--336
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--374
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
-[11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
+[9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 389.
+ [10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 389.
  (usermanual.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 369.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
-Package rerunfilecheck Info: File `usermanual.out' has not changed.
-(rerunfilecheck)             Checksum: 5CCDD7B80AB23F516316476F90D54F06;1269.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 389.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 389.
+
+
+Package rerunfilecheck Warning: File `usermanual.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `usermanual.out':
+(rerunfilecheck)             Before: C5A931CF93DBFFC569FC5242F7752091;1279
+(rerunfilecheck)             After:  5612D629AD1376A0B59C2D3FB084A5FF;1331.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 389.
  ) 
 Here is how much of TeX's memory you used:
- 5330 strings out of 493334
- 80446 string characters out of 3130222
- 165288 words of memory out of 3000000
+ 5332 strings out of 493334
+ 80486 string characters out of 3130222
+ 165392 words of memory out of 3000000
  8786 multiletter control sequences out of 15000+200000
  9919 words of font info for 35 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,28p,535b,397s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,28p,535b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/whmei/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Users/whmei/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmcsc10.pfb><C:/Users/whmei/AppData/Local/Programs/MiKTeX 2.9/
@@ -407,9 +417,9 @@ fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/whmei/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/whmei/AppData/Loc
 al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/whme
 i/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on usermanual.pdf (12 pages, 353834 bytes).
+Output written on usermanual.pdf (11 pages, 359958 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
+ 198 PDF objects out of 1000 (max. 8388607)
  38 named destinations out of 1000 (max. 500000)
  171 words of extra memory for PDF output out of 10000 (max. 10000000)
 

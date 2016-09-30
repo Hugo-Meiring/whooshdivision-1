@@ -2,7 +2,7 @@
 \BOOKMARK [1][-]{section.2}{General Information}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{System Overview}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{System Configuration}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Installation}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Installation}{subsection.2.2}% 5
 \BOOKMARK [1][-]{section.3}{Getting Started}{}% 6
 \BOOKMARK [1][-]{section.4}{Using the system}{}% 7
 \BOOKMARK [2][-]{subsection.4.1}{Predefined Scenes}{section.4}% 8
@@ -18,3 +18,4 @@
 \BOOKMARK [3][-]{subsubsection.4.6.2}{CustomCollection}{subsection.4.6}% 18
 \BOOKMARK [3][-]{subsubsection.4.6.3}{SceneName}{subsection.4.6}% 19
 \BOOKMARK [3][-]{subsubsection.4.6.4}{BackgroundColour}{subsection.4.6}% 20
+\BOOKMARK [1][-]{section.5}{Troubleshooting}{}% 21
