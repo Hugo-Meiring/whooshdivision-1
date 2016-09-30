@@ -9,7 +9,7 @@ namespace EntityProvider
     /// EntityFactories as Singletons and only creates one. Outside classes
     /// should simply request a Factory without knowledge of its existence.
     /// </summary>
-	class FactoryShop
+	public class FactoryShop
 	{
         /// <summary>
         /// The pool of created EntityFactories. This pool should be queried

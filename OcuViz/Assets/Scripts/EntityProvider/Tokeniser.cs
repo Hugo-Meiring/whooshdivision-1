@@ -10,7 +10,7 @@ namespace EntityProvider
     /// character. Subclasses need to specify this character to be 
     /// used to separate the string input into an array of strings.
     /// </summary>
-    abstract class Tokeniser
+    public abstract class Tokeniser
     {
         /// <summary>
         /// Method used to break up a string into an array based on

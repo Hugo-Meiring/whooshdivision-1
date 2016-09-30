@@ -9,7 +9,7 @@ namespace EntityProvider
     /// An Entity must then have at least one GameObject to extend. GameObjects may not be worked on directly,
     /// but should rather use an Entity to do operations.
     /// </summary>
-	class Entity
+	public class Entity
 	{
         /// <summary>
         /// The name of the Entity. This is always required. The name should be shared with the GameObject.

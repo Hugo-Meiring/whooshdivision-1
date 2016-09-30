@@ -5,7 +5,7 @@ namespace EntityProvider
     /// <summary>
     /// Implementation of EntityFactory building animation scripts.
     /// </summary>
-    class AnimationFactory : EntityFactory
+    public class AnimationFactory : EntityFactory
 	{
         /// <summary>
         /// Builds an animated GameObject contained in an Entity.

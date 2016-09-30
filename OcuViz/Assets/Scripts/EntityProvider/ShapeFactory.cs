@@ -7,7 +7,7 @@ namespace EntityProvider
     /// <summary>
     /// Concrete implementation of EntityFactory that creates shapes of GameObjects.
     /// </summary>
-    class ShapeFactory : EntityFactory
+    public class ShapeFactory : EntityFactory
     {
         /// <summary>
         /// Method used to create a 2D and 3D shapes from a list of parameters.

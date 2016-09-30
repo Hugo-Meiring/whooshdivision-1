@@ -7,7 +7,7 @@ namespace EntityProvider
     /// A concrete implementation of the EntityPool interface based on the List generic.
     /// <seealso cref="EntityPool"/>
     /// </summary>
-    class ConcreteEntityPool : EntityPool
+    public class ConcreteEntityPool : EntityPool
     {
         //<value> A private member List used to storage utility to class functions.</value>
         private List<Entity> pool = new List<Entity>();
@@ -20,10 +20,10 @@ namespace EntityProvider
         /// </summary>
         public void store(Entity entity) 
         {
-            //if (this.indexOf(entity.getName()) == -1)
+            if (this.indexOf(entity.getName()) == -1)
                 pool.Add(entity);
-            //else
-                //throw new DuplicateEntityException();
+            else
+                throw new DuplicateEntityException();
         }
 
         /// <summary>
@@ -46,8 +46,7 @@ namespace EntityProvider
         /// </summary>
         public int indexOf(string entityName)
         {
-            Predicate<Entity> predicate = (Entity e) => {return e.getName() == entityName;};
-            return pool.FindIndex(predicate);
+            return pool.FindIndex(x => x.getName() == entityName);
         }
 
         /// <summary>
