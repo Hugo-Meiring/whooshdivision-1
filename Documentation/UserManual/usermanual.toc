@@ -4,4 +4,6 @@
 \contentsline {subsection}{\numberline {2.2}Description}{2}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}System Configuration}{2}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Installation}{2}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Getting Started}{3}{subsubsection.2.2.3}
+\contentsline {section}{\numberline {3}Getting Started}{3}{section.3}
+\contentsline {section}{\numberline {4}Using the system}{3}{section.4}
+\contentsline {section}{\numberline {5}Troubleshooting}{3}{section.5}
