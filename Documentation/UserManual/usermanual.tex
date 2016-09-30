@@ -124,6 +124,8 @@ Minimum hardware requirements to run OcuViz
 \item OS:\tab[2.6cm] Windows 7 SP1
 \end{itemize}
 
+\newpage
+
 \textbf{Communication diagram} \\
 \includegraphics[scale=0.1]{communication.png}
 
@@ -144,6 +146,8 @@ OcuViz will be provided in both portable and installer formats. To install simpl
 \section{Getting Started}
 OcuViz is straight forward to use. Ensure your Oculus Rift Headset, controller and head tracker are plugged in. Then launch Oculus Store. Ensure that your headset is showing a blue light. If not check Oculus Store to see the issues that exist. Also accept the health warning message displayed by the h Finally simply run OcuViz.exe to use the software. No login is required and would not make sense for this system.
 \\
+
+\newpage
 
 \textbf{Launching OcuViz}
 
@@ -168,25 +172,16 @@ There are multiple ways to use the system. Upon startup, the user would have to 
 \item Select a recently created scene or
 \item Specify a directory containing a CSV file which will describe the scene's content.
 \end{itemize}
-\textbf{Why is the headset is not displaying an image?} \\ 
-Firstly ensure that the headset is showing a blue light. If an orange light is being displayed, exit OcuViz. Restart Oculus Rift Runtime and relaunch OcuViz.\\
 
 \subsection{Predefined Scenes}
-\textbf{Why am I feeling motion sick?} \\
-Firstly with OcuViz you are not limited with what you can place in the scene. Thus if you try and add a billion objects, your computer will attempt to render it, albeit poorly.
-
 \newpage
 \subsection{Editor}
-With VR performance is vital to ensure not only a smooth performance but also one free from motion sickness. Specifically OcuViz is intended to run at a minimum of 75 fps (frames per second) for DK2 and 90 fps for CV1. Besides this, a maximum latency of 16.6 ms needs to be maintained to prevent motion sickness.
 
 \newpage
 \subsection{Recent Scene}
-In order to see a scene's performance, go to settings in OcuViz and enable the performance option. In your scene HUD you will now see both the scene's fps and latency. If these numbers are green it means that motion sickness is not a result of hardware.
 
 \newpage
 \subsection{Scene Descriptor File}
-What else can cause motion sickness? Well how long have you been using OcuViz? Using it for an extended period of time can result in motion sickness but this is user and scene dependant. 
-
 In this use case, the user would specify the location of the scene descriptor file containing all the data to be rendered. But before we continue, we need to introduce the concept of an Entity. 
 \\\\
 An Entity is the final object that appears in the scene. An Entity is created using a line in a CSV file (these parameters will be specified shortly). You can further add to an Entity by using other lines to change colour, add texture, or even create a collection of the Entity containing multiple copies. In order to tell OcuViz what you want to decorate, an EntityLink is used. This is the unique name given to the Entity being rendered. So decorations are applied to an Entity that contains the given EntityLink.
@@ -198,7 +193,6 @@ Now onto how to specify an Entity. You can have one of the following base Entiti
 \item Light: different light sources in the scene, including directional and ambient lights
 \item Model: 3D models such as .obj files that are created
 \end{itemize}
-Finally if someone else moves you this will cause motion sickness.
 
 Certain Entities such as Shapes can then be further decorated with additional properties:
 \begin{itemize}
@@ -269,6 +263,21 @@ The line above is used to create a light in the scene.
 
 \textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ}
 
+\section{Troubleshooting}
+
+\textbf{Why is the headset is not displaying an image?} \\ 
+Firstly ensure that the headset is showing a blue light. If an orange light is being displayed, exit OcuViz. Restart Oculus Rift Runtime and relaunch OcuViz.\\
+
+\textbf{Why am I feeling motion sick?} \\
+Firstly with OcuViz you are not limited with what you can place in the scene. Thus if you try and add a billion objects, your computer will attempt to render it, albeit poorly.
+
+With VR performance is vital to ensure not only a smooth performance but also one free from motion sickness. Specifically OcuViz is intended to run at a minimum of 75 fps (frames per second) for DK2 and 90 fps for CV1. Besides this, a maximum latency of 16.6 ms needs to be maintained to prevent motion sickness.
+
+In order to see a scene's performance, go to settings in OcuViz and enable the performance option. In your scene HUD you will now see both the scene's fps and latency. If these numbers are green it means that motion sickness is not a result of hardware.
+
+What else can cause motion sickness? Well how long have you been using OcuViz? Using it for an extended period of time can result in motion sickness but this is user and scene dependant. 
+
+Finally if someone else moves you this will cause motion sickness.
 %
 % End of Document
 %
