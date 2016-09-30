@@ -145,6 +145,7 @@ OcuViz will be provided in both portable and installer formats. To install simpl
 
 \section{Getting Started}
 OcuViz is straight forward to use. Ensure your Oculus Rift Headset, controller and head tracker are plugged in. Then launch Oculus Store. Ensure that your headset is showing a blue light. If not check Oculus Store to see the issues that exist. Also accept the health warning message displayed by the h Finally simply run OcuViz.exe to use the software. No login is required and would not make sense for this system.
+\\
 
 \newpage
 
@@ -157,7 +158,8 @@ OcuViz aims to be a user friendly experience. To start using OcuViz is a straigh
 \item Launch Oculus Rift Runtime.
 \item Check that Oculus Rift headset is showing a blue light. 
 \item Accept the health warning message if one is displayed on the headset.
-\item Run OcuViz.exe 
+\item Run OcuViz.exe
+
 \end{enumerate}
 
 \section{Using the system}
@@ -182,6 +184,7 @@ OcuViz tracks all scenes recently used / created. It allows for quick access to 
 
 \subsection{Scene Descriptor File}
 
+\subsection{Scene Descriptor File}
 In this use case, the user would specify the location of the scene descriptor file containing all the data to be rendered. But before we continue, we need to introduce the concept of an Entity. 
 \\\\
 An Entity is the final object that appears in the scene. An Entity is created using a line in a CSV file (these parameters will be specified shortly). You can further add to an Entity by using other lines to change colour, add texture, or even create a collection of the Entity containing multiple copies. In order to tell OcuViz what you want to decorate, an EntityLink is used. This is the unique name given to the Entity being rendered. So decorations are applied to an Entity that contains the given EntityLink.
@@ -263,39 +266,19 @@ The line above is used to create a light in the scene.
 
 \textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ}
 
-The line above imports a model into the scene.
+\section{Troubleshooting}
 
-\textbf{Model:} This specifies the type of Entity being created. This value never changes for all models.\\
-\textbf{EntityLink:} As discussed above, this string is used to identify the entity being created.\\
-\textbf{http://EntityFile.obj:} Weblink containing the model.\\
-\textbf{posX:} The X position of the Model.\\
-\textbf{posY:} The Y position of the Model.\\
-\textbf{posZ:} The Z position of the Model.\\
+\textbf{Why is the headset is not displaying an image?} \\ 
+Firstly ensure that the headset is showing a blue light. If an orange light is being displayed, exit OcuViz. Restart Oculus Rift Runtime and relaunch OcuViz.\\
 
-\subsubsection{Colour}
+\textbf{Why am I feeling motion sick?} \\
+Firstly with OcuViz you are not limited with what you can place in the scene. Thus if you try and add a billion objects, your computer will attempt to render it, albeit poorly.
 
-\textbf{Colour,EntityLink,colourName,\#colour}
+With VR performance is vital to ensure not only a smooth performance but also one free from motion sickness. Specifically OcuViz is intended to run at a minimum of 75 fps (frames per second) for DK2 and 90 fps for CV1. Besides this, a maximum latency of 16.6 ms needs to be maintained to prevent motion sickness.
 
-This is the format of input to change an Entity's colour.
+In order to see a scene's performance, go to settings in OcuViz and enable the performance option. In your scene HUD you will now see both the scene's fps and latency. If these numbers are green it means that motion sickness is not a result of hardware.
 
-\textbf{Colour:} This specifies the type of Entity being created. This value never changes for all colours.\\
-\textbf{EntityLink:} As discussed above, this string is used to identify the entity being linked to and changing.\\
-\textbf{colourName:} The name of the colour. If a user is not familiar with hexadecimal colours, then one of the defaults can be used:
-\begin{itemize}
-\item black
-\item blue
-\item clear
-\item cyan
-\item gray
-\item green
-\item grey
-\item magenta
-\item red
-\item white
-\item yellow
-\end{itemize}
-Note: these values override the predefined colour and hexadecimal value next to it.
-\textbf{\#colour:} The colour in hexadecimal. This value will be used if colourName does not match any of the values above.
+What else can cause motion sickness? Well how long have you been using OcuViz? Using it for an extended period of time can result in motion sickness but this is user and scene dependant. 
 
 \subsection{Texture}
 
