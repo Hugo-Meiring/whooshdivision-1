@@ -20,11 +20,12 @@
     urlcolor=cyan,
 }
 
+\begin{document}
+
 
 % define the title
 \author{Whoosh Division}
 \title{OcuViz - EpiUse Labs}
-\begin{document}
 \setlength{\parskip}{6pt}
 
 % generates the title
@@ -260,6 +261,110 @@ The line above is used to create a light in the scene.
 \subsection{Model}
 
 \textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ}
+
+The line above imports a model into the scene.
+
+\textbf{Model:} This specifies the type of Entity being created. This value never changes for all models.\\
+\textbf{EntityLink:} As discussed above, this string is used to identify the entity being created.\\
+\textbf{http://EntityFile.obj:} Weblink containing the model.\\
+\textbf{posX:} The X position of the Model.\\
+\textbf{posY:} The Y position of the Model.\\
+\textbf{posZ:} The Z position of the Model.\\
+
+\subsubsection{Colour}
+
+\textbf{Colour,EntityLink,colourName,\#colour}
+
+This is the format of input to change an Entity's colour.
+
+\textbf{Colour:} This specifies the type of Entity being created. This value never changes for all colours.\\
+\textbf{EntityLink:} As discussed above, this string is used to identify the entity being linked to and changing.\\
+\textbf{colourName:} The name of the colour. If a user is not familiar with hexadecimal colours, then one of the defaults can be used:
+\begin{itemize}
+\item black
+\item blue
+\item clear
+\item cyan
+\item gray
+\item green
+\item grey
+\item magenta
+\item red
+\item white
+\item yellow
+\end{itemize}
+Note: these values override the predefined colour and hexadecimal value next to it.
+\textbf{\#colour:} The colour in hexadecimal. This value will be used if colourName does not match any of the values above.
+
+\subsection{Texture}
+
+\textbf{Texture,EntityLink,C://EntityFile.format}
+
+The above is used to add a texture to a Shape Entity.
+
+\textbf{Texture:} This specifies the type of Entity being created. This value never changes for all textures.\\
+\textbf{EntityLink:} As previously discussed above, this string is used to identify the entity being linked to and changing.\\
+\textbf{C://EntityFile.format:} The file path of the texture to be used. The format must be .jpg or .png.
+
+\subsubsection{Collection}
+
+\textbf{Collection,EntityLink,type,dimension,posX,posY,posZ}
+
+This is used to create a simple collection of Entities.
+
+\textbf{Collection:} This specifies the type of Entity collection being created. This value never changes for all standard collections.\\
+\textbf{EntityLink:} As previously discussed above, this string is used to identify the entity being used as a prototype.\\
+\textbf{type:} This determines the type to be created. Possible candidates are:
+\begin{itemize}
+\item stack: this will create a stack of Entities that rain down. dimesion will determine the number of Entities in the stack, and the posX, posY and posZ values will be where they fall.
+\item random: dimension number of Entities will be places randomly in the cubic area between the origin and the posX, posY and posZ values specified.
+\item row: creates one single row with all the Entities lined up. dimension determines the number of Entities to be rendered, and the positions the starting point.
+\item 2d: This creates a two-dimensional area containing dimension\textsuperscript{2} Entities, using the position as a starting point.
+\item 3d: This creates a three-dimensional collection containing dimension\textsuperscript{3} Entities. Position values are used as a starting point.
+\item dimension: see above.
+\item posX: see above.
+\item posY: see above.
+\item posZ: see above.
+\end{itemize}
+
+\subsubsection{CustomCollection}
+
+This one works differently. Instead of having the collection data in the same file as the Scene Descriptor, the data is kept on a separate file, referred to as the Input File. So the Scene Descriptor would have the following:
+
+\textbf{CustomCollection,EntityLink,C://InputFile.csv}
+
+\textbf{CustomCollection:} This specifies the type of Entity collection being created. This value never changes for all custom collections.\\
+\textbf{EntityLink:} As previously discussed above, this string is used to identify the entity being used as a prototype.\\
+\textbf{C://InputFile.csv:} The path to the input file.\\
+
+The input file then has the following format:
+
+\textbf{posX,posY,posZ,dimX,dimY,dimZ,\#colour}
+
+Note there is no EntityLink, as it has already been defined. There can also be multiple lines in the input file, and each line creates an Entity.
+
+\textbf{pos:} These are used to plot the point where the Entity will be placed.\\
+\textbf{dim:} These are used to change the dimensions of the prototype to whatever is needed according to the axis. The value of -1 will leave them as default (the prototype's dimension will be used in that case).
+\textbf{\#colour:} This is used to change the colour of the Entity in question. A value of null will use the default colour provided by the prototype.
+
+\subsubsection{SceneName}
+
+\textbf{SceneName,name}
+
+This gives the current scene a name.
+
+\textbf{SceneName:} This specifies the type of action being done. This value never changes for all scene names.\\
+\textbf{name:} The name of the scene. Be as descriptive as your imagination allows.
+
+\subsubsection{BackgroundColour}
+
+\textbf{BackgroundColour,colourName,\#colour}
+
+This changes the colour of the background in the scene.
+
+\textbf{BackgroundColour:} This specifies the type of action being done. This value never changes for all scene names.\\
+\textbf{colourName:} The name of the colour. If the name is skybox, then a tropical sky will be rendered, complete with clouds and and a sun. Else the colour will be created as with Colour.
+\textbf{\#colour:} The hexadecimal colour being added. See Colour for more info.
 
 %
 % End of Document
