@@ -6,7 +6,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 \makeindex
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{makeidx}
@@ -123,6 +123,17 @@ Minimum hardware requirements to run OcuViz
 \item USB:\tab[2.3cm] 2 USB 3.0 ports
 \item OS:\tab[2.6cm] Windows 7 SP1
 \end{itemize}
+
+\newpage
+
+\textbf{Communication diagram} \\
+\includegraphics[scale=0.1]{communication.png}
+
+OcuViz receives input from the user through either keyboard, mouse and xbox controller. Or from the head tracker camera which sends location based input to OcuViz with regards to user height, head orientation, etc.
+
+OcuViz is able to retrieve models for scenes from either local storage or via the internet where it can download specified models.
+
+Finally graphics output is pushed to both the screen and the Oculus Rift headset.
 
 \subsection{Installation}
 OcuViz Prerequisite
