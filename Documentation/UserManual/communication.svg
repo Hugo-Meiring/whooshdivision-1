@@ -48,15 +48,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12565608"
-     inkscape:cx="-3352.4068"
-     inkscape:cy="-317.37253"
+     inkscape:zoom="0.088388348"
+     inkscape:cx="-6763.9601"
+     inkscape:cy="-298.41241"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -617,5 +617,34 @@
          id="tspan4697"
          x="-4549.9644"
          y="1465.1403">User Input</tspan></text>
+    <path
+       inkscape:export-ydpi="28.549999"
+       inkscape:export-xdpi="28.549999"
+       style="fill:none;fill-rule:evenodd;stroke:#1a1a1a;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -2022.2643,2786.0404 -720.4386,0"
+       id="path4224"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="28.549999"
+       inkscape:export-xdpi="28.549999"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4226"
+       d="m -2030.2584,2784.4419 0,-969.0294"
+       style="fill:none;fill-rule:evenodd;stroke:#1a1a1a;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       inkscape:export-ydpi="28.549999"
+       inkscape:export-xdpi="28.549999"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:87.70437622px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-1974.5935"
+       y="2426.7913"
+       id="text4228"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4230"
+         x="-1974.5935"
+         y="2426.7913">Headset position</tspan></text>
   </g>
 </svg>

@@ -109,7 +109,7 @@ The aim of OcuViz is to create a platform for the visualization of data in 3D sp
 
 \section{General Information}
 \subsection{System Overview}
-\subsection{Description}
+\subsubsection{Description}
 
 OcuViz is a platform for the visualisation of data in a virtual 3D space to allow users to conceptualise large numbers more accurately and naturally. Leveraging the power of VR we are able to create awe-inspiring and immersive scenes for users to experience. As well as, allowing users to create their own scenes through either modular CSV files which are interpreted into 3D scenes or a simplified editor without requiring the user having to be a graphics experts.
 
@@ -125,8 +125,17 @@ Minimum hardware requirements to run OcuViz
 \item OS:\tab[2.6cm] Windows 7 SP1
 \end{itemize}
 
+\textbf{Communication diagram} \\
+\includegraphics[scale=0.1]{communication.png}
+
+OcuViz receives input from the user through either keyboard, mouse and xbox controller. Or from the head tracker camera which sends location based input to OcuViz with regards to user height, head orientation, etc.
+
+OcuViz is able to retrieve models for scenes from either local storage or via the internet where it can download specified models.
+
+Finally graphics output is pushed to both the screen and the Oculus Rift headset.
+
 \subsubsection{Installation}
-OcuViz Prerequisite
+\textbf{OcuViz Prerequisite}
 \begin{itemize}
 \item Oculus Rift Runtime Setup - \url{https://www3.oculus.com/en-us/setup/}
 \end{itemize}
