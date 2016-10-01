@@ -105,9 +105,16 @@ namespace EntityProvider
         /// <param name="bumpMap">Indicates whether bump mapping should be enabled or not.</param>
         public void addTexture(string path, bool bumpMap)
         {
-            Texture2D texture = (Texture2D)Resources.Load(path) as Texture2D;
+            Color color = obj.GetComponent<MeshRenderer>().material.color;
+            Texture texture = Resources.Load(path) as Texture;
+            //texture = new Texture2D(1, 1);
             //accesss renderer
-            obj.GetComponent<Renderer>().material.mainTexture = texture;
+            //obj.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Unlit/Texture"));
+            if (texture != null)
+            {
+                obj.GetComponent<MeshRenderer>().material.color = Color.white;
+                obj.GetComponent<MeshRenderer>().material.mainTexture = texture;
+            }
         }
 
         /// <summary>

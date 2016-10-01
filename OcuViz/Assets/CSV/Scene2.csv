@@ -4,4 +4,4 @@ Shape,block,null,cube,true,true,3,10,2,16,3,20,40
 Light,light,null,directional,#fbb,0,51000,20,100000,1
 Light,ambient,null,ambient,#fff,0,0,0,1000,0.7
 Colour,block,white,#fff
-CustomCollection,block,Assets/CSV/Scene2Input1.csv
+CustomCollection,block,C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Assets\CSV\Scene2Input1.csv
