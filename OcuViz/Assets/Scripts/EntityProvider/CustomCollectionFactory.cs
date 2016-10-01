@@ -9,7 +9,7 @@ namespace EntityProvider
     /// <summary>
     /// EntityFactory used to create a custom collection of data as specified by the user. 
     /// </summary>
-    class CustomCollectionFactory: EntityFactory //CustomCollection, EntityLink, C://InputFile.csv
+    public class CustomCollectionFactory: EntityFactory //CustomCollection, EntityLink, C://InputFile.csv
     {
         /// <summary>
         /// The original Entity to be cloned and customised.

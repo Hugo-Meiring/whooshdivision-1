@@ -8,7 +8,7 @@ namespace EntityProvider
     /// Concrete implementation of EntityFactory that creates and handles collections of a
     /// predefined Entity. Collections are a composite of Entities. 
     /// </summary>
-	class CollectionFactory : EntityFactory
+	public class CollectionFactory : EntityFactory
 	{
         /// <summary>
         /// Builds a collection of Entities based on parameters. A prototype Entity needs to exist

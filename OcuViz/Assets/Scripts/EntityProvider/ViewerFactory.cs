@@ -10,7 +10,7 @@ namespace EntityProvider
     /// Concrete implementation of EntityFactory that creates a custom first person character in the scene.
     /// This class must behave as a Singleton, as only one camera can be used in a scene.
     /// </summary>
-    class ViewerFactory: EntityFactory
+    public class ViewerFactory: EntityFactory
     {
         /// <summary>
         /// Method changes the default first person character in the scene to the custom parameters passed.

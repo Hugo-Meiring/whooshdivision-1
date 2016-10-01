@@ -5,7 +5,7 @@ namespace EntityProvider
     /// <summary>
     /// Concrete implementation of Tokeniser using commas (,) as separators.
     /// </summary>
-    class CommaTokeniser: Tokeniser
+    public class CommaTokeniser: Tokeniser
     {
         /// <summary>
         /// Constructor. Defines the character to use as a separator.

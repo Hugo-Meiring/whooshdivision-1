@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntityProvider
 {
-    class CustomCollection: Entity //posX, posY, posZ, dimX, dimY, dimZ, #colour
+    public class CustomCollection: Entity //posX, posY, posZ, dimX, dimY, dimZ, #colour
     {
         /// <summary>
         /// The default entity to be used in the collection. The CustomCollectionFactory

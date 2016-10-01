@@ -9,7 +9,7 @@ namespace EntityProvider
     /// An Entity must then have at least one GameObject to extend. GameObjects may not be worked on directly,
     /// but should rather use an Entity to do operations.
     /// </summary>
-	class Entity
+	public class Entity
 	{
         /// <summary>
         /// The name of the Entity. This is always required. The name should be shared with the GameObject.
@@ -105,9 +105,16 @@ namespace EntityProvider
         /// <param name="bumpMap">Indicates whether bump mapping should be enabled or not.</param>
         public void addTexture(string path, bool bumpMap)
         {
-            Texture2D texture = (Texture2D)Resources.Load(path) as Texture2D;
+            Color color = obj.GetComponent<MeshRenderer>().material.color;
+            Texture texture = Resources.Load(path) as Texture;
+            //texture = new Texture2D(1, 1);
             //accesss renderer
-            obj.GetComponent<Renderer>().material.mainTexture = texture;
+            //obj.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Unlit/Texture"));
+            if (texture != null)
+            {
+                obj.GetComponent<MeshRenderer>().material.color = Color.white;
+                obj.GetComponent<MeshRenderer>().material.mainTexture = texture;
+            }
         }
 
         /// <summary>

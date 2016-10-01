@@ -10,7 +10,7 @@ namespace EntityProvider
     /// with other helper classes to render the scene as specified to create
     /// the necessary entities.
     /// </summary>
-    class EntityProvider: MonoBehaviour
+    public class EntityProvider: MonoBehaviour
     {
         private EntityFactory entityFactory;
         private EntityPool entityPool = new ConcreteEntityPool();
@@ -22,7 +22,7 @@ namespace EntityProvider
         private FactoryShop factoryShop = new FactoryShop();
         private List<string> listRead;
         protected Scene scene;
-        public static int sceneNumber = 1;
+        public static int sceneNumber;
         //public string[] getEntity;
         //public GameObject loadingImage;
         //private bool generated = false;

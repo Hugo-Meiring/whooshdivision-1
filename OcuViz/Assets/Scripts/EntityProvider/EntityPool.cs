@@ -6,7 +6,7 @@ namespace EntityProvider
     /// entity factories, but before they have been linked or placed in the scene.
     /// <seealso cref="ConcreteEntityPool"/>
     /// </summary>
-    interface EntityPool
+    public interface EntityPool
     {
         /// <summary>
         /// The definition of a method used to add entities to the EntityPool. Concrete classes implementing this method

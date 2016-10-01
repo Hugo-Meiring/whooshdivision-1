@@ -6,7 +6,7 @@ namespace EntityProvider
     /// An abstract class definition specifying how factories which build entities should function.
     /// These factories will be used for creating entities containing GameObjects from a list of parameters.
     /// </summary>
-	abstract class EntityFactory
+	public abstract class EntityFactory
 	{
 		/// <summary>
         /// Describes the type of Entity the factory builds.

@@ -9,7 +9,7 @@ namespace EntityProvider
     /// <summary>
     /// This class is used to handle colour creation used in the scene by GameObjects.
     /// </summary>
-    class Colour
+    public class Colour
     {
         /// <summary>
         /// Constructor. Creates a colour based on the name of the colour requested, 

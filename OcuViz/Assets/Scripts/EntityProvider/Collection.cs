@@ -11,7 +11,7 @@ namespace EntityProvider
     /// composite. This class must have at least one Entity inside that will be rendered multiple times in the scene. This
     /// Entity needs to be predefined, else EntityNotFoundException must be thrown.
     /// </summary>
-    class Collection: Entity //should be composite, as decorator needs Entity to be an interface. That wouldn't work too well.
+    public class Collection: Entity //should be composite, as decorator needs Entity to be an interface. That wouldn't work too well.
     {
         /// <summary>
         /// The collection of Entities.

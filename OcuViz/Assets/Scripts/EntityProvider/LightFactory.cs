@@ -8,7 +8,7 @@ namespace EntityProvider
     /// <summary>
     /// Concrete implementation of EntityFactory that creates lights in the scene.
     /// </summary>
-	class LightFactory : EntityFactory
+	public class LightFactory : EntityFactory
 	{
         /// <summary>
         /// Method builds a light GameObject and places it in an Entity. 
