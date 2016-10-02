@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\EntityProvider\FileReader.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\FileReaderTests.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\LightFactory.cs" />
+    <Compile Include="Assets\Scripts\EntityProvider\ModelFactory.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\Program.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ShapeFactory.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\Tokeniser.cs" />
