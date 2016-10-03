@@ -112,6 +112,38 @@ u12031519
 	This document combines our unit test plan and report into a single coherent artifact.
 \subsection{Scope}
 \subsection{Test Environment}
+	\begin{itemize}
+		\item \textbf{Coding Environment:}
+			\begin{itemize}
+				\item \textbf{Development Framework:}\\
+					\textbf{Unity} is a development platform used to create interactive 2D, 3D, Virtual- and Augmented Reality experiences, which provides an API to easily create and manipulate scenes and visual objects.
+				\item \textbf{Development Environment:}
+					\begin{itemize}
+						\item \textbf{Unity Editor:}\\
+						Used to set up and compile the product itself. Behavioural scripts can be imported and attached to objects or invoked at certain events.
+						\item \textbf{Visual Studio Community 2015:}\\
+						The Unity Editor provides the option to integrate a project with Visual Studio. This allows the developer to write scripts and execute compilation commands directly from Visual Studio, while enjoying the benefits Visual Studio provides, such as auto-completion and IntelliSense. Unity Editor also comes packaged with MonoDevelop, a code editor which can be used in the place of Visual Studio.
+					\end{itemize}
+			\end{itemize}
+		\item \textbf{Programming Languages:}
+			\begin{itemize}
+				\item Even though Unity supports both \textbf{C\#} and \textbf{JavaScript}, \textbf{C\#} was chosen as the development language of choice as it provides more readable, intuitive use of object orientation, while supporting optional use of some of the conveniences \textbf{JavaScript} provides, such as dynamically typed variables.
+			\end{itemize}
+		\item \textbf{Testing Frameworks:}
+			\begin{itemize}
+				\item \textbf{Unity Test Tools:}\\
+				A project asset which provides a framework for Unit and Integration testing. It includes testing annotations, mock object support through the NUnit library, assertion components and integration with the Unity Editor. 
+			\end{itemize}
+		\item \textbf{Other Testing Utilities:}
+			\begin{itemize}
+				\item \textbf{Editor Test Runner:}\\
+				The Unity Editor categorises both unit- and integration tests as "editor tests". This specifies in which directory test scripts need to be stored relative to the project. The Editor Test Runner may be invoked from the Unity Editor, and provides a convenient interface to run tests stored in said location.
+				\item \textbf{Unity Cloud Build:}\\
+				Unity Projects which use GitHub as source control provider may make use of Unity Cloud Build, a continuous integration server specifically for Unity projects. Unity Cloud Build provides the convenience of starting builds as soon as the git repository associated with the project is updated, and runs all editor tests associated with the project on each build. Once the build is completed, results are reported to all collaborators.
+			\end{itemize}
+		\item \textbf{Operating System:}\\
+		As per architectural requirements set by the client, the build target, development- and testing environment is x64 Windows.
+	\end{itemize}
 \subsection{Assumptions and Dependencies}
 
 \newpage
