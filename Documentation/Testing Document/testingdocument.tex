@@ -144,9 +144,31 @@ u12031519
 		\item \textbf{Operating System:}\\
 		As per architectural requirements set by the client, the build target, development- and testing environment is x64 Windows.
 	\end{itemize}
-\subsection{Assumptions and Dependencies}
 
-\newpage
+\subsection{Assumptions and Dependencies}
+	\begin{enumerate}
+		\item \textbf{Assumptions:}
+			\begin{itemize}
+				\item \textbf{System component packaging:}\\
+				All of the system components to be tested are assumed to belong to the EntityProvider package.
+				\item \textbf{System component access rights:}\\
+				All of the system components to be tested are assumed to have public access rights. This is so that testing suites may be interchangeable without having to include the testing suite in the EntityProvider package itself.
+				\item \textbf{Programming language soundness:}\\
+				It is assumed that all of the functionality and structures provided by the C\# language are consistent and work as documented when used as intended.
+				\item \textbf{Utility soundness:}\\ 
+				It is assumed that all of the functionality and structures provided by the Unity Test Tools asset are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the structures provided in the asset. Asset errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+				\item \textbf{Environment soundness:}\\
+				It is assumed that all of the functionality and structures provided by the Unity Editor and x64 Windows are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the environment implementation. Environment errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+			\end{itemize}	
+		\item \textbf{Dependencies:}
+			\begin{itemize}
+				\item \textbf{Unity:}\\
+				The project cannot be compiled without a Unity supporting environment, such as Unity Editor or Unity Cloud build. While it is not necessary to build the entire project every time tests must be run, scripts under inspection must be compiled and require access to specific Unity APIs.
+				\item \textbf{Unity Test Tools:}\\
+				The unit tests used in the project are built around the assertion component and NUnit, provided with Unity Test Tools. As they are required to be present in the project by Unity Cloud Build, this asset is included in the project source control and does not need to be included separately.
+			\end{itemize}
+	\end{enumerate}
+ \newpage
 
 \begin{center}
 	\huge \bfseries Unit Test Plan \\[2cm]
