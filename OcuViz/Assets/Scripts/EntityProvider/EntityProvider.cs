@@ -209,7 +209,7 @@ namespace EntityProvider
                     {
                         entityFactory = factoryShop.getFactory(list[0]);
                         newEntity = entityFactory.build(list);
-                        newEntity.setParent(getEntityParent(list[2]));
+                        //newEntity.setParent(getEntityParent(list[2]));
                         entityPool.store(newEntity);
                     }
                     //Link entities: loop through the listRead
