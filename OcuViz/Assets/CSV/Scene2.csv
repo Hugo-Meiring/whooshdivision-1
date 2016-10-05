@@ -5,4 +5,4 @@ Light,light,null,directional,#fbb,0,51000,20,100000,1
 Light,ambient,null,ambient,#fff,0,0,0,1000,0.7
 Colour,block,white,#fff
 CustomCollection,block,C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Assets\CSV\Scene2Input1.csv
-Model,David,C:\Users\Vukile\Documents\IMY320\Assignments\david.obj,0,1000,0
+Model,David,C:\Users\Vukile\Documents\IMY320\Assignments\david.obj,0,0,10,10,10,10

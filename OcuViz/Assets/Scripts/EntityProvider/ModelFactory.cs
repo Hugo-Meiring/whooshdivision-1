@@ -19,11 +19,15 @@ namespace EntityProvider
 
             GameObject modelGameObject = new GameObject(list[1]);
             MeshFilter renderer = modelGameObject.AddComponent<MeshFilter>();
+            modelGameObject.AddComponent<MeshRenderer>();
+            modelGameObject.AddComponent<SkinnedMeshRenderer>();
             modelGameObject.AddComponent<Rigidbody>();
+            //modelGameObject.AddComponent<Phy>();
             modelGameObject.GetComponent<MeshFilter>().mesh = mesh;
 
             modelGameObject.transform.position = new Vector3(float.Parse(list[3]), float.Parse(list[4]), float.Parse(list[5]));
-            modelGameObject.GetComponent<Rigidbody>().useGravity = true;
+            modelGameObject.transform.localScale = new Vector3(float.Parse(list[6]), float.Parse(list[7]), float.Parse(list[8]));
+            modelGameObject.GetComponent<Rigidbody>().useGravity = false;
 
             Entity entity = new Entity();
             entity.setName(list[1]);
