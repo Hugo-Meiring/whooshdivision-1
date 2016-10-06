@@ -22,6 +22,8 @@ namespace EntityProvider
         /// the name provided to the constructor is not recognised.</param>
         public Colour(string n, string hex)
         {
+            if (n == null) throw new ArgumentNullException("n", "Name of colour cannot be null.");
+            if (hex == null) throw new ArgumentNullException("hex", "Colour hexadecimal value cannot be null.");
             name = n;
             if (n == "black") colour = Color.black;
             else if (n == "blue") colour = Color.blue;
@@ -34,7 +36,12 @@ namespace EntityProvider
             else if (n == "red") colour = Color.red;
             else if (n == "white") colour = Color.white;
             else if (n == "yellow") colour = Color.yellow;
-            else ColorUtility.TryParseHtmlString(hex, out colour);
+            else
+            {
+                Color makebelieve = new Color();
+                if (!ColorUtility.TryParseHtmlString(hex, out makebelieve)) throw new InvalidColourHexException();
+                ColorUtility.TryParseHtmlString(hex, out colour);
+            }
         }
 
         /// <summary>

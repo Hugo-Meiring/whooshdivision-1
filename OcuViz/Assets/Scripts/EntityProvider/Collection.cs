@@ -38,7 +38,7 @@ namespace EntityProvider
         /// <para>3D: dimension is used to determine the number of Entities in one axis. Therefore total number of GameObjects in
         /// a collection will be dimension^3</para>
         /// </summary>
-        private int dimension;
+        private uint dimension;
 
         /// <summary>
         /// The values used to define the volume of the collection, or the starting point of the collection, depending on the type.
@@ -78,7 +78,7 @@ namespace EntityProvider
             //todo: add separation of pieces (no overlapping if they spawn from the same place) <- gravity?
             //original.getGameObject().GetComponent<Rigidbody>().useGravity = true;
 
-            if(type == "stack")
+            if (type == "stack")
             {
                 Entity spawn;
                 //original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos);
@@ -88,10 +88,10 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(xPos, yPos*i, zPos);
+                    original.getGameObject().transform.position = new Vector3(xPos, yPos * i, zPos);
                 }
             }
-            else if(type == "random")
+            else if (type == "random")
             {
                 UnityEngine.Random number = new UnityEngine.Random();
 
@@ -100,12 +100,12 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0)? xPos: 0, (xPos < 0) ? 0 : xPos),
-                        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos), 
+                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
                         UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                 }
             }
-            else if(type == "row")
+            else if (type == "row")
             {
                 for (int i = 0; i < dimension; ++i)
                 {
@@ -116,7 +116,7 @@ namespace EntityProvider
                 }
             }
 
-            else if(type == "2d")
+            else if (type == "2d")
             {
                 float oX = original.getGameObject().transform.localScale.x;
                 float oY = original.getGameObject().transform.localScale.y;
@@ -124,14 +124,14 @@ namespace EntityProvider
 
                 for (int i = 0; i < dimension; ++i)
                 {
-                    for(int j = 0; j < dimension; ++j)
+                    for (int j = 0; j < dimension; ++j)
                     {
                         UnityEngine.Object.Instantiate(original.getGameObject());
                         original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos, zPos + (oZ * j));
                     }
                 }
             }
-            else if(type == "3d")
+            else if (type == "3d")
             {
                 float oX = original.getGameObject().transform.localScale.x;
                 float oY = original.getGameObject().transform.localScale.y;
@@ -157,27 +157,39 @@ namespace EntityProvider
         /// Sets the Entity to be prototyped in the Collection. This must be set before rendering the collection.
         /// </summary>
         /// <param name="entity">Prototype reference.</param>
-        public void setEntity(Entity entity)
+        public Entity setEntity(Entity entity)
         {
-            original = entity;
+            if (entity != null)
+            {
+                original = entity;
+                return original;
+            }
+            else throw new ArgumentNullException("entity", "The entity into the collection is null");
         }
 
         /// <summary>
         /// Specifies the type of collection to be created.
         /// </summary>
         /// <param name="ty">String containing the collection type.</param>
-        public void setType(string ty)
+        public string setType(string ty)
         {
+            if (ty == null) throw new NullReferenceException("Name of collection type is null.");
+            if (ty != "stack" && ty != "random" && ty != "row" && ty != "2d" && ty != "3d")
+            {
+                throw new CollectionTypeNotFoundException();
+            }
             type = ty;
+            return type;
         }
 
         /// <summary>
         /// Sets the dimension value to be used as specified above.
         /// </summary>
         /// <param name="di">int with dimension value.</param>
-        public void setDimension(int di)
+        public uint setDimension(uint di)
         {
             dimension = di;
+            return dimension;
         }
 
         /// <summary>
