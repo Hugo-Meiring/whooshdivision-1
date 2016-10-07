@@ -1,3 +1,13 @@
 /OcuViz/Assets/UnityTestTools/Examples/
 /OcuViz/Library/metadata/
+
+
+*.out
+*.toc
+*.synctex.gz
+*.log
+*.idx
+*.aux
+
+
 *.meta

@@ -1,0 +1,204 @@
+\documentclass[a4paper,12pt]{article}
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\makeindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\usepackage{verbatim}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\begin{document}
+
+
+% define the title
+\author{Whoosh Division}
+\title{OcuViz - EpiUse Labs}
+\setlength{\parskip}{6pt}
+
+% generates the title
+\begin{titlepage}
+\begin{center}
+% Upper part of the page       
+\includegraphics[scale=1]{../Spec/images/up-logo.jpg}\\[0.4cm]    
+\textsc{\LARGE Department of Computer Science}\\[1.5cm]
+\textsc{\Large Whoosh Division}\\[0.5cm]
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries OcuViz - EpiUse Labs}\\[0.4cm]
+{ \huge Unit Testing Plan \& Report}\\[0.4cm]
+{ Version 1.0 }\\[0.4cm]
+\HRule \\[0.4cm]
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Vukile {Langa}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u14035449 
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Wynand Hugo Meiring
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u13230795  
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Nontokozo Hlastwayo
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u14414555
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Gerome Schutte
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u12031519
+\end{flushright}
+\end{minipage}
+\vfill
+
+{\large \today}
+\end{center}
+\end{titlepage}
+\footnotesize
+\normalsize
+
+%
+%
+%
+%
+%
+%
+%	Table of Contents
+%
+
+\tableofcontents
+\newpage
+\setlength{\parindent}{0em}
+
+\section{Introduction}
+\subsection{Purpose}
+	OcuViz is a platform for creating rich visual representations of otherwise unintuitive data. It addresses the time consuming task of working with 3D scenes and makes it simple, by providing a format for specifying scenes that is concise, optimised for integration with pluggable data, and is targeted at being easily usable by anyone with even the slightest development experience.\\\\
+	To achieve these goals, the Whoosh Division follows a test-driven development approach for OcuViz. Not only is test write-up an integral part of understanding system objects, but this allows us to ensure that all the parts of the complex system work as intended, notifying us of any breaking changes made while also identifying problematic system components early on in development, enabling us to issue targeted fixes, and giving us confidence in the soundness of system functionality at each release.\\\\
+	This document combines our unit test plan and report into a single coherent artifact.
+\subsection{Scope}
+\subsection{Test Environment}
+	\begin{itemize}
+		\item \textbf{Coding Environment:}
+			\begin{itemize}
+				\item \textbf{Development Framework:}\\
+					\textbf{Unity} is a development platform used to create interactive 2D, 3D, Virtual- and Augmented Reality experiences, which provides an API to easily create and manipulate scenes and visual objects.
+				\item \textbf{Development Environment:}
+					\begin{itemize}
+						\item \textbf{Unity Editor:}\\
+						Used to set up and compile the product itself. Behavioural scripts can be imported and attached to objects or invoked at certain events.
+						\item \textbf{Visual Studio Community 2015:}\\
+						The Unity Editor provides the option to integrate a project with Visual Studio. This allows the developer to write scripts and execute compilation commands directly from Visual Studio, while enjoying the benefits Visual Studio provides, such as auto-completion and IntelliSense. Unity Editor also comes packaged with MonoDevelop, a code editor which can be used in the place of Visual Studio.
+					\end{itemize}
+			\end{itemize}
+		\item \textbf{Programming Languages:}
+			\begin{itemize}
+				\item Even though Unity supports both \textbf{C\#} and \textbf{JavaScript}, \textbf{C\#} was chosen as the development language of choice as it provides more readable, intuitive use of object orientation, while supporting optional use of some of the conveniences \textbf{JavaScript} provides, such as dynamically typed variables.
+			\end{itemize}
+		\item \textbf{Testing Frameworks:}
+			\begin{itemize}
+				\item \textbf{Unity Test Tools:}\\
+				A project asset which provides a framework for Unit and Integration testing. It includes testing annotations, mock object support through the NUnit library, assertion components and integration with the Unity Editor. 
+			\end{itemize}
+		\item \textbf{Other Testing Utilities:}
+			\begin{itemize}
+				\item \textbf{Editor Test Runner:}\\
+				The Unity Editor categorises both unit- and integration tests as "editor tests". This specifies in which directory test scripts need to be stored relative to the project. The Editor Test Runner may be invoked from the Unity Editor, and provides a convenient interface to run tests stored in said location.
+				\item \textbf{Unity Cloud Build:}\\
+				Unity Projects which use GitHub as source control provider may make use of Unity Cloud Build, a continuous integration server specifically for Unity projects. Unity Cloud Build provides the convenience of starting builds as soon as the git repository associated with the project is updated, and runs all editor tests associated with the project on each build. Once the build is completed, results are reported to all collaborators.
+			\end{itemize}
+		\item \textbf{Operating System:}\\
+		As per architectural requirements set by the client, the build target, development- and testing environment is x64 Windows.
+	\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+	\begin{enumerate}
+		\item \textbf{Assumptions:}
+			\begin{itemize}
+				\item \textbf{System component packaging:}\\
+				All of the system components to be tested are assumed to belong to the EntityProvider package.
+				\item \textbf{System component access rights:}\\
+				All of the system components to be tested are assumed to have public access rights. This is so that testing suites may be interchangeable without having to include the testing suite in the EntityProvider package itself.
+				\item \textbf{Programming language soundness:}\\
+				It is assumed that all of the functionality and structures provided by the C\# language are consistent and work as documented when used as intended.
+				\item \textbf{Utility soundness:}\\ 
+				It is assumed that all of the functionality and structures provided by the Unity Test Tools asset are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the structures provided in the asset. Asset errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+				\item \textbf{Environment soundness:}\\
+				It is assumed that all of the functionality and structures provided by the Unity Editor and x64 Windows are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the environment implementation. Environment errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+			\end{itemize}	
+		\item \textbf{Dependencies:}
+			\begin{itemize}
+				\item \textbf{Unity:}\\
+				The project cannot be compiled without a Unity supporting environment, such as Unity Editor or Unity Cloud build. While it is not necessary to build the entire project every time tests must be run, scripts under inspection must be compiled and require access to specific Unity APIs.
+				\item \textbf{Unity Test Tools:}\\
+				The unit tests used in the project are built around the assertion component and NUnit, provided with Unity Test Tools. As they are required to be present in the project by Unity Cloud Build, this asset is included in the project source control and does not need to be included separately.
+			\end{itemize}
+	\end{enumerate}
+ \newpage
+
+\begin{center}
+	\huge \bfseries Unit Test Plan \\[2cm]
+\end{center}
+
+\section{Test Items}
+
+\section{Functional Features to be Tested}
+
+\section{Test Cases}
+
+\section{Item Pass/Fail Criteria}
+
+\section{Test Deliverables}
+
+\newpage
+
+\begin{center}
+	\huge \bfseries Unit Test Report \\[2cm]
+\end{center}
+
+\section{Detailed Test Results}
+\subsection{Overview of Test Results}
+\subsection{Functional Requirements Test Results}
+
+\section{Other}
+
+\section{Conclusions and Recommendations}
+
+%
+% End of Document
+%
+\end{document}
