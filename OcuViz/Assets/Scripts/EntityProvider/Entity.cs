@@ -40,16 +40,27 @@ namespace EntityProvider
         /// <param name="name">Name of the Entity.</param>
 		public void setName(String name)
 		{
-		     this.name = name;		
+            if (name == null)
+                throw new NullReferenceException("Name of Entity is null.");
+            else this.name = name;		
 		}
 		
         /// <summary>
-        /// This method is used to set the GameObject of the Entity
+        /// This method is used to set the GameObject of the Entity.
+        /// If the GameObject is null, a NullReferenceException must be thrown.
         /// </summary>
         /// <param name="obj">Reference to the GameObject</param>
 		public void setGameObject(GameObject obj)
 		{
-			this.obj = obj;
+            if (obj != null)
+            {
+                this.obj = obj;
+                if (this.obj.GetComponent<Renderer>() == null) this.obj.AddComponent<MeshRenderer>();
+            }
+            if (obj == null)
+            {
+                throw new NullReferenceException("Game object being set in Entity is null.");
+            }
 		}
 		
         /// <summary>
@@ -95,7 +106,12 @@ namespace EntityProvider
         /// <param name="colour">Colour object to be added to the GameObject.</param>
         public void addColour(Colour colour)
         {
-            obj.GetComponent<Renderer>().material.color = colour.getColour();
+            if (colour != null)
+            {
+                if (obj.GetComponent<Renderer>() == null) obj.AddComponent<MeshRenderer>();
+                obj.GetComponent<Renderer>().material.color = colour.getColour();
+            }
+            if (colour == null) throw new NullReferenceException("Colour being set to Entity is null.");
         }
 
         /// <summary>
@@ -105,6 +121,7 @@ namespace EntityProvider
         /// <param name="bumpMap">Indicates whether bump mapping should be enabled or not.</param>
         public void addTexture(string path, bool bumpMap)
         {
+            if (obj.GetComponent<Renderer>() == null) obj.AddComponent<MeshRenderer>();
             Color color = obj.GetComponent<MeshRenderer>().material.color;
             Texture texture = Resources.Load(path) as Texture;
             //texture = new Texture2D(1, 1);
@@ -115,6 +132,7 @@ namespace EntityProvider
                 obj.GetComponent<MeshRenderer>().material.color = Color.white;
                 obj.GetComponent<MeshRenderer>().material.mainTexture = texture;
             }
+            if (texture == null) throw new NullReferenceException("Texture was null. Check the filepath.");
         }
 
         /// <summary>

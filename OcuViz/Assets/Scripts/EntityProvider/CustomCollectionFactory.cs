@@ -53,8 +53,11 @@ namespace EntityProvider
         /// <param name="proto">The entity to be cloned.</param>
         /// <param name="token">Tokeniser used to break up a read line.</param>
         /// <param name="read">FileReader to read all lines in the input file.</param>
-        public void setOriginal(Entity proto, Tokeniser token, FileReader read)
+        public Entity setOriginal(Entity proto, Tokeniser token, FileReader read)
         {
+            if (proto == null) throw new ArgumentNullException("proto", "Prototype Entity cannot be null.");
+            if (token == null) throw new ArgumentNullException("token", "Tokeniser cannot be null.");
+            if (read == null) throw new ArgumentNullException("read", "File Reader cannot be null.");
             original = proto;
             tokeniser = token;
             reader = read;
@@ -70,6 +73,7 @@ namespace EntityProvider
             dZ = original.getGameObject().transform.localScale.z;
 
             oColour = original.getGameObject().GetComponent<Renderer>().material.color;
+            return original;
         }
 
         /// <summary>
@@ -80,6 +84,8 @@ namespace EntityProvider
         /// <returns>The CustomCollection specified by the input file.</returns>
         public override Entity build(string[] list) //posX, posY, posZ, dimX, dimY, dimZ, #colour
         {
+            if (list == null) throw new ArgumentNullException("list", "List of parameters cannot be null.");
+            if (list.Length != 3) throw new InvalidListLengthException();
             CustomCollection collection = new CustomCollection();
             Entity entity = new Entity();
             entity.setName(list[1]);
