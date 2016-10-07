@@ -1,8 +1,9 @@
 SceneName,notDefined
 BackgroundColour,skybox,#000
-Shape,block,null,cube,true,true,3,10,2,16,3,20,40
+Shape,block,null,cylinder,true,true,3,10,10,16,3,2,40
 Light,light,null,directional,#fbb,0,51000,20,100000,1
 Light,ambient,null,ambient,#fff,0,0,0,1000,0.7
 Colour,block,white,#fff
 CustomCollection,block,C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Assets\CSV\Scene2Input1.csv
 Model,David,C:\Users\Vukile\Documents\IMY320\Assignments\david.obj,0,0,10,10,10,10
+Collection,David,row,10,10,0,10

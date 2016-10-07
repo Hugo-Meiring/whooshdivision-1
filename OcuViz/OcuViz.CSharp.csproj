@@ -95,10 +95,12 @@
     <Compile Include="Assets\Scripts\EntityProvider\InvalidColourHexException.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\InvalidListLengthException.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\LightFactory.cs" />
+    <Compile Include="Assets\Scripts\EntityProvider\LightTypeNotFoundException.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ListSeparatorNotFoundException.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ModelFactory.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ObjImporter.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ShapeFactory.cs" />
+    <Compile Include="Assets\Scripts\EntityProvider\ShapeTypeNotFoundException.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\Tokeniser.cs" />
     <Compile Include="Assets\Scripts\EntityProvider\ViewerFactory.cs" />
     <Compile Include="Assets\Scripts\FPS.cs" />

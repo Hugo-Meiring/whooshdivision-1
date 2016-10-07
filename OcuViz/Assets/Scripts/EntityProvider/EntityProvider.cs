@@ -14,7 +14,6 @@ namespace EntityProvider
     {
         private EntityFactory entityFactory;
         private EntityPool entityPool = new ConcreteEntityPool();
-        //private GameObject newGameObject;
         private Entity newEntity;
         private string[] list;
         private Tokeniser tokeniser = new CommaTokeniser();
@@ -23,203 +22,114 @@ namespace EntityProvider
         private List<string> listRead;
         protected Scene scene;
         public static int sceneNumber;
-        //public string[] getEntity;
-        //public GameObject loadingImage;
-        //private bool generated = false;
 
         /// <summary>
         /// This method opens the input file and begins reading the content. This
         /// content is then created into Entities using various factories. Once 
         /// creation is complete, the scene is populated with the GameObjects.
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">Scene Descriptor file</param>
         public void generateEntities(string fileName)
         {
-            //if (generated) return;
-            //loadingImage.SetActive(true);
-            //SceneManager.LoadScene(1);
-            //scene = SceneManager.GetSceneAt(1);
             scene = SceneManager.GetActiveScene();
-            //SceneManager.UnloadScene(0);
-            //SceneManager.LoadScene(0);
-            if (scene.name == "main")
-            {
-                SceneManager.LoadScene(1, LoadSceneMode.Single);
-            }
-            else if (scene.name == "scene")
-            {
-                string sceneName = "";
-                listRead = reader.getLines(fileName);
+            string sceneName = "";
+            listRead = reader.getLines(fileName);
 
-                foreach (string line in listRead)
+            foreach (string line in listRead)
+            {
+                list = tokeniser.tokenise(line);
+
+                if (list[0] == "SceneName")
                 {
-                    list = tokeniser.tokenise(line);
-                    //look for entity, else create a new one
-                    Console.WriteLine("Handling " + list[0]);
-                    if (list[0] == "SceneName")
-                    {
-                        sceneName = list[1]; // can be used later for saving etc
-                                             //scene = SceneManager.CreateScene(list[1]);
-                    }
-
-                    else if (list[0] == "Animation")
-                    {
-                        //optional: handle scripting by list[2]
-                        //link to main entity
-                    }
-
-                    else if (list[0] == "BackgroundColour")
-                    {
-                        //string[] splitColours = list[1].Split('-');
-                        if (list[1].ToLower() == "skybox")
-                        {
-                            Camera camera = GetComponent<Camera>();
-                            camera.clearFlags = CameraClearFlags.Skybox;
-                        }
-                        else{ 
-                            Colour colour = new Colour(list[1], list[2]);
-
-                            Color background = colour.getColour();
-                            Camera camera = GetComponent<Camera>();
-
-                            camera.clearFlags = CameraClearFlags.SolidColor;
-                            camera.backgroundColor = background;
-                        }
-                    }
-
-                    else if (list[0] == "Colour")
-                    {
-
-                        //do some major magic to link to the entity in question, if it exists
-                        Colour colour = new Colour(list[2], list[3]);
-
-                        //find the entity with the matching link in the pool
-                        //bool foundEntity = false;
-                        //for (int i = 0; i < entityPool.Count; ++i)
-                        //{
-                        //    if (entityPool[i].getName() == list[1])
-                        //    {
-                        //        foundEntity = true;
-                        //        entityPool[i].addColour(colour);
-                        //        break;
-                        //    }
-                        //}
-
-                        //rewrite
-                        entityPool.fetch(list[1]).addColour(colour);                        
-                    }
-
-                    else if (list[0] == "Collection")
-                    {
-                        //look for collection factory in factory shop
-                        entityFactory = factoryShop.getFactory(list[0]);
-                        Collection collection = (Collection)entityFactory.build(list);
-
-                        //get the game object (maybe from the pool, check EntityLink)
-                        //for (int i = 0; i < entityPool.Count; ++i)
-                        //{
-                        //    if (entityPool[i].getName() == list[1]) //if EntityLinks match
-                        //    {
-                        //        collection.setEntity(entityPool[i]);
-                        //        //entityPool.RemoveAt(i);             //delete it from being duplicated
-                        //        break;
-                        //    }
-                        //}
-
-                        //rewrite
-                        Entity prototype = entityPool.fetch(list[1]);
-                        entityPool.remove(prototype);
-                        collection.setEntity(prototype);
-                        Destroy(prototype.getGameObject());
-                        collection.createCollection();
-                        entityPool.store(collection);
-
-                        //allow collection to be created remotely
-                    }
-
-                    else if (list[0] == "CustomCollection")
-                    {
-                        Entity prototype = entityPool.fetch(list[1]);
-
-                        CustomCollectionFactory customCollectionFactory = (CustomCollectionFactory)factoryShop.getFactory(list[0]);
-                        customCollectionFactory.setOriginal(prototype, tokeniser, reader);
-                        entityPool.remove(prototype);
-                        CustomCollection collection = (CustomCollection)customCollectionFactory.build(list);
-                        entityPool.store(collection);
-                        Destroy(prototype.getGameObject());
-                    }
-
-                    else if (list[0] == "Texture")
-                    {
-                        bool foundEntity = false;
-                        bool bumpMap = bool.Parse(list[2]);
-
-                        //old
-                        //for (int i = 0; i < entityPool.Count; ++i)
-                        //{
-                        //    if (entityPool[i].getName() == list[1])
-                        //    {
-                        //        foundEntity = true;
-                        //        entityPool[i].addTexture(list[3], bumpMap);
-                        //        break; //yes? no? 
-                        //    }
-                        //}
-
-                        //new
-                        entityPool.fetch(list[1]).addTexture(list[3], bumpMap);
-
-                        //if (!foundEntity)
-                        //{
-                        //    //something went wrong
-                        //    throw new System.ArgumentException(list[1] + " was not found.");
-                        //}
-                    }
-
-                    else if (list[0] == "Attributes")
-                    {
-                        List<string> attributes = reader.getLines(list[2]);
-                        bool foundEntity = false;
-
-                        //old
-                        //for (int i = 0; i < entityPool.Count; ++i)
-                        //{
-                        //    if (entityPool[i].getName() == list[1]) // collection/entity would already be created
-                        //    {
-                        //        foundEntity = true;
-                        //        entityPool[i].handleAttributes(attributes.ToArray());
-                        //        break;
-                        //    }
-                        //}
-
-                        //new
-                        entityPool.fetch(list[1]).handleAttributes(attributes.ToArray());
-
-                        //if (!foundEntity)
-                        //{
-                        //    //something went wrong
-                        //}
-                    }
-
-                    else if (list[0] == "Variables")
-                    {
-                        //todo
-                    }
-
-                    else
-                    {
-                        entityFactory = factoryShop.getFactory(list[0]);
-                        newEntity = entityFactory.build(list);
-                        //newEntity.setParent(getEntityParent(list[2]));
-                        entityPool.store(newEntity);
-                    }
-                    //Link entities: loop through the listRead
-
-                    //TODO: add texture to shapes and colour
-
-                    //check if other entities need to be created
+                    sceneName = list[1]; // can be used later for saving etc
+                                            //scene = SceneManager.CreateScene(list[1]);
                 }
-                renderScene(sceneName);
+
+                else if (list[0] == "BackgroundColour")
+                {
+                    GameObject[] rootObjects = scene.GetRootGameObjects();
+                    GameObject viewer = new GameObject();
+                    for (int i = 0; i < rootObjects.Length; ++i)
+                    {
+                        if (rootObjects[i].name == "RigidBodyFPSController")
+                        {
+                            viewer = rootObjects[i];
+                        }
+                    }
+                    if (list[1].ToLower() == "skybox")
+                    {
+                        Camera camera = viewer.GetComponentInChildren<Camera>();
+                        camera.clearFlags = CameraClearFlags.Skybox;
+                    }
+                    else
+                    { 
+                        Colour colour = new Colour(list[1], list[2]);
+
+                        Color background = colour.getColour();
+                        Camera camera = viewer.GetComponentInChildren<Camera>();
+
+                        camera.clearFlags = CameraClearFlags.SolidColor;
+                        camera.backgroundColor = background;
+                    }
+                }
+
+                else if (list[0] == "Colour")
+                {
+                    entityPool.fetch(list[1]).addColour(new Colour(list[2], list[3]));                        
+                }
+
+                else if (list[0] == "Collection")
+                {
+                    entityFactory = factoryShop.getFactory(list[0]);
+                    Collection collection = (Collection)entityFactory.build(list);
+                    
+                    Entity prototype = entityPool.fetch(list[1]);
+                    entityPool.remove(prototype);
+                    collection.setEntity(prototype);
+                    Destroy(prototype.getGameObject());
+                    prototype = null;
+                    collection.createCollection();
+                    entityPool.store(collection);
+                }
+
+                else if (list[0] == "CustomCollection")
+                {
+                    Entity prototype = entityPool.fetch(list[1]);
+
+                    CustomCollectionFactory customCollectionFactory = (CustomCollectionFactory)factoryShop.getFactory(list[0]);
+                    customCollectionFactory.setOriginal(prototype, tokeniser, reader);
+                    entityPool.remove(prototype);
+                    CustomCollection collection = (CustomCollection)customCollectionFactory.build(list);
+                    entityPool.store(collection);
+                    Destroy(prototype.getGameObject());
+                    prototype = null;
+                }
+
+                else if (list[0] == "Texture")
+                {
+                    entityPool.fetch(list[1]).addTexture(list[3], bool.Parse(list[2]));
+                }
+
+                else if (list[0] == "Attributes")
+                {
+                    List<string> attributes = reader.getLines(list[2]);
+                    entityPool.fetch(list[1]).handleAttributes(attributes.ToArray());
+                }
+
+                else if (list[0] == "Variables")
+                {
+                    //todo
+                }
+
+                else
+                {
+                    entityFactory = factoryShop.getFactory(list[0]);
+                    newEntity = entityFactory.build(list);
+                    entityPool.store(newEntity);
+                }
             }
+            renderScene();
+            
         }
 
         /// <summary>
@@ -259,30 +169,30 @@ namespace EntityProvider
         /// the Entities into the scene.
         /// </summary>
         /// <param name="sceneName">Name of the scene to place the GameObjects.</param>
-        protected void renderScene(string sceneName)
+        public void renderScene()
         {
-            //loop through pool and place entities
-            //render scene
-
-            //scene = SceneManager.GetSceneByPath("Scenes\\scene.unity");
-
-            //SceneManager.UnloadScene(scene);
-            //SceneManager.LoadScene(1);
-
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            GameObject viewer = new GameObject();
+            GameObject canvas = new GameObject();
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name == "RigidBodyFPSController")
+                {
+                    viewer = rootObjects[i];
+                }
+                if (rootObjects[i].name == "Canvas")
+                {
+                    canvas = rootObjects[i];
+                }
+            }
             for (int i = 0; i < entityPool.size(); ++i)
             {
                 if(entityPool.get(i).getGameObject() != null)
-                SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
-                //Instantiate(entityPool[i].getGameObject());
+                    SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
             }
 
-            Camera camera = GetComponent<Camera>();
+            Camera camera = canvas.GetComponent<Camera>();
             camera.transform.gameObject.SetActive(false);
-
-            //SceneManager.SetActiveScene(scene);
-            //SceneManager.LoadScene(scene.name);
-            //SceneManager.LoadScene(1);
-           // generated = true;
         }
 
         /// <summary>
@@ -302,9 +212,13 @@ namespace EntityProvider
         /// <param name="button">The button clicked by the user.</param>
         /// <param name="entityLink">The name of the Entity being created or linked.</param>
         /// <param name="type">The type of Factory required to create the Entity.</param>
-        /// <returns></returns>
+        /// <returns>Entity containing GameObject will default properties.</returns>
         public Entity CreateGameObject(string button, string entityLink, string type)
         {
+            if (button == null) throw new ArgumentNullException("button", "Supply the name of the button pressed.");
+            if (entityLink == null) throw new ArgumentNullException("entityLink", "A name of an entity must be provided.");
+            if (type == null) throw new ArgumentNullException("type", "Type of entity must be supplied.");
+
             if (button == "shapes" || button == "models")
             {
                     return factoryShop.getFactory("Collection").buildBasic(button, entityLink, type);
@@ -315,8 +229,11 @@ namespace EntityProvider
                 {
                     return factoryShop.getFactory("Model").buildBasic(button, entityLink, type);
                 }
-                else
+                else if (type == "cylinder" || type == "plane" || type == "cube" || type == "sphere" || type == "quad" || type == "capsule")
+                {
                     return factoryShop.getFactory("Shape").buildBasic(button, entityLink, type);
+                }
+                else throw new ShapeTypeNotFoundException();
             }
             else if(button == "point" || button == "spot" || button == "directional" || button == "area")
             {
@@ -334,17 +251,39 @@ namespace EntityProvider
         /// <param name="colour">Name of the colour to be set.</param>
         public void SetBackground(string colour)
         {
-            if(colour == "skybox")
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            GameObject viewer = new GameObject();
+            GameObject canvas = new GameObject();
+            for (int i = 0; i < rootObjects.Length; ++i)
             {
-                Camera camera = GetComponent<Camera>();
+                if (rootObjects[i].name == "RigidBodyFPSController")
+                {
+                    viewer = rootObjects[i];
+                }
+                if(rootObjects[i].name == "Canvas")
+                {
+                    canvas = rootObjects[i];
+                }
+            }
+            if (colour == "skybox")
+            {
+                Camera camera = canvas.GetComponent<Camera>();
+                camera.clearFlags = CameraClearFlags.Skybox;
+
+                camera = viewer.GetComponentInChildren<Camera>();
                 camera.clearFlags = CameraClearFlags.Skybox;
             }
             else
             { 
-                Colour colr = new Colour(list[1], list[2]);
+                Colour colr = new Colour("null", colour);
 
                 Color background = colr.getColour();
-                Camera camera = GetComponent<Camera>();
+                Camera camera = canvas.GetComponent<Camera>();
+
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = background;
+
+                camera = viewer.GetComponentInChildren<Camera>();
 
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = background;
@@ -358,8 +297,20 @@ namespace EntityProvider
         /// <param name="entity">Reference to the Entity being stored.</param>
         public void StoreEntity(Entity entity)
         {
+            if (entity == null) throw new ArgumentNullException("entity", "Cannot store a null object in the entity pool");
             entityPool.store(entity);
         }
 
+        /// <summary>
+        /// Sets the scene to be used in EntityProvider. This is alternative
+        /// to setting the scene index number.
+        /// </summary>
+        /// <param name="seen">Scene to be set.</param>
+        /// <returns>The scene being used after it was set.</returns>
+        public Scene setScene(Scene seen)
+        {
+            scene = seen;
+            return scene;
+        }
     }
 }

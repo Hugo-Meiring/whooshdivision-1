@@ -12,6 +12,8 @@ namespace EntityProvider
 
         public override Entity build(String[] list)
         {
+            if (list == null) throw new ArgumentNullException("list", "The list of parameters to be built cannot be null.");
+            if (list.Length != 9) throw new InvalidListLengthException();
             typeName = list[0];
             Mesh mesh = new Mesh();
             ObjImporter newMesh = new ObjImporter();

@@ -205,5 +205,14 @@ namespace EntityProvider
             yPos = y;
             zPos = z;
         }
+
+        /// <summary>
+        /// Returns the type of collection.
+        /// </summary>
+        /// <returns>Collection type.</returns>
+        public string getType()
+        {
+            return type;
+        }
     }
 }

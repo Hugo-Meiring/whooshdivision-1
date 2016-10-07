@@ -5,20 +5,12 @@ using EntityProvider;
 
 public class SceneLoader: MonoBehaviour {
 
-    // Use this for initialization
     public GameObject loadingImage;
-	public void one() {
-	    if(SceneManager.GetActiveScene().name == "main")
-        {
-            loadingImage.SetActive(true);
-            EntityProvider.EntityProvider.sceneNumber = 1;
-            SceneManager.LoadScene(1);
-        }
-
-        else if(SceneManager.GetActiveScene().name == "scene")
-        {
-
-        }
+	public void one()
+    {
+        loadingImage.SetActive(true);
+        EntityProvider.EntityProvider.sceneNumber = 1;
+        SceneManager.LoadScene(1);
 	}
 
     public void two()
@@ -26,5 +18,12 @@ public class SceneLoader: MonoBehaviour {
         loadingImage.SetActive(true);
         EntityProvider.EntityProvider.sceneNumber = 2;
         SceneManager.LoadScene(1);
+    }
+
+    public void newScene()
+    {
+        //this can be used to create a new scene, copy things over
+        //and then save the scene for retrieval later.
+        //scene = SceneManager.CreateScene(list[1]);
     }
 }
