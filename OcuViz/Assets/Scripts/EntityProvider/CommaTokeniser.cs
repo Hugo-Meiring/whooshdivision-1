@@ -24,6 +24,7 @@ namespace EntityProvider
         public override string[] tokenise(string line)
         {
             if (line == null) throw new NullReferenceException();
+            if (!line.Contains(separatorCharacter.ToString())) throw new ListSeparatorNotFoundException();
 
             string[] toBeReturned = line.Split(separatorCharacter);
             return toBeReturned;

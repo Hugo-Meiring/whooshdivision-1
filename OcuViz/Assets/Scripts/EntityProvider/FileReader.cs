@@ -42,7 +42,7 @@ namespace EntityProvider
         /// <returns>List of lines read.</returns>
         public List<string> getLines(string fileName)
         {
-            if (fileName == null) throw new NullReferenceException();
+            if (fileName == null) throw new ArgumentNullException("fileName", "The file name cannot be null.");
 
             List<string> toBeReturned = new List<string>();
             string currentLine = "";
@@ -61,7 +61,7 @@ namespace EntityProvider
                 if (currentLine != null) toBeReturned.Add(currentLine);
             } while (currentLine != null);
 
-            file.Close();
+            //file.Close();
 
             return toBeReturned;
         }
