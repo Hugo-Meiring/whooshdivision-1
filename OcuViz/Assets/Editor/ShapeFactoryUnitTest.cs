@@ -14,6 +14,7 @@ public class ShapeFactoryUnitTest
         string[] list = { "", "name", "null", "plane", "true", "true", "100", "1", "1", "1", "1", "1", "1" };
         var entity = factory.build(list);
 
+        Assert.IsInstanceOf<Entity>(entity);
         Assert.AreNotEqual(entity.getGameObject(), null);
     }
 

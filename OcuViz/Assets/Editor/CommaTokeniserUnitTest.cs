@@ -14,6 +14,7 @@ public class CommaTokeniserUnitTest {
 
         Assert.IsInstanceOf<string[]>(tokens);
         Assert.Greater(tokens.Length, 1);
+        Assert.AreEqual(tokens.Length, 2);
     }
 
     [Test]

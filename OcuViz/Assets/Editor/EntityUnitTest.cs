@@ -10,7 +10,7 @@ public class EntityUnitTest {
     public void setGameObject_setsGameObject()
     {
         var name = "Pokemon";
-        var entity = new EntityProvider.Entity();
+        var entity = new Entity();
         var go = new GameObject(name);
         entity.setGameObject(go);
 
@@ -18,7 +18,7 @@ public class EntityUnitTest {
     }
 
     [Test]
-    [ExpectedException(typeof(System.NullReferenceException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void setGameObject_throwsNullReferenceException()
     {
         var name = "Pokemon";

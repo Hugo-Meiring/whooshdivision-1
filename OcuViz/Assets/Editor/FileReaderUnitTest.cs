@@ -29,7 +29,7 @@ public class FileReaderUnitTest {
     [ExpectedException(typeof(System.IO.FileNotFoundException))]
     public void getLines_throwsFileNotFoundException()
     {
-        var reader = new FileReader("Assets\\CSV\\Scene4.csv");
+        var reader = new FileReader("Assets\\CSV\\Scene0.csv");
 
         Assert.IsInstanceOf<System.Collections.Generic.List<string>>(reader.getLines("Assets\\CSV\\Scene0.csv"));
     }
