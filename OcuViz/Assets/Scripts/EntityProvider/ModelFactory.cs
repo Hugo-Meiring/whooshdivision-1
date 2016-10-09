@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EntityProvider
 {
-    class ModelFactory : EntityFactory
+    public class ModelFactory : EntityFactory
     {
         public ModelFactory()
         {

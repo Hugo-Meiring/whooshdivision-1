@@ -5,22 +5,6 @@ using EntityProvider;
 
 public class ConcreteEntityPoolUnitTest {
 
-	[Test]
-	public void EditorTest()
-	{
-		//Arrange
-		var gameObject = new GameObject();
-
-		//Act
-		//Try to rename the GameObject
-		var newGameObjectName = "My game object";
-		gameObject.name = newGameObjectName;
-
-		//Assert
-		//The object has a new name
-		Assert.AreEqual(newGameObjectName, gameObject.name);
-    }
-
     /// <summary>
     /// A unit test which checks whether ConcreteEntityPool.indexOf returns a not-found index when calling it with an
     /// argument which indicates an entity which is not present in the EntityPool

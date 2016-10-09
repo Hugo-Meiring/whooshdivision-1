@@ -14,7 +14,7 @@ public class ModelFactoryUnitTest
         var list = new string[9];
         list[0] = "";
         list[1] = "model";
-        list[2] = "C:\\Users\\Vukile\\Documents\\IMY320\\Assignments\\david.obj";
+        list[2] = "Assets\\Resources\\david.obj";
         list[3] = "1";
         list[4] = "1";
         list[5] = "1";
@@ -34,7 +34,7 @@ public class ModelFactoryUnitTest
         var list = new string[9];
         list[0] = "";
         list[1] = "model";
-        list[2] = "C:\\Users\\Vukile\\Documents\\IMY320\\Assignments\\david.obj";
+        list[2] = "Assets\\Resources\\david.obj";
         list[3] = "1";
         list[4] = "1";
         list[5] = "1";
@@ -52,10 +52,29 @@ public class ModelFactoryUnitTest
     public void build_throwsInvalidListLengthException()
     {
         var factory = new FactoryShop().getFactory("Model");
-        var list = new string[19];
+        var list = new string[8];
         list[0] = "";
         list[1] = "model";
-        list[2] = "C:\\Users\\Vukile\\Documents\\IMY320\\Assignments\\david.obj";
+        list[2] = "Assets\\Resources\\david.obj";
+        list[3] = "1";
+        list[4] = "1";
+        list[5] = "1";
+        list[6] = "1";
+        list[7] = "1";
+        var entity = factory.build(list);
+
+        Assert.IsInstanceOf<Entity>(entity);
+    }
+
+    [Test]
+    [ExpectedException(typeof(System.IO.DirectoryNotFoundException))]
+    public void build_throwsDirectoryNotFoundException()
+    {
+        var factory = new FactoryShop().getFactory("Model");
+        var list = new string[9];
+        list[0] = "";
+        list[1] = "model";
+        list[2] = "Assets\\SO\\notDavid.obj";
         list[3] = "1";
         list[4] = "1";
         list[5] = "1";
@@ -63,7 +82,23 @@ public class ModelFactoryUnitTest
         list[7] = "1";
         list[8] = "1";
         var entity = factory.build(list);
+    }
 
-        Assert.IsInstanceOf<Entity>(entity);
+    [Test]
+    [ExpectedException(typeof(System.IO.FileNotFoundException))]
+    public void build_throwsFileNotFoundException()
+    {
+        var factory = new FactoryShop().getFactory("Model");
+        var list = new string[9];
+        list[0] = "";
+        list[1] = "model";
+        list[2] = "Assets\\Resources\\notDavid.obj";
+        list[3] = "1";
+        list[4] = "1";
+        list[5] = "1";
+        list[6] = "1";
+        list[7] = "1";
+        list[8] = "1";
+        var entity = factory.build(list);
     }
 }

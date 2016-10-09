@@ -47,7 +47,9 @@ public class CollectionFactoryUnitTest {
     {
         var collectionFactory = new CollectionFactory();
 
-        Assert.AreNotEqual(collectionFactory.buildBasic("", "", "3d"), null);
+        Assert.AreNotEqual(collectionFactory.buildBasic("", "collection", "3d"), null);
+        Assert.IsInstanceOf<Entity>(collectionFactory.buildBasic("", "collection", "3d"));
+        Assert.IsInstanceOf<Collection>(collectionFactory.buildBasic("", "collection", "3d"));
     }
 
     [Test]

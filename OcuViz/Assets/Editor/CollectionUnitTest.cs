@@ -20,6 +20,7 @@ public class CollectionUnitTest {
         collection.setPos(0, 0, 0);
 
         Assert.AreNotEqual(collection.createCollection(), null);
+        Assert.IsInstanceOf<System.Collections.Generic.List<Entity>>(collection.createCollection());
     }
 
     [Test]
