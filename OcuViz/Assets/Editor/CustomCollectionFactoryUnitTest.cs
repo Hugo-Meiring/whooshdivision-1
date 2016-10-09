@@ -74,6 +74,7 @@ public class CustomCollectionFactoryUnitTest {
 
         Assert.AreEqual(collectionFactory.setOriginal(entity, new CommaTokeniser(), new FileReader()), entity);
         Assert.IsInstanceOf<Entity>(collectionFactory.build(list));
+        Assert.IsInstanceOf<CustomCollection>(collectionFactory.build(list));
     }
 
     [Test]

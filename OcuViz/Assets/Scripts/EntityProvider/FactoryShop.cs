@@ -51,6 +51,8 @@ namespace EntityProvider
         /// <returns>Requested EntityFactory.</returns>
 		public EntityFactory getFactory(String typeName)
         {
+            if (typeName == null) throw new ArgumentNullException();
+
             for(int i = 0; i < factoryIndices.Count; ++i)
             {
                 if (typeName == factoryIndices[i]) return factoryPool[i];
