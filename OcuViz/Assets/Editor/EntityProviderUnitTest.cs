@@ -13,7 +13,7 @@ public class EntityProviderUnitTest
     {
         var type = "stack";
         var provider = new EntityProvider.EntityProvider();
-        var collection = (Collection)provider.CreateGameObject("shapes", "test1", type);
+        var collection = (Collection)provider.CreateGameObject("collection", "test1", type);
         collection.getType();
 
         Assert.IsInstanceOf<Collection>(collection);
@@ -25,7 +25,7 @@ public class EntityProviderUnitTest
     {
         var type = "random";
         var provider = new EntityProvider.EntityProvider();
-        var collection = (Collection)provider.CreateGameObject("shapes", "test1", type);
+        var collection = (Collection)provider.CreateGameObject("collection", "test1", type);
         collection.getType();
 
         Assert.IsInstanceOf<Collection>(collection);
@@ -37,7 +37,7 @@ public class EntityProviderUnitTest
     {
         var type = "row";
         var provider = new EntityProvider.EntityProvider();
-        var collection = (Collection)provider.CreateGameObject("shapes", "test1", type);
+        var collection = (Collection)provider.CreateGameObject("collection", "test1", type);
         collection.getType();
 
         Assert.IsInstanceOf<Collection>(collection);
@@ -49,7 +49,7 @@ public class EntityProviderUnitTest
     {
         var type = "3d";
         var provider = new EntityProvider.EntityProvider();
-        var collection = (Collection)provider.CreateGameObject("shapes", "test1", type);
+        var collection = (Collection)provider.CreateGameObject("collection", "test1", type);
         collection.getType();
 
         Assert.IsInstanceOf<Collection>(collection);
@@ -61,7 +61,7 @@ public class EntityProviderUnitTest
     {
         var type = "2d";
         var provider = new EntityProvider.EntityProvider();
-        var collection = (Collection)provider.CreateGameObject("shapes", "test1", type);
+        var collection = (Collection)provider.CreateGameObject("collection", "test1", type);
         collection.getType();
 
         Assert.IsInstanceOf<Collection>(collection);
@@ -69,7 +69,7 @@ public class EntityProviderUnitTest
     }
 
     [Test]
-    [ExpectedException(typeof(NotImplementedException))]
+    [ExpectedException(typeof(ArgumentException))]
     public void createGameObject_failsToCreateBasicModel()
     {
         var button = "2d";
@@ -82,7 +82,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape1()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "plane";
         var provider = new EntityProvider.EntityProvider();
@@ -95,7 +95,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape2()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "cube";
         var provider = new EntityProvider.EntityProvider();
@@ -108,7 +108,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape3()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "sphere";
         var provider = new EntityProvider.EntityProvider();
@@ -121,7 +121,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape4()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "capsule";
         var provider = new EntityProvider.EntityProvider();
@@ -134,7 +134,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape5()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "cylinder";
         var provider = new EntityProvider.EntityProvider();
@@ -147,7 +147,7 @@ public class EntityProviderUnitTest
     [Test]
     public void createGameObject_returnsBasicShape6()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "quad";
         var provider = new EntityProvider.EntityProvider();
@@ -161,7 +161,7 @@ public class EntityProviderUnitTest
     [ExpectedException(typeof(ShapeTypeNotFoundException))]
     public void createGameObject_throwsShapeTypeNotFoundException()
     {
-        var button = "3d";
+        var button = "shape";
         var entityLink = "test1";
         var type = "ellipse";
         var provider = new EntityProvider.EntityProvider();

@@ -20,19 +20,19 @@ Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz
 Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\OcuViz_Data\Managed\Mono.Cecil.dll into Unity Child Domain
 Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\OcuViz_Data\Managed\Mono.Cecil.Mdb.dll (this message is harmless)
 Loading C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\OcuViz_Data\Managed\Mono.Cecil.Mdb.dll into Unity Child Domain
-- Completed reload, in  0.165 seconds
+- Completed reload, in  0.162 seconds
 Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\OcuViz_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\OcuViz_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-Failed to create Oculus Session.Compositor failed to initialize.Failed to create Oculus Session.Compositor failed to initialize.UnloadTime: 2.193344 ms
+Compositor failed to initialize.Compositor failed to initialize.UnloadTime: 1.264091 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 180c -> priority: 1 
+  Thread -> id: 36dc -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 23.204805 ms
+UnloadTime: 6.725857 ms
 
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 299.
-Total: 0.552933 ms (FindLiveObjects: 0.051316 ms CreateObjectMapping: 0.067994 ms MarkObjects: 0.404115 ms  DeleteObjects: 0.027368 ms)
+Total: 0.229640 ms (FindLiveObjects: 0.021809 ms CreateObjectMapping: 0.022237 ms MarkObjects: 0.173620 ms  DeleteObjects: 0.010690 ms)
 
