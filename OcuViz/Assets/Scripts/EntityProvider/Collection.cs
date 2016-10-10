@@ -80,9 +80,6 @@ namespace EntityProvider
 
             if (type == "stack")
             {
-                Entity spawn;
-                //original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos);
-
                 for (int i = 0; i < dimension; ++i)
                 {
                     //manually copy construct gameobject
@@ -93,16 +90,22 @@ namespace EntityProvider
             }
             else if (type == "random")
             {
-                UnityEngine.Random number = new UnityEngine.Random();
-
+                bool[][] taken = new bool[(int)Math.Abs(Math.Ceiling(xPos))][];
+                for(int r = 0; r < (int)xPos; ++r)
+                {
+                    taken[r] = new bool[(int)Math.Abs(Math.Ceiling(zPos))];
+                }
+                
                 for (int i = 0; i < dimension; ++i)
                 {
-                    //manually copy construct gameobject
-                    //failed to get all components
+                    //do
+                    //{
+                        original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                            UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
+                            UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
+                    //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
-                        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
-                        UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
+                    taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
                 }
             }
             else if (type == "row")
@@ -119,7 +122,6 @@ namespace EntityProvider
             else if (type == "2d")
             {
                 float oX = original.getGameObject().transform.localScale.x;
-                float oY = original.getGameObject().transform.localScale.y;
                 float oZ = original.getGameObject().transform.localScale.z;
 
                 for (int i = 0; i < dimension; ++i)

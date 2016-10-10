@@ -172,14 +172,9 @@ namespace EntityProvider
         public void renderScene()
         {
             GameObject[] rootObjects = scene.GetRootGameObjects();
-            GameObject viewer = new GameObject();
             GameObject canvas = new GameObject();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
-                if (rootObjects[i].name == "RigidBodyFPSController")
-                {
-                    viewer = rootObjects[i];
-                }
                 if (rootObjects[i].name == "Canvas")
                 {
                     canvas = rootObjects[i];
@@ -219,17 +214,13 @@ namespace EntityProvider
             if (entityLink == null) throw new ArgumentNullException("entityLink", "A name of an entity must be provided.");
             if (type == null) throw new ArgumentNullException("type", "Type of entity must be supplied.");
 
-            if (button == "shapes" || button == "models")
+            if (button == "collection")
             {
                     return factoryShop.getFactory("Collection").buildBasic(button, entityLink, type);
             }
-            else if (button == "2d" || button == "3d")
+            else if (button == "shape")
             {
-                if (type == "model")
-                {
-                    return factoryShop.getFactory("Model").buildBasic(button, entityLink, type);
-                }
-                else if (type == "cylinder" || type == "plane" || type == "cube" || type == "sphere" || type == "quad" || type == "capsule")
+                if (type == "cylinder" || type == "plane" || type == "cube" || type == "sphere" || type == "quad" || type == "capsule")
                 {
                     return factoryShop.getFactory("Shape").buildBasic(button, entityLink, type);
                 }

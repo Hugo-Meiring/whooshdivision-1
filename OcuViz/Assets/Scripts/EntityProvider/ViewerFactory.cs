@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EntityProvider
 {
@@ -20,7 +21,27 @@ namespace EntityProvider
         /// <returns></returns>
         public override Entity build(string[] list)
         {
-            throw new NotImplementedException();
+            if (list == null) throw new ArgumentNullException();
+            if (list.Length != 8) throw new InvalidListLengthException();
+
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            GameObject viewer = new GameObject();
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name == "RigidBodyFPSController")
+                {
+                    viewer = rootObjects[i];
+                }
+            }
+
+            viewer.transform.position = new Vector3(float.Parse(list[2]), float.Parse(list[3]), float.Parse(list[4]));
+            viewer.transform.Rotate(float.Parse(list[5]), float.Parse(list[6]), float.Parse(list[7]));
+
+            Entity entity = new Entity();
+            entity.setName(list[1]);
+            entity.setGameObject(viewer);
+
+            return entity;
         }
 
         /// <summary>

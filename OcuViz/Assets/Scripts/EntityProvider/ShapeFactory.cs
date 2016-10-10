@@ -220,7 +220,6 @@ namespace EntityProvider
             {
                 throw new NotImplementedException();
             }
-            throw new NotImplementedException();
         }
     }
 }

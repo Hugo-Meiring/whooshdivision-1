@@ -13,3 +13,4 @@ Shape,balls,null,sphere,true,true,1,1,1,1,-30,2,-400
 Colour,balls,white,#ff000009
 Texture,balls,true,planet
 Collection,balls,3d,10,10,300,10
+Viewer,viewer,0,300,0,0,180,0
