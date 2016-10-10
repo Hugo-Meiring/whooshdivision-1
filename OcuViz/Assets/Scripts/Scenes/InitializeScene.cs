@@ -21,8 +21,17 @@ public class InitializeScene : MonoBehaviour {
 
     public void openScene2()
     {
-        EntityProvider.EntityProvider.sceneNumber = 2;
-        SceneManager.LoadScene(2);
+        if (SceneManager.GetActiveScene().name == "menu")
+        {
+            //loadingImage.SetActive(true);
+            EntityProvider.EntityProvider.sceneNumber = 2;
+            SceneManager.LoadScene(2);
+        }
+
+        else if (SceneManager.GetActiveScene().name == "scene")
+        {
+
+        }
     }
 
     public void openScene3()

@@ -200,6 +200,7 @@
      <Compile Include="Assets\Scripts\Scenes\InitializeScene.cs" />
      <Compile Include="Assets\Scripts\Scenes\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\ShorcutKeys.cs" />
+     <Compile Include="Assets\ShowMainMenu.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />
