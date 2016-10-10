@@ -54,7 +54,23 @@ namespace EntityProvider
         /// <returns>The default viewer in the scene.</returns>
         public override Entity buildBasic(string button, string entityLink, string type)
         {
-            throw new NotImplementedException();
+            if (entityLink == null) throw new ArgumentNullException("entityLink", "The entity must have a name");
+
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            GameObject viewer = new GameObject();
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name == "RigidBodyFPSController")
+                {
+                    viewer = rootObjects[i];
+                }
+            }
+
+            Entity entity = new Entity();
+            entity.setName(entityLink);
+            entity.setGameObject(viewer);
+
+            return entity;
         }
     }
 }

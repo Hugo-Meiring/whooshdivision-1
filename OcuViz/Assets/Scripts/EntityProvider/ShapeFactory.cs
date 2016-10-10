@@ -131,7 +131,7 @@ namespace EntityProvider
         {
             Entity entity = new Entity();
             entity.setName(entityLink);
-            bool flag = (button == "3d")? true: false;
+            bool flag = (button == "shape")? true: false;
             bool gravity = false;
             int mass = 1;
             if (flag)
