@@ -122,7 +122,6 @@ namespace EntityProvider
         public void addTexture(string path, bool bumpMap)
         {
             if (obj.GetComponent<Renderer>() == null) obj.AddComponent<MeshRenderer>();
-            Color color = obj.GetComponent<MeshRenderer>().material.color;
             Texture texture = Resources.Load(path) as Texture;
             //texture = new Texture2D(1, 1);
             //accesss renderer

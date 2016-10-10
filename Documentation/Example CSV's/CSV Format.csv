@@ -5,7 +5,7 @@ BackgroundColour, name, #col
 Light, EntityLink, parent, type, #col, x, y, z, range, intensity
 Colour, EntityLink, colourName, #col
 Collection, EntityLink, COLLECTION_TYPE, 500, posX, posY, posZ
-Viewer, EntityLink, xpos, ypos, zpos
+Viewer, EntityLink, xPos, yPos, zPos, xRotation, yRotation, zRotation
 Light, EntityLink, parentName, type, 0xColor, xpos, ypos, zpos, range, intensity
 Model, EntityLink, http://EntityFile.obj, posX, posY, posZ
 CustomCollection, EntityLink, C://InputFile.csv

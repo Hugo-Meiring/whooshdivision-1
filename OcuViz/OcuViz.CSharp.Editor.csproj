@@ -126,6 +126,7 @@
     <Compile Include="Assets\Editor\LightFactoryUnitTest.cs" />
     <Compile Include="Assets\Editor\ModelFactoryUnitTest.cs" />
     <Compile Include="Assets\Editor\ShapeFactoryUnitTest.cs" />
+    <Compile Include="Assets\Editor\ViewerFactoryUnitTest.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Editor\AssertionComponentEditor.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Editor\AssertionExplorerWindow.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Editor\AssertionListRenderer.cs" />
