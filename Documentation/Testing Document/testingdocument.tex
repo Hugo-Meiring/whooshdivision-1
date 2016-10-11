@@ -1,0 +1,1986 @@
+\documentclass[a4paper,12pt]{article}
+\addtolength{\oddsidemargin}{-1.cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{3.5cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\makeindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\usepackage{verbatim}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\begin{document}
+
+
+% define the title
+\author{Whoosh Division}
+\title{OcuViz - EpiUse Labs}
+\setlength{\parskip}{6pt}
+
+% generates the title
+\begin{titlepage}
+\begin{center}
+% Upper part of the page       
+\includegraphics[scale=1]{../Spec/images/up-logo.jpg}\\[0.4cm]    
+\textsc{\LARGE Department of Computer Science}\\[1.5cm]
+\textsc{\Large Whoosh Division}\\[0.5cm]
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries OcuViz - EpiUse Labs}\\[0.4cm]
+{ \huge Unit Testing Plan \& Report}\\[0.4cm]
+{ Version 1.0 }\\[0.4cm]
+\HRule \\[0.4cm]
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Vukile {Langa}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u14035449 
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Wynand Hugo Meiring
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u13230795  
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Nontokozo Hlastwayo
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u14414555
+\end{flushright}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+Gerome Schutte
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{} \\
+u12031519
+\end{flushright}
+\end{minipage}
+\vfill
+
+{\large \today}
+\end{center}
+\end{titlepage}
+\footnotesize
+\normalsize
+
+%
+%
+%
+%
+%
+%
+%	Table of Contents
+%
+
+\tableofcontents
+\newpage
+\setlength{\parindent}{0em}
+
+\section{Introduction}
+\subsection{Purpose}
+	OcuViz is a platform for creating rich visual representations of otherwise unintuitive data. It addresses the time consuming task of working with 3D scenes and makes it simple, by providing a format for specifying scenes that is concise, optimised for integration with pluggable data, and is targeted at being easily usable by anyone with even the slightest development experience.\\\\
+	To achieve these goals, the Whoosh Division follows a test-driven development approach for OcuViz. Not only is test write-up an integral part of understanding system objects, but this allows us to ensure that all the parts of the complex system work as intended, notifying us of any breaking changes made while also identifying problematic system components early on in development, enabling us to issue targeted fixes, and giving us confidence in the soundness of system functionality at each release.\\\\
+	This document combines our unit test plan and report into a single coherent artifact.
+\subsection{Scope}
+\subsection{Test Environment}
+	\begin{itemize}
+		\item \textbf{Coding Environment:}
+			\begin{itemize}
+				\item \textbf{Development Framework:}\\
+					\textbf{Unity} is a development platform used to create interactive 2D, 3D, Virtual- and Augmented Reality experiences, which provides an API to easily create and manipulate scenes and visual objects.
+				\item \textbf{Development Environment:}
+					\begin{itemize}
+						\item \textbf{Unity Editor:}\\
+						Used to set up and compile the product itself. Behavioural scripts can be imported and attached to objects or invoked at certain events.
+						\item \textbf{Visual Studio Community 2015:}\\
+						The Unity Editor provides the option to integrate a project with Visual Studio. This allows the developer to write scripts and execute compilation commands directly from Visual Studio, while enjoying the benefits Visual Studio provides, such as auto-completion and IntelliSense. Unity Editor also comes packaged with MonoDevelop, a code editor which can be used in the place of Visual Studio.
+					\end{itemize}
+			\end{itemize}
+		\item \textbf{Programming Languages:}
+			\begin{itemize}
+				\item Even though Unity supports both \textbf{C\#} and \textbf{JavaScript}, \textbf{C\#} was chosen as the development language of choice as it provides more readable, intuitive use of object orientation, while supporting optional use of some of the conveniences \textbf{JavaScript} provides, such as dynamically typed variables.
+			\end{itemize}
+		\item \textbf{Testing Frameworks:}
+			\begin{itemize}
+				\item \textbf{Unity Test Tools:}\\
+				A project asset which provides a framework for Unit and Integration testing. It includes testing annotations, mock object support through the NUnit library, assertion components and integration with the Unity Editor. 
+			\end{itemize}
+		\item \textbf{Other Testing Utilities:}
+			\begin{itemize}
+				\item \textbf{Editor Test Runner:}\\
+				The Unity Editor categorises both unit- and integration tests as "editor tests". This specifies in which directory test scripts need to be stored relative to the project. The Editor Test Runner may be invoked from the Unity Editor, and provides a convenient interface to run tests stored in said location.
+				\item \textbf{Unity Cloud Build:}\\
+				Unity Projects which use GitHub as source control provider may make use of Unity Cloud Build, a continuous integration server specifically for Unity projects. Unity Cloud Build provides the convenience of starting builds as soon as the git repository associated with the project is updated, and runs all editor tests associated with the project on each build. Once the build is completed, results are reported to all collaborators.
+			\end{itemize}
+		\item \textbf{Operating System:}\\
+		As per architectural requirements set by the client, the build target, development- and testing environment is x64 Windows.
+	\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+	\begin{enumerate}
+		\item \textbf{Assumptions:}
+			\begin{itemize}
+				\item \textbf{System component packaging:}\\
+				All of the system components to be tested are assumed to belong to the EntityProvider package.
+				\item \textbf{System component access rights:}\\
+				All of the system components to be tested are assumed to have public access rights. This is so that testing suites may be interchangeable without having to include the testing suite in the EntityProvider package itself.
+				\item \textbf{Programming language soundness:}\\
+				It is assumed that all of the functionality and structures provided by the C\# language are consistent and work as documented when used as intended.
+				\item \textbf{Utility soundness:}\\ 
+				It is assumed that all of the functionality and structures provided by the Unity Test Tools asset are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the structures provided in the asset. Asset errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+				\item \textbf{Environment soundness:}\\
+				It is assumed that all of the functionality and structures provided by the Unity Editor and x64 Windows are consistent and work as documented when used as intended. If a test case fails, it is assumed that it is not due to error on the part of the environment implementation. Environment errors are assumed to be verbose, and results are assumed to be repeatable under the same environment conditions.
+			\end{itemize}	
+		\item \textbf{Dependencies:}
+			\begin{itemize}
+				\item \textbf{Unity:}\\
+				The project cannot be compiled without a Unity supporting environment, such as Unity Editor or Unity Cloud build. While it is not necessary to build the entire project every time tests must be run, scripts under inspection must be compiled and require access to specific Unity APIs.
+				\item \textbf{Unity Test Tools:}\\
+				The unit tests used in the project are built around the assertion component and NUnit, provided with Unity Test Tools. As they are required to be present in the project by Unity Cloud Build, this asset is included in the project source control and does not need to be included separately.
+			\end{itemize}
+	\end{enumerate}
+ \newpage
+
+\begin{center}
+	\huge \bfseries Unit Test Plan \\[2cm]
+\end{center}
+
+\section{Test Items}
+Due to the nature of the project, and being heavily reliant on the Unity game engine, we decided to take the approach of testing the individual classes and their methods to ensure that they behaved as expected. This being said, we attempted to check values of objects created by the game engine as well as we could and as far as Unity would allow.
+
+\section{Functional Features to be Tested}
+
+\section{Test Cases}
+	\subsection{Test Case 1: CollectionFactory}
+		\subsubsection{Condition 1: build\_returnsCollection}
+			\textbf{Objective:} Test whether the class CollectionFactory does indeed return a collection of Entities to be used in a scene.\\\\
+			\textbf{Input:} The following entity was used to create a collection:
+				\begin{enumerate}
+					\item string[] list: \{ "", "", "row", "12", "0","0","0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It returns a collection ready to make copies of an Entity (design states this Entity should be specified later)
+					\item It should create 12 copies of the prototype Entity.
+				\end{enumerate}
+		\subsubsection{Condition 2: build\_throwsArgumentNullException}
+			\textbf{Objective:} Test whether the class CollectionFactory does indeed throw an ArgumentNullException if a null parameter is passed into CollectionFactory.build().\\\\
+			\textbf{Input:} The following entity was used to create a collection:
+				\begin{enumerate}
+					\item string[] list: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 3: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} Test whether the class CollectionFactory does indeed throw an InvalidListLengthException if a string array with length not equal to 7 is passed into CollectionFactory.build(). This is to ensure that the factory receives an exact number of parameters when creating a collection.\\\\
+			\textbf{Input:} The following entity was used to create a collection:
+				\begin{enumerate}
+					\item string[] list: \{ "", "", "row", "12", "0","0","0", null\}
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It throws an InvalidListLengthException.
+				\end{enumerate}
+		\subsubsection{Condition 4: buildBasic\_returnsCollection}
+			\textbf{Objective:} Test whether the class CollectionFactory returns a collection of only one Entity. This method is only to be used by the editor through the front-end user interface.\\\\
+			\textbf{Input:} The following values were sent into Collection.buildBasic():
+				\begin{enumerate}
+					\item an empty string for button pressed (this value is insignificant to CollectionFactory, but specified by abstract parent EntityFactory)
+					\item "collection" for the name of the collection
+					\item "3d", to create a basic 3D collection (the editor should make necessary changes as the user wants).\\
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It returns a non-null object
+					\item The object is of type Entity
+					\item The object is of type Collection.
+				\end{enumerate}
+		\subsubsection{Condition 5: buildBasic\_throwsArgumentNullException1}
+			\textbf{Objective:} Test whether the class CollectionFactory throws an ArgumentNullException if the second parameter is null.\\\\
+			\textbf{Input:} The following values were sent into Collection.buildBasic():
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: null
+					\item string type: "3d".\\
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It throws an ArgumentNullException due to the name of the collection being null.
+				\end{enumerate}
+				
+		\subsubsection{Condition 6: buildBasic\_throwsArgumentNullException1}
+			\textbf{Objective:} Test whether the class CollectionFactory throws an ArgumentNullException if the third parameter is null.\\\\
+			\textbf{Input:} The following values were sent into Collection.buildBasic():
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: ""
+					\item string type: null.\\
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It throws an ArgumentNullException due to the type of the collection being null.
+				\end{enumerate}
+	\subsection{Collection}
+		\subsubsection{Condition 1: createCollection\_returnsCollection}
+			\textbf{Objective:} Test whether the class Collection returns a collection of Entities in the form of a List when commanded to do so. This is done during runtime by the EntityProvider to only create a collection when rendering the scene.\\\\
+			\textbf{Input:} This method takes no input. All necessary information needed to create the collection is already existing within the Collection instance.\\\\
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item It returns a non-null object
+					\item The object is an instance of List\textless Entity\textgreater .
+				\end{enumerate}
+		\subsubsection{Condition 2: setEntity\_setsEntity}
+			\textbf{Objective:} Tests if Collection.setEntity() sets the prototype Entity as expected. This is done during runtime by the EntityProvider to only create a collection when rendering the scene.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item Entity entity, entity.name == "Proto".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Entity set is the same as the one passed into the Collection.
+				\end{enumerate}
+		\subsubsection{Condition 3: setEntity\_throwsArgumentNullException}
+			\textbf{Objective:} Tests if Collection.setEntity() throws an ArgumentNullException if a null Entity is passed. This could cause a NullReferenceException later when attempting to clone the Entity should it be null.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item Entity entity: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Collection throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 4: setType\_setsType}
+			\textbf{Objective:} Tests if Collection.setType() sets the type of collection to be created.\\\\
+			\textbf{Input:}  
+				\begin{enumerate}
+					\item string type: "stack".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Collection type matches the type passed into it.
+				\end{enumerate}
+		\subsubsection{Condition 5: setType\_throwsCollectionTypeNotFoundException}
+			\textbf{Objective:} Tests if Collection.setType() throws a CollectionTypeNotFoundException if the type passed is not recognised or expected by the Collection.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string type: "undefined".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Collection throws a CollectionTypeNotFoundException.
+				\end{enumerate}
+		\subsubsection{Condition 6: setDimension\_setsDimension}
+			\textbf{Objective:} Tests if Collection.setDimension() sets the dimension of the collection to an undefined integer. This ensures that no negative values can be passed into the collection.\\\\
+			\textbf{Input:}  
+				\begin{itemize}
+					\item uint dimension: 10.
+				\end{itemize}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Collection returns a dimension matching the one input.
+				\end{enumerate}
+	\subsection{Colour}
+		\subsubsection{Condition 1: Colour\_createsColour}
+			\textbf{Objective:} This test checks if the constructor of Colour creates a colour object used by Entities based on the parameters passed, using the name and the hexadecimal value of the colour.\\\\
+			\textbf{Input:} There were two colour objects created:
+				\begin{enumerate}
+					\item string name: "black", string hex: "\#iii"
+					\item string name: "huh", string hex: "\#00f".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The colour creates a black Unity Color object. This is deduced from the name used
+					\item The colour corresponding to the hex value \#00f, or blue. This is because the name ("huh") is not recognised as a predefined type.
+				\end{enumerate}
+		\subsubsection{Condition 2: Colour\_throwsArgumentNullException1}
+			\textbf{Objective:} This test checks if the constructor of Colour throws an ArgumentNullException if the name of the colour is null.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string name: null
+					\item string hex: "\#iii".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The constructor throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 3: Colour\_throwsArgumentNullException2}
+			\textbf{Objective:} This test checks if the constructor of Colour throws an ArgumentNullException if the name of the hexadecimal value is null.\\\\
+			\textbf{Input:}
+				\begin{enumerate}
+					\item string name: ""
+					\item string hex: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The constructor throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 4: Colour\_throwsInvalidColourHexException}
+			\textbf{Objective:} This test checks if the constructor of Colour throws an InvalidColourHexException if the name of the hexadecimal value and the colour are unknown.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string name: ""
+					\item string hex: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The constructor throws an InvalidColourHexException.
+				\end{enumerate}
+	\subsection{CommaTokeniser}
+		\subsubsection{Condition 1: tokenise\_tokenises}
+			\textbf{Objective:} This test checks if the string CommaTokeniser returns an array of tokenised strings, using ',' as a separator.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string line: "Hello,there".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() returns an instance of a string array
+					\item The length of the array is more than one
+					\item The length of the array is equal to two.
+				\end{enumerate}
+		\subsubsection{Condition 2: tokenise\_throwsNullReferenceException}
+			\textbf{Objective:} This test checks if CommaTokeniser throws a NullReferenceException if it receives a null value to tokenise.\\\\
+			\textbf{Input:}
+				\begin{enumerate}
+					\item string line: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() throws a NullReferenceException.
+				\end{enumerate}
+		\subsubsection{Condition 3: tokenise\_throwsListSeparatorNotFoundException}
+			\textbf{Objective:} This test checks if CommaTokeniser throws a ListSeparatorNotFoundException if it receives a string with no comma.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string line: "”a bunch of gibberish with no comma?".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() throws a ListSeparatorNotFoundException.
+				\end{enumerate}
+	\subsection{ConcreteEntityPool}
+		\subsubsection{Condition 1: indexOf\_NotFound\_ReturnsInvalidIndex}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.indexOf returns a not-found index when calling it with an argument which indicates an entity which is not present in the EntityPool.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string entityName: "notfound".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ConcreteEntityPool.indexOf returns -1 if no entity named "notfound" is in the Entity pool.
+				\end{enumerate}
+		\subsubsection{Condition 2: indexOf\_Found\_ReturnsValidIndex}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.indexOf returns a valid index when calling it with an argument which indicates an entity which is present in the EntityPool.\\\\
+			\textbf{Input:} 
+				\begin{enumerate}
+					\item string entityName: "found".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ConcreteEntityPool.indexOf returns 0 if the Entity is found at index 0.
+				\end{enumerate}
+		\subsubsection{Condition 3: store\_NoDuplicates\_StoresEntity}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.store correctly adds an entity to the pool when calling it with an argument entity which is not present in the EntityPool.\\\\
+			\textbf{Input:}  
+				\begin{enumerate}
+					\item Entity entity: Entity foo, with Entity.name == "added".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Adds the Entity if no duplicates are present.
+				\end{enumerate}
+		\subsubsection{Condition 4: store\_Duplicates\_ThrowsException}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.store correctly raises an exception when calling it with an argument entity which is present in the EntityPool.\\\\
+			\textbf{Input:} The following entities were attempted to be added into the ConcreteEntityPool:
+				\begin{enumerate}
+					\item Entity entity: Entity foo, with Entity.name == "added"
+					\item Entity entity: Entity bar, with Entity.name == "added".\\
+				\end{enumerate}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item ConcreteEntityPool throws DuplicateEntityException.
+				\end{enumerate}
+		\subsubsection{Condition 5: fetch\_EntityExists\_FetchesCorrectReference}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.fetch correctly fetches an entity reference when calling it with an argument entity name which indicates an entity that is present in the EntityPool.\\\\
+			\textbf{Input:} The following entity was added into the ConcreteEntityPool:
+				\begin{enumerate}
+					\item Entity entity: Entity expected, with Entity.name == "added".\\
+				\end{enumerate}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item ConcreteEntityPool returned Entity expected.
+				\end{enumerate}
+		\subsubsection{Condition 6: fetch\_EntityNotExist\_ThrowsException}
+			\textbf{Objective:} A unit test which checks whether ConcreteEntityPool.fetch correctly raises an exception when calling it with an argument entity name which indicates an entity that is not present in the EntityPool.\\\\
+			\textbf{Input:} There was no input sent into the pool.\\\\
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item ConcreteEntityPool throws an EntityNotFoundException.
+				\end{enumerate}
+	\subsection{CustomCollection}
+		\subsubsection{Condition 1: setOriginal\_setsOriginalEntity}
+			\textbf{Objective:} This test ensures that the Custom Collection Factory sets the entity to be used as a default when creating the collection.\\\\
+			\textbf{Input:} The following values were passed into CollectionFactory.setOriginal():
+				\begin{enumerate}
+					\item Entity entity: Entity.name == "BoO! It's !Halloween"
+					\item Tokeniser token: new CommaTokeniser()
+					\item Reader reader: new Reader().
+				\end{enumerate}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item The Entity returned matches the entity passed into the method.
+				\end{enumerate}
+		\subsubsection{Condition 2: setOriginal\_throwsArgumentNullException1}
+			\textbf{Objective:} This test ensures that the Custom Collection Factory throws an ArgumentNullException if the entity being set is null.\\\\
+			\textbf{Input:} The following values were passed into CollectionFactory.setOriginal():
+				\begin{enumerate}
+					\item Entity entity: null
+					\item Tokeniser token: new CommaTokeniser()
+					\item Reader reader: new Reader().
+				\end{enumerate}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 3: setOriginal\_throwsArgumentNullException2}
+			\textbf{Objective:} This test ensures that the Custom Collection Factory throws an ArgumentNullException if the tokeniser being passed is null is null.\\\\
+			\textbf{Input:} The following values were passed into CollectionFactory.setOriginal():
+				\begin{itemize}
+					\item Entity entity: Entity entity: Entity.name == "BoO! It's !Halloween"
+					\item Tokeniser token: null
+					\item Reader reader: new Reader().
+				\end{itemize}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 4: setOriginal\_throwsArgumentNullException1}
+			\textbf{Objective:} This test ensures that the Custom Collection Factory throws an ArgumentNullException if the FileReader being passed is null.\\\\
+			\textbf{Input:} The following values were passed into CollectionFactory.setOriginal():
+				\begin{enumerate}
+					\item Entity entity: Entity entity: Entity.name == "BoO! It's !Halloween. Not really :/"
+					\item Tokeniser token: new CommaTokeniser()
+					\item Reader reader: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcome is expected to pass the test:
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 5: build\_returnsInstanceOfEntity}
+			\textbf{Objective:} This test ensures that the method CustomCollectionFactory.build() returns an instance of Entity, and instance of CustomCollection.\\\\
+			\textbf{Input:} The following string array was passed into CollectionFactory.build():
+				\begin{enumerate}
+					\item list[0]: "0"
+					\item list[1]: "name"
+					\item list[2]: "C:Assets\textbackslash \textbackslash CSV\textbackslash \textbackslash Scene2Input1.csv".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The Entity returned by setOriginal() matches the entity passed into the method
+					\item The object returned by build() is an Entity
+					\item The object returned by build() is a CustomCollection.
+				\end{enumerate}
+		\subsubsection{Condition 6: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} This test ensures that CustomCollectionFactory.build() throws InvalidListLengthException.\\\\
+			\textbf{Input:} A string array of length 4 was passed, when one of length 3 was expected.\\\\
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An InvalidListLengthException must be thrown.
+				\end{enumerate}
+		\subsubsection{Condition 7: build\_throwsArgumentNullException}
+			\textbf{Objective:} This test ensures that CustomCollectionFactory.build() throws ArgumentNullException.\\\\
+			\textbf{Input:} A null string array was passed.
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An ArgumentNullException must be thrown.
+				\end{enumerate}
+	\subsection{EntityProvider}
+		\subsubsection{Condition 1: createGameObject\_createsBasicStackCollection}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic Collection of type stack.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "shapes"
+					\item string entityLink: "test1"
+					\item string type: "stack"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "stack".
+				\end{enumerate}
+		\subsubsection{Condition 2: createGameObject\_createsBasicRandomCollection}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic Collection of type random.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "shapes"
+					\item string entityLink: "test1"
+					\item string type: "random"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "random".
+				\end{enumerate}
+		\subsubsection{Condition 3: createGameObject\_createsBasicRowCollection}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic Collection of type row.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "shapes"
+					\item string entityLink: "test1"
+					\item string type: "row"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "row".
+				\end{enumerate}
+		\subsubsection{Condition 4: createGameObject\_createsBasic3DCollection}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic 3D Collection.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "shapes"
+					\item string entityLink: "test1"
+					\item string type: "3d"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "3d".
+				\end{enumerate}
+		\subsubsection{Condition 5: createGameObject\_createsBasic2DCollection}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic 2D Collection.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "shapes"
+					\item string entityLink: "test1"
+					\item string type: "2d"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "2d".
+				\end{enumerate}
+		\subsubsection{Condition 6: createGameObject\_failsToCreateBasicModel}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws a NotImplementedException when attempting to create a basic model, as this is not allowed. Models may only be imported.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "2d"
+					\item string entityLink: "test1"
+					\item string type: "model"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item NotImplementedException must be thrown.
+				\end{enumerate}
+		\subsubsection{Condition 7: createGameObject\_returnsBasicShape1}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "plane"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+		\subsubsection{Condition 8: createGameObject\_returnsBasicShape2}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "cube"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+
+		\subsubsection{Condition 9: createGameObject\_returnsBasicShape3}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "sphere"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+		\subsubsection{Condition 10: createGameObject\_returnsBasicShape4}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "capsule"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+		\subsubsection{Condition 10: createGameObject\_returnsBasicShape5}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "cylinder"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+		\subsubsection{Condition 11: createGameObject\_returnsBasicShape6}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a basic shape Entity.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "quad"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity's GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+		\subsubsection{Condition 12: createGameObject\_throwsShapeTypeNotFoundException}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws ShapeTypeNotFoundException when an invalid type is used.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "3d"
+					\item string entityLink: "test1"
+					\item string type: "ellipse"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ShapeTypeNotFoundException must be thrown.
+				\end{enumerate}
+		\subsubsection{Condition 13: createGameObject\_createsBasicAreaLight}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a Light of type area.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "area"
+					\item string entityLink: "test1"
+					\item string type: "quad"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Area.
+				\end{enumerate}
+		\subsubsection{Condition 14: createGameObject\_createsBasicSpotLight}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a Light of type spotlight.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "spot"
+					\item string entityLink: "test1"
+					\item string type: "quad"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Spotlight.
+				\end{enumerate}
+		\subsubsection{Condition 15: createGameObject\_createsBasicDirectionalLight}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a Light of type directional.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "directional"
+					\item string entityLink: "test1"
+					\item string type: "quad"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Directional.
+				\end{enumerate}
+		\subsubsection{Condition 16: createGameObject\_createsBasicPointLight}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() returns a Light of type point.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "point"
+					\item string entityLink: "test1"
+					\item string type: "quad"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Point.
+				\end{enumerate}
+		\subsubsection{Condition 17: createGameObject\_cannotFindButton}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws an ArgumentException if it receives an unknown button.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "soft ice cream"
+					\item string entityLink: ""
+					\item string type: "type"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 18: createGameObject\_throwsArgumentNullException1}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws an ArgumentNullException if it receives a null button.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: null
+					\item string entityLink: ""
+					\item string type: "type"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 19: createGameObject\_throwsArgumentNullException2}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws an ArgumentNullException if it receives a null name.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: null
+					\item string type: "type"
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 20: createGameObject\_throwsArgumentNullException3}
+			\textbf{Objective:} This test ensures that EntityProvider.CreateGameObject() throws an ArgumentNullException if it receives a null type.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: ""
+					\item string type: null
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 21: setBackgroundColour\_setsColourToSkybox}
+			\textbf{Objective:} This test ensures that EntityProvider.SetBackground() sets the background colour of the scene to a sky box, complete with a sun disc and ocean.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string colour: "skybox".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The canvas' camera.clearFlags equals CameraClearFlags.Skybox
+					\item The viewers' camera.clearFlags equals CameraClearFlags.Skybox.
+				\end{enumerate}
+		\subsubsection{Condition 22: setBackgroundColour\_setsColourToSolidColor}
+			\textbf{Objective:} This test ensures that EntityProvider.SetBackground() sets the background colour of the scene to a solid color.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string colour: "\#000".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The canvas' camera.clearFlags equals CameraClearFlags.SolidColor
+					\item The viewers' camera.clearFlags equals CameraClearFlags.SolidColor.
+				\end{enumerate}
+		\subsubsection{Condition 23: setBackgroundColour\_setsColourToHexColour}
+			\textbf{Objective:} This test ensures that EntityProvider.SetBackground() sets the background colour of the scene to a specified hexadecimal colour.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string colour: "\#000".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The canvas' camera.backgroundColor equals \#000
+					\item The viewers' camera.backgroundColor equals \#000.
+				\end{enumerate}
+		\subsubsection{Condition 24: storeEntity\_storesEntity}
+			\textbf{Objective:} This test ensures that EntityProvider.storeEntity() stores the given Entity into EntityProvider's pool.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item Entity entity: Entity entity, entity.name == "entity link goes here".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The EntityPool's size was larger than 0
+					\item The object fetched from the pool is the same stored
+					\item The object fetched has the name "entity link goes here".
+				\end{enumerate}
+		\subsubsection{Condition 25: storeEntity\_throwsArgumentNullException}
+			\textbf{Objective:} This test ensures that EntityProvider.storeEntity() throws an ArgumentNullException if a null object is being attempted to be stored.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item Entity entity: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 26: renderScene\_placesPoolIntoScene}
+			\textbf{Objective:} This test ensures that EntityProvider.renderScene() places the Entities in the pool into the scene.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item An array of Entities looped to be created an placed in the pool via EntityProvider.storeEntity().
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Each Entity's GameObject stored that was to be stored in EntityProvider.entityPool is checked against all the GameObjects in the scene. All must match.
+				\end{enumerate}
+		\subsubsection{Condition 27: renderScene\_cannotPlaceNullObjects1}
+			\textbf{Objective:} This test ensures that EntityProvider.renderScene() fails to place a null object in the scene.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item An array of Entities looped to be created an placed in the pool via EntityProvider.storeEntity()
+					\item The 8th object is set to null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+	\subsection{Entity}
+		\subsubsection{Condition 1: setGameObject\_setsGameObject}
+			\textbf{Objective:} Objective is to ensure Entity.setGameObject() sets the GameObject within the Entity to the GameObject required.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item GameObject obj: GameObject go, go.name == "Pokemon".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Entity.GetGameObject() returns GameObject equal to go.
+				\end{enumerate}
+		\subsubsection{Condition 2: setGameObject\_throwsNullReferenceException}
+			\textbf{Objective:} Objective is to ensure Entity.setGameObject() throws a NullReferenceException when the GameObject is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item GameObject obj: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 3: setName\_setsName}
+			\textbf{Objective:} Objective is to ensure Entity.setName() sets the name of the Entity to the string passed.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string name: "Pokemon".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Entity.getName() returns "Pokemon".
+				\end{enumerate}
+		\subsubsection{Condition 4: setName\_throwsNullReferenceException}
+			\textbf{Objective:} Objective is to ensure Entity.setName() throws a NullReferenceException when the name is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string name: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 5: addColour\_addsColour}
+			\textbf{Objective:} Objective is to ensure Entity.addColour() sets the colour of the GameObject within the Entity to the colour required.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item Colour obj: Colour colour, colour.name == "blue", colour.hex == "\#00f".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The GameObject's renderer's material color is blue.
+				\end{enumerate}
+		\subsubsection{Condition 6: addColour\_throwsNullReferenceException}
+			\textbf{Objective:} Objective is to ensure Entity.setGameObject() throws a NullReferenceException when the Colour is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item Colour obj: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 7: addTexture\_findsTexture}
+			\textbf{Objective:} Objective is to ensure Entity.addTexture() sets the texture of the Entity to the texture path passed, if found.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string path: "moon\_surface".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item No exceptions are thrown by the system or the Unity game engine.
+				\end{enumerate}
+		\subsubsection{Condition 8: addTexture\_throwsNullReferenceException}
+			\textbf{Objective:} Objective is to ensure Entity.addTexture() throws a NullReferenceException when the texture path is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string path: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+	\subsection{FactoryShop}
+		\subsubsection{Condition 1: getFactory\_returnsCollectionFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a CollectionFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "Collection".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a CollectionFactory.
+				\end{enumerate}
+		\subsubsection{Condition 2: getFactory\_returnsCustomCollectionFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a CustomCollectionFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "CustomCollection".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a CustomCollectionFactory.
+				\end{enumerate}
+		\subsubsection{Condition 3: getFactory\_returnsModelFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a ModelFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "Model".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ModelFactory.
+				\end{enumerate}
+		\subsubsection{Condition 4: getFactory\_returnsLightFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a LightFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "Light".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a LightFactory.
+				\end{enumerate}
+		\subsubsection{Condition 5: getFactory\_returnsShapeFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a ShapeFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "Shape".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ShapeFactory.
+				\end{enumerate}
+		\subsubsection{Condition 6: getFactory\_returnsViewerFactory}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() returns a ViewerFactory when requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "Viewer".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ViewerFactory.
+				\end{enumerate}
+		\subsubsection{Condition 7: getFactory\_throwsArgumentNullException}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() throws ArgumentNullException if type is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 8: getFactory\_throwsArgumentException}
+			\textbf{Objective:} Ensure FactoryShop.getFactory() throws ArgumentException if type is not known.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string typeName: "undefined factory".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentException.
+				\end{enumerate}
+	\subsection{FileReader}
+		\subsubsection{Condition 1: getLines\_returnsLinesOfScene1}
+			\textbf{Objective:} Ensure FileReader.getLines() returns a List of lines from the first scene's CSV file.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string fileName: "C:Assets\textbackslash \textbackslash CSV\textbackslash \textbackslash Scene1.csv".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns a List of strings, containing the lines of the CSV file.
+				\end{enumerate}
+		\subsubsection{Condition 2: getLines\_throwsArgumentNullException}
+			\textbf{Objective:} Ensure FileReader.getLines() throws ArgumentNullException if the file name is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string fileName: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 3: getLines\_throwsFileNotFoundException}
+			\textbf{Objective:} Ensure FileReader.getLines() throws FileNotFoundException if the file is not found.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string fileName: "C:Assets\textbackslash \textbackslash CSV\textbackslash \textbackslash Scene1.csv".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws FileNotFoundException.
+				\end{enumerate}
+	\subsection{LightFactory}
+		\subsubsection{Condition 1: build\_buildsSpotlight}
+			\textbf{Objective:} This test is to verify  LightFactory.build() returns a spotlight when one is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[10]: \{"", "not", "", "spot", "\#000edd", "0", "0", "0", "0", "0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The light component of the Entity's GameObject returned is of type Spot.
+				\end{enumerate}
+		\subsubsection{Condition 2: build\_buildsAreaLight}
+			\textbf{Objective:} This test is to verify  LightFactory.build() returns an area light when one is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[10]: \{"", "not", "", "area", "\#000edd", "0", "0", "0", "0", "0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The light component of the Entity's GameObject returned is of type Area.
+				\end{enumerate}
+		\subsubsection{Condition 3: build\_buildsDirectionalLight}
+			\textbf{Objective:} This test is to verify  LightFactory.build() returns a directional light when one is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[10]: \{"", "not", "", "directional", "\#000edd", "0", "0", "0", "0", "0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The light component of the Entity's GameObject returned is of type Directional.
+				\end{enumerate}
+		\subsubsection{Condition 4: build\_buildsPoint}
+			\textbf{Objective:} This test is to verify  LightFactory.build() returns a point light when one is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[10]: \{"", "not", "", "point", "\#000edd", "0", "0", "0", "0", "0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The light component of the Entity's GameObject returned is of type Point.
+				\end{enumerate}
+		\subsubsection{Condition 5: build\_throwsLightTypeNotFoundException}
+			\textbf{Objective:} This test is to verify  LightFactory.build() throws LightTypeNotFoundException if a light type that is unknown is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[10]: \{"", "not", "", "ray", "\#000edd", "0", "0", "0", "0", "0"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws LightTypeNotFoundException.
+				\end{enumerate}
+		\subsubsection{Condition 6: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} This test is to verify  LightFactory.build() throws InvalidListLengthException if a the list of parameters is not the expected length.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[11]: \{"", "not", "", "ray", "\#000edd", "0", "0", "0", "0", "0", null\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws InvalidListLengthException.
+				\end{enumerate}
+		\subsubsection{Condition 7: build\_throwsArgumentNullException}
+			\textbf{Objective:} This test is to verify  LightFactory.build() throws ArgumentNullException if a the list of parameters is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[11]: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 8: buildBasic\_buildsSpotlight}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() returns a basic spotlight with defaults.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "spot"
+					\item string entityLink: "liht"
+					\item string type: "spot".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Spot.
+				\end{enumerate}
+		\subsubsection{Condition 9: buildBasic\_buildsAreaLight}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() returns a basic area light with defaults.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "area"
+					\item string entityLink: "liht"
+					\item string type: "area".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Area.
+				\end{enumerate}
+		\subsubsection{Condition 10: buildBasic\_buildsDirectionalLight}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() returns a basic directional light with defaults.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "directional"
+					\item string entityLink: "liht"
+					\item string type: "directional".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Directional.
+				\end{enumerate}
+		\subsubsection{Condition 11: buildBasic\_buildsPoint}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() returns a basic point light with defaults.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "point"
+					\item string entityLink: "liht"
+					\item string type: "point".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Point.
+				\end{enumerate}
+		\subsubsection{Condition 12: buildBasic\_throwsLightTypeNotFoundException}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() throws LightTypeNotFoundException if an unrecognised light type is requested.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: "ray"
+					\item string entityLink: "liht"
+					\item string type: "ray".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws LightTypeNotFoundException.
+				\end{enumerate}
+		\subsubsection{Condition 13: buildBasic\_throwsArgumentNullException1}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() throws ArgumentNullException if the entityLink value is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: null
+					\item string type: "ray".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 14: buildBasic\_throwsArgumentNullException2}
+			\textbf{Objective:} This test is to verify  LightFactory.buildBasic() throws ArgumentNullException if the type value is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: null
+					\item string entityLink: "liht"
+					\item string type: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+	\subsection{ModelFactory}
+		\subsubsection{Condition 1: build\_returnsEntity}
+			\textbf{Objective:} This test is to verify ModelFactory.build() returns an Entity containing the model, should the model be found.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[9]:\{"", "model", "C:Assets\textbackslash \textbackslash Resources\textbackslash \textbackslash david.obj", "1", "1", "1", "1", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Returns an Entity instance.
+				\end{enumerate}
+		\subsubsection{Condition 2: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} This test is to verify ModelFactory.build() throws an InvalidListLengthException if a list not of length 9 is provided.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[8]:\{"", "model", "C:Assets\textbackslash \textbackslash Resources\textbackslash \textbackslash david.obj", "1", "1", "1", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws InvalidListLengthException.
+				\end{enumerate}
+		\subsubsection{Condition 3: build\_throwsArgumentNullException}
+			\textbf{Objective:} This test is to verify ModelFactory.build() throws an ArgumentNullException if a list is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[9]: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+		\subsubsection{Condition 4: build\_throwsDirectoryNotFoundException}
+			\textbf{Objective:} This test is to verify ModelFactory.build() throws an DirectoryNotFoundException if a model's directory is not found.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[9]:\{"", "model", "C:Assets\textbackslash \textbackslash SO\textbackslash \textbackslash notDavid.obj", "1", "1", "1", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws DirectoryNotFoundException.
+				\end{enumerate}
+		\subsubsection{Condition 5: build\_throwsFileNotFoundException}
+			\textbf{Objective:} This test is to verify  ModelFactory.build() throws an FileNotFoundException if a model's directory is not found.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[9]:\{"", "model", "C:Assets\textbackslash \textbackslash notDavid.obj", "1", "1", "1", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item Throws FileNotFoundException.
+				\end{enumerate}
+	\subsection{ShapeFactory}
+		\subsubsection{Condition 1: build\_returnsEntityContainingGameObject}
+			\textbf{Objective:} This test is to verify ShapeFactory.build() returns an Entity with a GameObject encapsulated.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[13]:\{"", "name", "null", "plane", "true", "true", "100", "1", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item An Entity is returned
+					\item The Entity has a non-null GameObject within.
+				\end{enumerate}
+		\subsubsection{Condition 2: build\_throwsArgumentNullException}
+			\textbf{Objective:} This test is to verify ShapeFactory.build() throws an ArgumentNullException if the list is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[13]: null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 3: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} This test is to verify ShapeFactory.build() throws an InvalidListLengthException if the list is not an expected length of 13.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string list[12]: \{"", "name", "null", "plane", "true", "true", "100", "1", "1", "1", "1", "1"\}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item InvalidListLengthException is thrown.
+				\end{enumerate}
+	\subsection{ViewerFactory}
+		\subsubsection{Condition 1: build\_returnsEntityConstainingViewer}
+			\textbf{Objective:} This test is to verify ViewerFactory.build() returns an Entity with the viewer GameObject encapsulated, to be used to change the parameters of the viewer dynamically.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string[] list = \{ "", "viewer", "8", "10", "12", "0", "180", "0" \}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is not null
+					\item An Entity's GameObject's location is Vector3(8, 10, 12);
+					\item The Entity has a GameObject named "RigidBodyFPSController".
+				\end{enumerate}
+		\subsubsection{Condition 2: build\_throwsArgumentNullException}
+			\textbf{Objective:} This test is to verify ViewerFactory.build() throws an ArgumentNullException if the list passed is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string[] list = null.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 3: build\_throwsInvalidListLengthException}
+			\textbf{Objective:} This test is to verify ViewerFactory.build() throws an InvalidListLengthException if the list passed has a length other than 8.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string[] list = \{ "", "viewer", "8", "10", "12", "0", "180", "0", "some unexpected value" \}.
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item InvalidListLengthException is thrown.
+				\end{enumerate}
+		\subsubsection{Condition 4: buildBasic\_returnsDefaultViewer}
+			\textbf{Objective:} This test is to verify ViewerFactory.buildBasic() returns an Entity with the viewer GameObject encapsulated, to be used to change the parameters of the viewer dynamically.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: "viewer"
+					\item string type: "".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item The object returned is not null
+					\item An Entity is returned
+					\item The Entity has a GameObject within, named "RigidBodyFPSController".
+				\end{enumerate}
+		\subsubsection{Condition 5: buildBasic\_throwsArgumentNullException}
+			\textbf{Objective:} This test is to verify ViewerFactory.build() throws an ArgumentNullException if the entityLink passed is null.\\\\
+			\textbf{Input:} The following values were used for testing:
+				\begin{enumerate}
+					\item string button: ""
+					\item string entityLink: null
+					\item string type: "".
+				\end{enumerate}
+			\textbf{Outcome:} The following outcomes are expected to pass the test:
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+
+\section{Item Pass/Fail Criteria}
+
+	Each item tested must meet a certain criteria in order to pass. These criteria are as follows: 
+		\begin{itemize}
+			\item The outcomes of the criteria mentioned in each test case should be met
+			\item These are tested using Assert statements in the UnityEngine, as well as testing thrown exceptions against expected exceptions.
+		\end{itemize}
+	If any of the above criteria are not met, the item will be considered failed.
+
+\section{Test Deliverables}
+	Artefacts to be produced as part of unit testing include the following:
+		\begin{itemize}
+			\item Unit Test Plan
+			\item Unit Test Report
+			\item Link to Unit Test Code
+		\end{itemize}
+
+\newpage
+
+\begin{center}
+	\huge \bfseries Unit Test Report \\[2cm]
+\end{center}
+
+\section{Detailed Test Results}
+	\subsection{Overview of Test Results}
+	\subsection{Functional Requirements Test Results}
+		\subsubsection{Test Case 1 (4.1.1)}
+			The following results were obtained from the tests conducted. The tests to produce the following results have passed/failed and the reasons are stated below.
+				\begin{enumerate}
+					\item It returns a collection ready to make copies of an Entity (design states this Entity should be speciﬁed later)
+					\item It should create 12 copies of the prototype Entity.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 2 (4.1.2)}
+				\begin{enumerate}
+					\item It throws an ArugmentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 3 (4.1.3)}
+				\begin{enumerate}
+					\item It throws an InvalidListLengthException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 4 (4.1.4)}
+				\begin{enumerate}
+					\item It returns a non-null object
+					\item The object is of type Entity
+					\item The object is of type Collection.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 5 (4.1.5)}
+				\begin{enumerate}
+					\item It throws an ArgumentNullException due to the name of the collection being null.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 6 (4.1.6)}
+				\begin{enumerate}
+					\item It throws an ArgumentNullException due to the type of the collection being null.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 7 (4.2.1)}
+				\begin{enumerate}
+					\item It throws an ArgumentNullException due to the type of the collection being null.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 8 (4.2.2)}
+				\begin{enumerate}
+					\item The Entity set is the same as the one passed into the Collection.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 9 (4.2.3)}
+				\begin{enumerate}
+					\item The Collection throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 10 (4.2.4)}
+				\begin{enumerate}
+					\item The Collection type matches the type passed into it.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 11 (4.2.5)}
+				\begin{enumerate}
+					\item The Collection throws a CollectionTypeNotFoundException.
+				\end{enumerate}
+		\subsubsection{Test Case 12 (4.2.6)}
+				\begin{enumerate}
+					\item The Collection returns a dimension matching the one input.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 13 (4.3.1)}
+				\begin{enumerate}
+					\item The colour creates a black Unity Color object. This is deduced from the name used
+					\item The colour corresponding to the hex value \#00f, or blue. This is because the name (”huh”) is not recognised as a predeﬁned type.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 14 (4.3.2)}
+				\begin{enumerate}
+					\item The constructor throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 15 (4.3.3)}
+				\begin{enumerate}
+					\item The constructor throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 16 (4.3.4)}
+				\begin{enumerate}
+					\item The constructor throws an InvalidColourHexException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 17 (4.4.1)}
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() returns an instance of a string array
+					\item The length of the array is more than one
+					\item The length of the array is equal to two.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 18 (4.4.2)}
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() throws a NullReferenceException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 19 (4.4.3)}
+				\begin{enumerate}
+					\item CommaTokeniser.tokenise() throws a ListSeparatorNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 20 (4.5.1)}
+				\begin{enumerate}
+					\item ConcreteEntityPool.indexOf returns -1 if no entity named ”notfound” is in the Entity pool.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 21 (4.5.2)}
+				\begin{enumerate}
+					\item ConcreteEntityPool.indexOf returns 0 if the Entity is found at index 0.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 22 (4.5.3)}
+				\begin{enumerate}
+					\item Adds the Entity if no duplicates are present.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 23 (4.5.4)}
+				\begin{enumerate}
+					\item ConcreteEntityPool throws DuplicateEntityException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 24 (4.5.5)}
+				\begin{enumerate}
+					\item ConcreteEntityPool returned Entity expected.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 25 (4.5.6)}
+				\begin{enumerate}
+					\item ConcreteEntityPool throws an EntityNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 26 (4.6.1)}
+				\begin{enumerate}
+					\item The Entity returned matches the entity passed into the method.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 27 (4.6.2)}
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 28 (4.6.3)}
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 29 (4.6.4)}
+				\begin{enumerate}
+					\item The factory throws an ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 30 (4.6.5)}
+				\begin{enumerate}
+					\item The Entity returned by setOriginal() matches the entity passed into the method
+					\item The object returned by build() is an Entity
+					\item The object returned by build() is a CustomCollection.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 31 (4.6.6)}
+				\begin{enumerate}
+					\item An InvalidListLengthException must be thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 32 (4.6.7)}
+				\begin{enumerate}
+					\item An ArgumentNullException must be thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 33 (4.7.1)}
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "stack".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 34 (4.7.2)}
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "random".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 35 (4.7.3)}
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "row".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 36 (4.7.4)}
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "3d".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 37 (4.7.5)}
+				\begin{enumerate}
+					\item The object returned is an instance of Collection
+					\item The type of Collection.getType() is "2d".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 38 (4.7.6)}
+				\begin{enumerate}
+					\item NotImplementedException must be thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 39 (4.7.7)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 40 (4.7.8)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 41 (4.7.9)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 42 (4.7.10)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 43 (4.7.11)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 44 (4.7.12)}
+				\begin{enumerate}
+					\item An instance of Entity is returned
+					\item The Entity’s GameObject has the name passed into EntityProvider.CreateGameObject().
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 45 (4.7.13)}
+				\begin{enumerate}
+					\item ShapeTypeNotFoundException must be thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 46 (4.7.14)}
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Area.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 47 (4.7.15)}
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Spotlight.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 48 (4.7.16)}
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Directional.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 49 (4.7.17)}
+				\begin{enumerate}
+					\item Object must be an instance of Entity
+					\item The Entity should contain a Light GameObject with LightType Point.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 50 (4.7.18)}
+				\begin{enumerate}
+					\item ArgumentException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 51 (4.7.19)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 52 (4.7.20)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 53 (4.7.21)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 54 (4.7.22)}
+				\begin{enumerate}
+					\item The canvas' camera.clearFlags equals CameraClearFlags.Skybox
+					\item The viewers' camera.clearFlags equals CameraClearFlags.Skybox.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 55 (4.7.23)}
+				\begin{enumerate}
+					\item The canvas' camera.clearFlags equals CameraClearFlags.SolidColor
+					\item The viewers' camera.clearFlags equals CameraClearFlags.SolidColor.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 56 (4.7.24)}
+				\begin{enumerate}
+					\item The canvas' camera.backgroundColor equals \#000
+					\item The viewers' camera.backgroundColor equals \#000.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 57 (4.7.25)}
+				\begin{enumerate}
+					\item The EntityPool’s size was larger than 0
+					\item The object fetched from the pool is the same stored
+					\item  The object fetched has the name "entity link goes here".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 58 (4.7.26)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 59 (4.7.27)}
+				\begin{enumerate}
+					\item Each Entity’s GameObject stored that was to be stored in EntityProvider.entityPool is checked against all the GameObjects in the scene
+					\item All GameObjects must match.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 60 (4.7.28)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 61 (4.8.1)}
+				\begin{enumerate}
+					\item Entity.GetGameObject() returns GameObject equal to go.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 62 (4.8.2)}
+				\begin{enumerate}
+					\item  NullReferenceException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 63 (4.8.3)}
+				\begin{enumerate}
+					\item Entity.getName() returns ”Pokemon”.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 64 (4.8.4)}
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 65 (4.8.5)}
+				\begin{enumerate}
+					\item The GameObject’s renderer’s material color is blue.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 66 (4.8.6)}
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 67 (4.8.7)}
+				\begin{enumerate}
+					\item No exceptions are thrown by the system or the Unity game engine.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 68 (4.8.8)}
+				\begin{enumerate}
+					\item NullReferenceException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 69 (4.9.1)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a CollectionFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 70 (4.9.2)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a CustomCollectionFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 71 (4.9.3)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ModelFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 72 (4.9.4)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a LightFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 73 (4.9.5)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ShapeFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 74 (4.9.6)}
+				\begin{enumerate}
+					\item Returns an instance of EntityFactory
+					\item Returns a ViewerFactory.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 75 (4.9.7)}
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 76 (4.9.8)}
+				\begin{enumerate}
+					\item Throws ArgumentException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 77 (4.9.9)}
+				\begin{enumerate}
+					\item Throws ArgumentException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 78 (4.10.1)}
+				\begin{enumerate}
+					\item Returns a List of strings, containing the lines of the CSV ﬁle.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 79 (4.10.2)}
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 80 (4.10.3)}
+				\begin{enumerate}
+					\item Throws FileNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 82 (4.11.1)}
+				\begin{enumerate}
+					\item The light component of the Entity’s GameObject returned is of type Spot.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 83 (4.11.2)}
+				\begin{enumerate}
+					\item The light component of the Entity’s GameObject returned is of type Area.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 84 (4.11.3)}
+				\begin{enumerate}
+					\item The light component of the Entity’s GameObject returned is of type Directional.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 85 (4.11.4)}
+				\begin{enumerate}
+					\item The light component of the Entity’s GameObject returned is of type Point.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 86 (4.11.5)}
+				\begin{enumerate}
+					\item Throws LightTypeNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 87 (4.11.6)}
+				\begin{enumerate}
+					\item Throws LightTypeNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 88 (4.11.7)}
+				\begin{enumerate}
+					\item Throws InvalidListLengthException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 89 (4.11.8)}
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Spot.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 91 (4.11.9)}
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Area.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 92 (4.11.10)}
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Directional.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 93 (4.11.11)}
+				\begin{enumerate}
+					\item Returns a basic Entity with a light component of type Point.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 94 (4.11.12)}
+				\begin{enumerate}
+					\item Throws LightTypeNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 95 (4.11.13)}
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 96 (4.11.14)}
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 97 (4.12.1)}
+				\begin{enumerate}
+					\item Returns an Entity instance.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 98 (4.12.2)}
+				\begin{enumerate}
+					\item Throws InvalidListLengthException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 99 (4.12.3)}
+				\begin{enumerate}
+					\item Throws ArgumentNullException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 100 (4.12.4)}
+				\begin{enumerate}
+					\item Throws DirectoryNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 101 (4.12.5)}
+				\begin{enumerate}
+					\item Throws FileNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 102 (4.12.5)}
+				\begin{enumerate}
+					\item Throws FileNotFoundException.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 103 (4.13.1)}
+				\begin{enumerate}
+					\item An Entity is returned
+					\item The Entity has a non-null GameObject within.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 104 (4.13.2)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 105 (4.13.3)}
+				\begin{enumerate}
+					\item InvalidListLengthException  is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 106 (4.14.1)}
+				\begin{enumerate}
+					\item The object returned is not null
+					\item An Entity’s GameObject’s location is Vector3(8, 10, 12)
+					\item The Entity has a GameObject named "RigidBodyFPSController".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 107 (4.14.2)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 108 (4.14.3)}
+				\begin{enumerate}
+					\item InvalidListLengthException  is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 109 (4.14.4)}
+				\begin{enumerate}
+					\item The object returned is not null
+					\item An Entity is returned
+					\item The Entity has a GameObject within, named "RigidBodyFPSController".
+				\end{enumerate}
+			\textbf{Result: }Pass.
+		\subsubsection{Test Case 110 (4.14.5)}
+				\begin{enumerate}
+					\item ArgumentNullException is thrown.
+				\end{enumerate}
+			\textbf{Result: }Pass.
+\subsection{Overview of Test Results}
+\subsection{Functional Requirements Test Results}
+
+\section{Other}
+
+\section{Conclusions and Recommendations}
+
+%
+% End of Document
+%
+\end{document}

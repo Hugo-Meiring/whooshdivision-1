@@ -1,0 +1,18 @@
+//SceneDescriptor
+SceneName, sceneName
+Animation, EntityLink, type, ---
+BackgroundColour, name, #col
+Light, EntityLink, parent, type, #col, x, y, z, range, intensity
+Colour, EntityLink, colourName, #col
+Collection, EntityLink, COLLECTION_TYPE, 500, posX, posY, posZ
+Viewer, EntityLink, xPos, yPos, zPos, xRotation, yRotation, zRotation
+Light, EntityLink, parentName, type, 0xColor, xpos, ypos, zpos, range, intensity
+Model, EntityLink, http://EntityFile.obj, posX, posY, posZ
+CustomCollection, EntityLink, C://InputFile.csv
+Shape, EntityLink, parent, type, 3D_FLAG, USE_GRAVITY, mass, xlen, ylen[, zlen], xpos, ypos, zpos
+Texture, EntityLink, BUMPMAP_FLAG, C://EntityFile.format
+Attributes, EntityLink, C://InputFile.csv, ---
+Variables, EntityLink, ---
+
+//SomeInputFile
+posX, posY, posZ, dimX, dimY, dimZ, #colour
