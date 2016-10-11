@@ -104,8 +104,19 @@ namespace EntityProvider
                             UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
                             UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                     //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
-                    UnityEngine.Object.Instantiate(original.getGameObject());
-                    taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
+                    //UnityEngine.Object.Instantiate(original.getGameObject());
+                    //taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
+
+                    //Vector3 vector;
+                    //do
+                    //{
+                    //    vector = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                    //        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
+                    //        UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
+                    //    original.getGameObject().transform.position.Set(vector.x, vector.y, vector.z);
+                    //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
+                    //UnityEngine.Object.Instantiate(original.getGameObject());
+                    //taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
                 }
             }
             else if (type == "row")
