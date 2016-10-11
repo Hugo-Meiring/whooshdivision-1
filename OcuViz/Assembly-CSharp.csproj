@@ -196,10 +196,6 @@
      <Compile Include="Assets\Scripts\EntityProvider\ShapeTypeNotFoundException.cs" />
      <Compile Include="Assets\Scripts\EntityProvider\Tokeniser.cs" />
      <Compile Include="Assets\Scripts\EntityProvider\ViewerFactory.cs" />
-     <Compile Include="Assets\Scripts\Explorer\Explorer.cs" />
-     <Compile Include="Assets\Scripts\Explorer\FileBrowser.cs" />
-     <Compile Include="Assets\Scripts\Explorer\GUILayoutx.cs" />
-     <Compile Include="Assets\Scripts\Explorer\LoadViaExplorer.cs" />
      <Compile Include="Assets\Scripts\FPS.cs" />
      <Compile Include="Assets\Scripts\Grow.cs" />
      <Compile Include="Assets\Scripts\MenuSelect.cs" />
