@@ -9,8 +9,8 @@
 *.idx
 *.aux
 
-
-*.meta
+#Checking if this is needed
+#*.meta
 
 #
 #   Unity
