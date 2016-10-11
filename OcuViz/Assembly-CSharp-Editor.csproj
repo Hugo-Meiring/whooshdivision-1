@@ -45,8 +45,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\CollectionFactoryUnitTest.cs" />
+     <Compile Include="Assets\Editor\CollectionUnitTest.cs" />
+     <Compile Include="Assets\Editor\ColourUnitTest.cs" />
+     <Compile Include="Assets\Editor\CommaTokeniserUnitTest.cs" />
      <Compile Include="Assets\Editor\ConcreteEntityPoolUnitTest.cs" />
      <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+     <Compile Include="Assets\Editor\CustomCollectionFactoryUnitTest.cs" />
+     <Compile Include="Assets\Editor\EntityProviderUnitTest.cs" />
+     <Compile Include="Assets\Editor\EntityUnitTest.cs" />
+     <Compile Include="Assets\Editor\FactoryShopUnitTest.cs" />
+     <Compile Include="Assets\Editor\FileReaderUnitTest.cs" />
+     <Compile Include="Assets\Editor\LightFactoryUnitTest.cs" />
+     <Compile Include="Assets\Editor\ModelFactoryUnitTest.cs" />
+     <Compile Include="Assets\Editor\ShapeFactoryUnitTest.cs" />
+     <Compile Include="Assets\Editor\ViewerFactoryUnitTest.cs" />
      <Compile Include="Assets\LeapMotion\Editor\CustomEditorBase.cs" />
      <Compile Include="Assets\LeapMotion\Editor\LeapHandControllerEditor.cs" />
      <Compile Include="Assets\LeapMotion\Editor\LeapImageRetrieverEditor.cs" />

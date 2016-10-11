@@ -882,7 +882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &108366206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6651,6 +6651,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8c21020ee219e2409bd34ffb4edefb6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &745453551 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012972524166, guid: a8c21020ee219e2409bd34ffb4edefb6,
+    type: 2}
+  m_PrefabInternal: {fileID: 745453550}
+--- !u!114 &745453552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745453551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ae4f067693aa742b4a08d5a18fc1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748232747
 GameObject:
   m_ObjectHideFlags: 0
@@ -11585,6 +11601,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012604136942, guid: 106e6ae0f68edd643924aad00c30d551,
+        type: 2}
+      propertyPath: PointerSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fdfdf8916fd9e3c41ac14dd14241c969,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 106e6ae0f68edd643924aad00c30d551, type: 2}
   m_IsPrefabParent: 0
