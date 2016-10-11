@@ -196,8 +196,9 @@ namespace EntityProvider
         /// </summary>
         public void Start()
         {
-            if (sceneNumber == 1) generateEntities("Assets\\CSV\\Scene1.csv");
-            else if (sceneNumber == 2) generateEntities("Assets\\CSV\\Scene2.csv");
+            string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
+            if (sceneNumber == 1) generateEntities(filePath);
+            else if (sceneNumber == 2) generateEntities(filePath);
         }
 
         /// <summary>
