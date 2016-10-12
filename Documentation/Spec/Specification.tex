@@ -150,6 +150,13 @@ u12031519
 		\begin{itemize}
 			\item The system must be developed using technologies which are operating system neutral. Windows x64 is specified as the priority target platform, but the client may in future choose to port the system to another operating system, and must be able to do so without having to rewrite system components.
 		\end{itemize}
+	
+	\subsubsection{Flexibility}
+	
+		\begin{itemize}
+			\item Visualisations must be renderable using either "hard-coded" objects fully specified in a scene descriptor file, or object blueprints using a scene descriptor with "variable" object properties that may be read from a specified input data file.
+			\item Input data files must be pluggable, provided they contain valid input data as required by the object blueprints listed in the scene descriptor file.
+		\end{itemize}
 \section{Architectural Requirements}	% Non-functional Requirements
 
 \subsection{Access and integration requirements}
