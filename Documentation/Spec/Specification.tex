@@ -135,6 +135,15 @@ u12031519
 			\item Visualisations produced must run at a constant framerate of 75fps or more.
 			\item Overall system latency between user input and display must be kept below a maximum of 20ms.
 		\end{itemize}
+	
+	\subsubsection{Reliability}
+	
+		\begin{itemize}
+			\item Since input data and scene descriptor files may optionally in large part be user- or externally generated, faulty input data and scene descriptor files must be detected and reported without system crash.
+			\item All expected user inputs for each visualisation must be clearly defined. Where an input is not declared as "expected", it must have no effect.
+			\item The results of rendering a visualisation from a scene descriptor and input data file must be predictable and repeatable. To this end, a complete manual must be provided describing the valid format and possible inputs of a scene descriptor file. 
+			\item Objects in a scene created via the scene editor must have the same properties in the actual visualisation as specified the scene editor.
+		\end{itemize}
 \section{Architectural Requirements}	% Non-functional Requirements
 
 \subsection{Access and integration requirements}
