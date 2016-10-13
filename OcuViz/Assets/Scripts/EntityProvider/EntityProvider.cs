@@ -31,6 +31,15 @@ namespace EntityProvider
         /// <param name="fileName">Scene Descriptor file</param>
         public void generateEntities(string fileName)
         {
+            GameObject parent = new GameObject();
+            GameObject[] root = SceneManager.GetActiveScene().GetRootGameObjects();
+
+            for (int i = 0; i < root.Length; ++i)
+            {
+                if (root[i].name == "InteractionManager")
+                    parent = root[i];
+            }
+
             scene = SceneManager.GetActiveScene();
             string sceneName = "";
             listRead = reader.getLines(fileName);
@@ -125,6 +134,7 @@ namespace EntityProvider
                 {
                     entityFactory = factoryShop.getFactory(list[0]);
                     newEntity = entityFactory.build(list);
+                    newEntity.getGameObject().transform.parent = parent.transform;
                     entityPool.store(newEntity);
                 }
             }
@@ -173,17 +183,33 @@ namespace EntityProvider
         {
             GameObject[] rootObjects = scene.GetRootGameObjects();
             GameObject canvas = new GameObject();
+            GameObject parent = new GameObject();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "Canvas")
                 {
                     canvas = rootObjects[i];
                 }
+                if (rootObjects[i].name == "InteractionManager")
+                {
+                    parent = rootObjects[i];
+                }
             }
             for (int i = 0; i < entityPool.size(); ++i)
             {
-                if(entityPool.get(i).getGameObject() != null)
-                    SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+                //if(entityPool.get(i).getGameObject() != null)
+                    //SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+            }
+
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name != "EventSystem" && rootObjects[i].name != "Canvas" && rootObjects[i].name != "_WorldPlane" && 
+                    rootObjects[i].name != "Directional light" && rootObjects[i].name != "World" && rootObjects[i].name != "InteractionManager" && 
+                    rootObjects[i].name != "UserController" && rootObjects[i].name != "UI" && rootObjects[i].name != "LeapEventSystem" && 
+                    rootObjects[i].name != "RigidBodyFPSController")
+                {
+                    rootObjects[i].transform.SetParent(parent.transform);
+                }
             }
 
             Camera camera = canvas.GetComponent<Camera>();
@@ -196,9 +222,16 @@ namespace EntityProvider
         /// </summary>
         public void Start()
         {
-            string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
-            if (sceneNumber == 1) generateEntities(filePath);
-            else if (sceneNumber == 2) generateEntities(filePath);
+            string filePath;
+            if (sceneNumber == 1)
+            {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
+                generateEntities(filePath);
+            }
+            else if (sceneNumber == 2) {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene2.csv");
+                generateEntities(filePath);
+            }
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EntityProvider
 {
@@ -72,11 +73,16 @@ namespace EntityProvider
         /// <returns>The collection rendered.</returns>
         public List<Entity> createCollection() //Collection, EntityLink, type, 500, posX, posY, posZ
         {
-            //handle transforms, etc.
-            //EntityProvider.renderScene() will call this to delegate building the entities
+            GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
+            GameObject parent = new GameObject();
 
-            //todo: add separation of pieces (no overlapping if they spawn from the same place) <- gravity?
-            //original.getGameObject().GetComponent<Rigidbody>().useGravity = true;
+            for(int i = 0; i < roots.Length; ++i)
+            {
+                if(roots[i].name == "InteractionManager")
+                {
+                    parent = roots[i];
+                }
+            }
 
             if (type == "stack")
             {
@@ -84,8 +90,10 @@ namespace EntityProvider
                 {
                     //manually copy construct gameobject
                     //failed to get all components
+                    original.getGameObject().transform.SetParent(parent.transform);
                     UnityEngine.Object.Instantiate(original.getGameObject());
                     original.getGameObject().transform.position = new Vector3(xPos, yPos * i, zPos);
+                    
                 }
             }
             else if (type == "random")
@@ -98,13 +106,16 @@ namespace EntityProvider
                 
                 for (int i = 0; i < dimension; ++i)
                 {
+
+                    original.getGameObject().transform.SetParent(parent.transform);
                     //do
                     //{
-                        original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
                             UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
                             UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                     //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
-                    //UnityEngine.Object.Instantiate(original.getGameObject());
+                    UnityEngine.Object.Instantiate(original.getGameObject());
+                    original.getGameObject().transform.SetParent(parent.transform);
                     //taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
 
                     //Vector3 vector;
@@ -158,6 +169,7 @@ namespace EntityProvider
                         {
                             UnityEngine.Object.Instantiate(original.getGameObject());
                             original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos + (oY * k), zPos + (oZ * j));
+                            original.getGameObject().transform.SetParent(parent.transform);
                         }
                     }
                 }
