@@ -8,7 +8,7 @@ Colour,Building,blue,#2222ff
 Texture,Moon,true,mars_surface
 Texture,Building,true,moon_surface
 Collection,block,stack,80,70,5,-150
-Collection,Building,random, 100,3000,300,3000
+Collection,Building,random,100,3000,300,3000
 Shape,balls,null,sphere,true,true,1,1,1,1,-30,2,-400
 Colour,balls,white,#ff000009
 Texture,balls,true,planet

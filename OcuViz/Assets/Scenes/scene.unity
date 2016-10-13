@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41112822, g: 0.5158202, b: 0.614363, a: 1}
+  m_IndirectSpecularColor: {r: 0.41107726, g: 0.51581556, b: 0.6143389, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ GameObject:
   - 64: {fileID: 85882253}
   - 23: {fileID: 85882252}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: _WorldPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +470,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &457773563
 GameObject:
   m_ObjectHideFlags: 0
