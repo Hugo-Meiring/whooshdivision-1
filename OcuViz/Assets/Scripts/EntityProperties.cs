@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace EntityProvider {
   
-    public class EntityProperties  {
+    public class EntityProperties : MonoBehaviour {
         private bool show = false;
         private GameObject obj = new GameObject();
         private Color matColor = Color.white;
