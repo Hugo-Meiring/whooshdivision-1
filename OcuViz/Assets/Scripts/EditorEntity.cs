@@ -115,6 +115,7 @@ namespace EntityProvider
         {
             GameObject temp = entity.getGameObject();
             bool done = false;
+            temp.AddComponent<SphereCollider>();
             if(placement == "Random")
             {
                 while (!done)
