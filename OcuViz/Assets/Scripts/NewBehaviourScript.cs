@@ -258,7 +258,7 @@ namespace EntityProvider
                     if(y == 0)
                         GUI.Label(new Rect(20, (10), 120, 30), new GUIContent("Shapes"));
 
-                    if(GUI.Button(new Rect(30, (y* 20 + 20), 120, 30), new GUIContent(objectShapes[y].getName())))
+                    if(GUI.Button(new Rect(30, (y* 20 + 20), 120, 30), new GUIContent(objectShapes[y].getName()),style))
                     {
                              properties.editProperties(objectShapes[y]);
                     }
