@@ -209,9 +209,24 @@ u12031519
 		
 		\begin{itemize}
 			\item \textbf{Performance Strategies:}\\
-				To meet the performance demand of graphics processing, it is suggested that an increase in processing power be used if performance doesn't meet the set requirements. Also, since graphical object creation is expensive, and often multiple similar objects are rendered in the same scene, resource re-use is to be implemented in the form of object pooling and caching.
+				In order to meet the demands of graphics processing, the framework used must support
+				\begin{itemize}
+					\item Resource-reuse using caching of objects which move in and out of the scene
+					\item Object pooling for duplicating repeated objects in the scene which have already been processed.
+				\end{itemize}
+				If the framework used doesn't provide native support for the abovementioned, it must support ways in which a custom implementation may be created. Furthermore, if processing still doesn't meet the set performance requirements, an increase in hardware processing power will be required.
 			\item \textbf{Reliability Strategies:}\\
-				In order to maintain reliable system behaviour, fault detection mechanisms must be put in place. Exception communication is to be used throughout the rendering process in the event of invalid input, with self-testing service providers ensuring the validity of input arguments and generated output. System based faults must be prevented by the use of a testing framework and test-driven development approaches.
+				To be able to develop a system with reliable and predictable behaviour, the framework used must support
+				\begin{itemize}
+					\item Fault detection mechanisms
+					\item Exception communication to be used throughout the rendering process, specifically in the event of invalid input
+					\item Self-testing service providers which ensure the validity of input arguments and generated output.
+				\end{itemize} 
+				System faults must be prevented as much as is reasonably possible using
+				\begin{itemize}
+					\item A test-driven development approach
+					\item A testing framework which integrates with the framework used in developing the system.
+				\end{itemize}
 			\item \textbf{Flexibility Strategies:}\\
 				Multiple forms of flexibility strategies must be employed:
 				
@@ -234,8 +249,6 @@ u12031519
 						\end{itemize}
 				\end{itemize}
 		\end{itemize}
-
-\newpage
 %
 %	End of Architectural Requirements
 %
