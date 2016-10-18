@@ -11,6 +11,7 @@
 \usepackage{makeidx}
 \usepackage{hyperref}
 \usepackage{verbatim}
+\usepackage{tabu}
 
 \hypersetup{
     colorlinks=true,
@@ -249,6 +250,37 @@ u12031519
 						\end{itemize}
 				\end{itemize}
 		\end{itemize}
+
+\section{Functional Requirements and Application Design}
+
+	\subsection{Use Case Prioritization}
+		\begin{tabu}{| X[l] | X[l] | X[l] |}
+			\hline
+			\textbf{Use case} & \textbf{Description} & \textbf{Priority}\\
+			\hline
+			Add object & Adding an object to the scene using a scene editor. & Critical\\
+			\hline
+			Edit object properties & Selecting an object in the scene object hierarchy and changing its properties, such as scale, texture, surface colour, etc. via the property inspector. & Critical\\
+			\hline
+			Add object to collection & Selecting an object in the scene object hierarchy and wrapping it in a collection via the collection selection menu. This collection becomes recognized as an object. & Critical\\
+			\hline
+			Move object & Selecting an object in the scene object hierarchy and repositioning it by mouse drag. & Important\\
+			\hline
+			Select input data & Indicating a new input data file and specifying its location via a directory open dialog. & Important\\
+			\hline
+			Bind input data & Selecting an object in the scene object hierarchy and indicating for each individual bound property that it is bound and to which input data variable to bind it. & Critical\\
+			\hline
+			Export scene & Exporting an editor-created scene to a .csv file. & Nice-to-have\\
+			\hline
+			Import scene & Importing a .csv file to be processed and rendered. & Critical\\
+			\hline
+			Parse instruction & Processing a line of input into an object which may be rendered in the scene. & Critical\\
+			\hline
+			Search model & Search for custom models in a remote model store. & Nice-to-have\\
+			\hline
+			Import model & Select a custom model from a remote model store and import it into the scene. & Nice-to-have\\
+			\hline
+		\end{tabu}
 %
 %	End of Architectural Requirements
 %
