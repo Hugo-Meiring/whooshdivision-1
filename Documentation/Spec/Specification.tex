@@ -11,7 +11,6 @@
 \usepackage{makeidx}
 \usepackage{hyperref}
 \usepackage{verbatim}
-\usepackage{tabu}
 
 \hypersetup{
     colorlinks=true,
@@ -252,35 +251,231 @@ u12031519
 		\end{itemize}
 
 \section{Functional Requirements and Application Design}
-
-	\subsection{Use Case Prioritization}
-		\begin{tabu}{| X[l] | X[l] | X[l] |}
-			\hline
-			\textbf{Use case} & \textbf{Description} & \textbf{Priority}\\
-			\hline
-			Add object & Adding an object to the scene using a scene editor. & Critical\\
-			\hline
-			Edit object properties & Selecting an object in the scene object hierarchy and changing its properties, such as scale, texture, surface colour, etc. via the property inspector. & Critical\\
-			\hline
-			Add object to collection & Selecting an object in the scene object hierarchy and wrapping it in a collection via the collection selection menu. This collection becomes recognized as an object. & Critical\\
-			\hline
-			Move object & Selecting an object in the scene object hierarchy and repositioning it by mouse drag. & Important\\
-			\hline
-			Select input data & Indicating a new input data file and specifying its location via a directory open dialog. & Important\\
-			\hline
-			Bind input data & Selecting an object in the scene object hierarchy and indicating for each individual bound property that it is bound and to which input data variable to bind it. & Critical\\
-			\hline
-			Export scene & Exporting an editor-created scene to a .csv file. & Nice-to-have\\
-			\hline
-			Import scene & Importing a .csv file to be processed and rendered. & Critical\\
-			\hline
-			Parse instruction & Processing a line of input into an object which may be rendered in the scene. & Critical\\
-			\hline
-			Search model & Search for custom models in a remote model store. & Nice-to-have\\
-			\hline
-			Import model & Select a custom model from a remote model store and import it into the scene. & Nice-to-have\\
-			\hline
-		\end{tabu}
+	
+	\subsection{Use Cases}
+		\begin{enumerate}
+			\item {\large \textbf{Add Object}}\\
+			Adding an object to the scene by selecting a shape from the creation editor-section and clicking the position in the scene where it should be placed.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+					\begin{itemize}
+						\item \textbf{Post-conditions:}
+							\begin{itemize}
+								\item Object is created
+								\item Object has default properties associated with the selected shape
+								\item Object is placed in scene at selected position.
+								\item Object is added to an object pool of its type.
+							\end{itemize}
+						%request and result data structures
+					\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Edit Object}}\\
+			Selecting an object in the scene object hierarchy and viewing and possibly editing its properties such as scale, texture, surface colour, etc. via the property inspector editor-section.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The selected object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item Object's properties are updated to reflect changes made.
+							\item Object's visual representation in scene editor reflects changed properties.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Wrap Object in Collection}}\\
+			Selecting an object in the scene object hierarchy and wrapping it in a collection via the collection selection menu in the creation editor-section. The collection becomes recognized as an object itself, parent to the object it wraps in the context of the scene object hierarchy.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The selected object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A collection of duplicate objects is visualised in the scene.
+							\item The collection object is created.
+							\item The collection is set as the subject object's parent in the scene object hierarchy.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Move Object}}\\
+			Selecting an object in the scene object hierarchy and repositioning it via mouse drag.
+			\begin{itemize}
+				\item \textbf{Priority:} Important
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The object's position properties are updated to reflect changes made.
+							\item Object's visual representation in scene editor reflects changed position.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Select Input Data}}\\
+			Indicating a new input data file via the creation editor-section and specifying its location via a directory open dialog.
+			\begin{itemize}
+				\item \textbf{Priority:} Important
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The input data file object is created.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Bind Input Data}}\\
+			In the same manner as use case 2, edit an object's properties to indicate, for each individual bound property, that it is bound and to which input data variable to bind it. 
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+					\begin{itemize}
+						\item The object exists in the scene.
+						\item The input file exists in the scene.
+						\item The input file contains column names matching variable names supplied by the user.
+					\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The object's bound property values are updated to match the input data values.
+							\item If more than one row of data is available for the input data supplied, duplicate objects are created for each row. Each duplicate object's bound property value corresponds to the row value of the input data.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Export Scene}}\\
+			Exporting an editor-created scene to a .csv file that may be read, edited, and rendered at a later stage by importing it.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item No scene errors must exist.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A .csv file must be created in the location specified, containing a scene descriptor that may be used to reproduce the scene that was exported.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Import Scene}}\\
+			Importing a user- or editor-created .csv file to be processed and rendered.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The .csv file must exist.
+							\item The .csv file format must conform to the scene descriptor format laid out in the user manual.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A scene is created.
+							\item The scene object hierarchy is populated and directly corresponds to the objects mentioned in the scene descriptor .csv file.
+							\item Objects created have properties which directly correspond to the objects mentioned in the scene descriptor .csv file.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Parse Instruction}}\\
+			Processing a line of input from the scene descriptor .csv file into an object which may be rendered in the scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The line is non-empty.
+							\item The line's format is error-free, conforming to the scene descriptor format laid out in the user manual.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item An object is created with properties based on the data values in the line.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Search Model}}\\
+			Perform a remote search for custom object models (in .obj format) which may be downloaded and included in a scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The search query must be non-empty.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A resulting set of models are returned from the remote model store which correspond to the search query, or a message is displayed that an error occurred in case of network error.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Import Model}}\\
+			Select a custom object model from a remote model store and import it, downloading it and making it possible to be included in the scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The model selected must be freely available.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The model's .obj file is downloaded to the scene's model folder.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{User Controls via LeapMotion}}\\
+			Using the LeapMotion controller, allow users to control aspects of a visualisation, such as movement around a scene or adjusting scale.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The input type is defined.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The visualisation reflects changes depending on what the user input is defined to do. 
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
 %
 %	End of Architectural Requirements
 %
