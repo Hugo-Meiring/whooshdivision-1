@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 
 namespace EntityProvider
 {
@@ -119,13 +120,22 @@ namespace EntityProvider
         /// </summary>
         /// <param name="path">The location of the texture to be added.</param>
         /// <param name="bumpMap">Indicates whether bump mapping should be enabled or not.</param>
-        public void addTexture(string path, bool bumpMap)
+        public void addTexture(string path)
         {
             if (obj.GetComponent<Renderer>() == null) obj.AddComponent<MeshRenderer>();
-            Texture texture = Resources.Load(path) as Texture;
-            //texture = new Texture2D(1, 1);
-            //accesss renderer
-            //obj.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Unlit/Texture"));
+            Texture2D texture = new Texture2D(1, 1);
+            if (path.Contains("http://") || path.Contains("https://") || path.Contains("www."))
+            {
+                WWW www = new WWW(path);
+                //yield return www;
+                texture = www.texture;
+            }
+            else
+            {
+                byte[] data = File.ReadAllBytes(path);
+                texture.LoadImage(data);
+            }
+
             if (texture != null)
             {
                 obj.GetComponent<MeshRenderer>().material.color = Color.white;

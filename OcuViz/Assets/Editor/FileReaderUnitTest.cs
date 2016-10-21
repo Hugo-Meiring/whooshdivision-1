@@ -9,7 +9,7 @@ public class FileReaderUnitTest {
 	[Test]
 	public void getLines_returnsLinesOfScene1()
 	{
-        var reader = new FileReader("Assets\\CSV\\Scene1.csv");
+        var reader = new FileReader("Assets\\StreamingAssets\\CSV\\Scene1.csv");
         var list = reader.getLines(("Assets\\CSV\\Scene1.csv"));
 
         Assert.IsInstanceOf<System.Collections.Generic.List<string>>(list);
@@ -20,7 +20,7 @@ public class FileReaderUnitTest {
     [ExpectedException(typeof(ArgumentNullException))]
     public void getLines_throwsArgumentNullException()
     {
-        var reader = new FileReader("Assets\\CSV\\Scene1.csv");
+        var reader = new FileReader("Assets\\StreamingAssets\\CSV\\Scene1.csv");
 
         Assert.IsInstanceOf<System.Collections.Generic.List<string>>(reader.getLines(null));
     }
