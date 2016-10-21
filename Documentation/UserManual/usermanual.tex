@@ -220,6 +220,11 @@ Scene-specific properties can be altered too. These are:
 \item BackgroundColour: this changes the background colour of the scene.
 \end{itemize}
 
+Lastly, in order to specify where the viewer should start their scene, the following is used:
+\begin{itemize}
+\item Viewer: this is used to determine the starting position and direction of the viewer in the scene.
+\end{itemize}
+
 \subsubsection{Shape}
 
 \textbf{Shape,EntityLink,type,GRAVITY,mass,xlen,ylen,zlen,xpos,ypos,zpos}\\\\
@@ -269,7 +274,7 @@ The line above is used to create a light in the scene.
 
 \subsection{Model}
 
-\textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ}
+\textbf{Model,EntityLink,http://EntityFile.obj,posX,posY,posZ,lenX,lenY,lenZ}
 
 The line above imports a model into the scene.
 
@@ -279,6 +284,9 @@ The line above imports a model into the scene.
 \textbf{posX:} The X position of the Model.\\
 \textbf{posY:} The Y position of the Model.\\
 \textbf{posZ:} The Z position of the Model.\\
+\textbf{lenX:} The X length of the Model.\\
+\textbf{lenY:} The Y length of the Model.\\
+\textbf{lenZ:} The Z length of the Model.\\
 
 \subsubsection{Colour}
 
@@ -305,7 +313,7 @@ This is the format of input to change an Entity's colour.
 Note: these values override the predefined colour and hexadecimal value next to it.
 \textbf{\#colour:} The colour in hexadecimal. This value will be used if colourName does not match any of the values above.
 
-\subsection{Texture}
+\subsubsection{Texture}
 
 \textbf{Texture,EntityLink,C://EntityFile.format}
 
@@ -353,7 +361,7 @@ The input file then has the following format:
 Note there is no EntityLink, as it has already been defined. There can also be multiple lines in the input file, and each line creates an Entity.
 
 \textbf{pos:} These are used to plot the point where the Entity will be placed.\\
-\textbf{dim:} These are used to change the dimensions of the prototype to whatever is needed according to the axis. The value of -1 will leave them as default (the prototype's dimension will be used in that case).
+\textbf{dim:} These are used to change the dimensions of the prototype to whatever is needed according to the axis. The value of -1 will leave them as default (the prototype's dimension will be used in that case).\\
 \textbf{\#colour:} This is used to change the colour of the Entity in question. A value of null will use the default colour provided by the prototype.
 
 \subsubsection{SceneName}
@@ -372,8 +380,18 @@ This gives the current scene a name.
 This changes the colour of the background in the scene.
 
 \textbf{BackgroundColour:} This specifies the type of action being done. This value never changes for all scene names.\\
-\textbf{colourName:} The name of the colour. If the name is skybox, then a tropical sky will be rendered, complete with clouds and and a sun. Else the colour will be created as with Colour.
+\textbf{colourName:} The name of the colour. If the name is skybox, then a tropical sky will be rendered, complete with clouds and and a sun. Else the colour will be created as with Colour.\\
 \textbf{\#colour:} The hexadecimal colour being added. See Colour for more info.
+
+\subsubsection{Viewer}
+
+\textbf{Viewer,xPos,yPos,zPos,yRotation}
+
+This is used to determine the starting position and direction of the viewer in the scene.
+
+\textbf{Viewer:} This specifies the type of action being done. This value never changes when dealing with the single viewer camera.\\
+\textbf{Pos:} These are used to plot the point where the viewer will be placed.\\
+\textbf{yRotation:} The rotation of the camera around the y-axis. This will determine the direction the camera is facing initially.
 
 \newpage
 
