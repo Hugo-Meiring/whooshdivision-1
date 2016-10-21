@@ -67,7 +67,7 @@ namespace EntityProvider
             }
 
             Entity entity = new Entity();
-            entity.setName(entityLink);
+            entity.setName("viewer");
             entity.setGameObject(viewer);
 
             return entity;
