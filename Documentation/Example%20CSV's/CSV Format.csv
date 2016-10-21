@@ -1,0 +1,14 @@
+//SceneDescriptor
+SceneName, sceneName
+BackgroundColour, name, #colour
+Colour, EntityLink, colourName, #colour
+Collection, EntityLink, type, dimension, posX, posY, posZ
+Viewer, xPos, yPos, zPos, yRotation
+Light, EntityLink, type, #colour, xpos, ypos, zpos, range, intensity
+Model, EntityLink, http://EntityFile.obj, posX, posY, posZ, lenX, lenY, lenZ
+CustomCollection, EntityLink, C://InputFile.csv
+Shape, EntityLink, type, USE_GRAVITY, mass, xlen, ylen, zlen, xpos, ypos, zpos
+Texture, EntityLink, C://EntityFile.format
+
+//InputFile.csv
+posX, posY, posZ, dimX, dimY, dimZ, #colour
