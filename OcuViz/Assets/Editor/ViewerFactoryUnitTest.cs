@@ -10,7 +10,7 @@ public class ViewerFactoryUnitTest {
 	public void build_returnsEntityConstainingViewer()
 	{
         var factory = new FactoryShop().getFactory("Viewer");
-        string[] list = { "", "viewer", "8", "10", "12", "0", "180", "0" };
+        string[] list = { "", "8", "10", "12", "180"};
 
         var entity = factory.build(list);
 

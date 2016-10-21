@@ -10,17 +10,16 @@ public class LightFactoryUnitTest {
 	public void build_buildsSpotlight()
 	{
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[10];
+        var list = new string[9];
         list[0] = "";
         list[1] = "not";
-        list[2] = "";
-        list[3] = "spot";
-        list[4] = "#000edd";
+        list[2] = "spot";
+        list[3] = "#000edd";
+        list[4] = "0";
         list[5] = "0";
         list[6] = "0";
         list[7] = "0";
         list[8] = "0";
-        list[9] = "0";
 
         var light = lightFactory.build(list);
         Assert.AreEqual(light.getGameObject().GetComponent<Light>().type, LightType.Spot);
@@ -30,17 +29,16 @@ public class LightFactoryUnitTest {
     public void build_buildsAreaLight()
     {
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[10];
+        var list = new string[9];
         list[0] = "";
         list[1] = "not";
-        list[2] = "";
-        list[3] = "area";
-        list[4] = "#000edd";
+        list[2] = "area";
+        list[3] = "#000edd";
+        list[4] = "0";
         list[5] = "0";
         list[6] = "0";
         list[7] = "0";
         list[8] = "0";
-        list[9] = "0";
 
         var light = lightFactory.build(list);
         Assert.AreEqual(light.getGameObject().GetComponent<Light>().type, LightType.Area);
@@ -50,17 +48,16 @@ public class LightFactoryUnitTest {
     public void build_buildsDirectionalLight()
     {
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[10];
+        var list = new string[9];
         list[0] = "";
         list[1] = "not";
-        list[2] = "";
-        list[3] = "directional";
-        list[4] = "#000edd";
+        list[2] = "directional";
+        list[3] = "#000edd";
+        list[4] = "0";
         list[5] = "0";
         list[6] = "0";
         list[7] = "0";
         list[8] = "0";
-        list[9] = "0";
 
         var light = lightFactory.build(list);
         Assert.AreEqual(light.getGameObject().GetComponent<Light>().type, LightType.Directional);
@@ -70,17 +67,16 @@ public class LightFactoryUnitTest {
     public void build_buildsPoint()
     {
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[10];
+        var list = new string[9];
         list[0] = "";
         list[1] = "not";
-        list[2] = "";
-        list[3] = "point";
-        list[4] = "#000edd";
+        list[2] = "point";
+        list[3] = "#000edd";
+        list[4] = "0";
         list[5] = "0";
         list[6] = "0";
         list[7] = "0";
         list[8] = "0";
-        list[9] = "0";
 
         var light = lightFactory.build(list);
         Assert.AreEqual(light.getGameObject().GetComponent<Light>().type, LightType.Point);
@@ -91,17 +87,16 @@ public class LightFactoryUnitTest {
     public void build_throwsLightTypeNotFoundException()
     {
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[10];
+        var list = new string[9];
         list[0] = "";
         list[1] = "not";
-        list[2] = "";
-        list[3] = "ray";
-        list[4] = "#000edd";
+        list[2] = "ray";
+        list[3] = "#000edd";
+        list[4] = "0";
         list[5] = "0";
         list[6] = "0";
         list[7] = "0";
         list[8] = "0";
-        list[9] = "0";
 
         var light = lightFactory.build(list);
         Assert.AreEqual(light.getGameObject().GetComponent<Light>().type, LightType.Area);
@@ -112,7 +107,7 @@ public class LightFactoryUnitTest {
     public void build_throwsInvalidListLengthException()
     {
         var lightFactory = new FactoryShop().getFactory("Light");
-        var list = new string[11];
+        var list = new string[10];
         list[0] = "";
         list[1] = "not";
         list[2] = "";

@@ -22,7 +22,7 @@ namespace EntityProvider
         public override Entity build(string[] list)
         {
             if (list == null) throw new ArgumentNullException();
-            if (list.Length != 8) throw new InvalidListLengthException();
+            if (list.Length != 5) throw new InvalidListLengthException();
 
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             GameObject viewer = new GameObject();
@@ -34,8 +34,8 @@ namespace EntityProvider
                 }
             }
 
-            viewer.transform.position = new Vector3(float.Parse(list[2]), float.Parse(list[3]), float.Parse(list[4]));
-            viewer.transform.Rotate(float.Parse(list[5]), float.Parse(list[6]), float.Parse(list[7]));
+            viewer.transform.position = new Vector3(float.Parse(list[1]), float.Parse(list[2]), float.Parse(list[3])); 
+            viewer.transform.Rotate(0, float.Parse(list[4]), 0);
 
             Entity entity = new Entity();
             entity.setName(list[1]);
@@ -67,7 +67,7 @@ namespace EntityProvider
             }
 
             Entity entity = new Entity();
-            entity.setName(entityLink);
+            entity.setName("viewer");
             entity.setGameObject(viewer);
 
             return entity;

@@ -116,7 +116,7 @@ namespace EntityProvider
 
                 else if (list[0] == "Texture")
                 {
-                    entityPool.fetch(list[1]).addTexture(list[3], bool.Parse(list[2]));
+                    entityPool.fetch(list[1]).addTexture(list[2]);
                 }
 
                 else if (list[0] == "Attributes")
