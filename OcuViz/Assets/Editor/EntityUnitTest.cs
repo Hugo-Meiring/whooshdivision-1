@@ -91,12 +91,12 @@ public class EntityUnitTest {
         entity.setGameObject(go);
         entity.setName(name);
 
-        entity.addTexture("moon_surface", true);
+        entity.addTexture("C:\\Users\\Vukile\\Documents\\COS301\\OcuViz\\whooshdivision\\OcuViz\\Assets\\Resources\\mars_surface.png");
     }
 
     [Test]
-    [ExpectedException(typeof(System.NullReferenceException))]
-    public void addTexture_throwsNullReferenceException()
+    [ExpectedException(typeof(System.IO.FileNotFoundException))]
+    public void addTexture_throwsFileNotFoundException()
     {
         var name = "Pokemon";
         var entity = new EntityProvider.Entity();
@@ -104,6 +104,6 @@ public class EntityUnitTest {
         entity.setGameObject(go);
         entity.setName(name);
 
-        entity.addTexture("blah", true);
+        entity.addTexture("C:\\Users\\Vukile\\Documents\\COS301\\OcuViz\\whooshdivision\\OcuViz\\Assets\\Resources\\blah.png");
     }
 }
