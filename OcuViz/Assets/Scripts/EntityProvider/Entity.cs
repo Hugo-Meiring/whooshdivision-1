@@ -120,7 +120,7 @@ namespace EntityProvider
         /// </summary>
         /// <param name="path">The location of the texture to be added.</param>
         /// <param name="bumpMap">Indicates whether bump mapping should be enabled or not.</param>
-        public void addTexture(string path, bool bumpMap)
+        public void addTexture(string path)
         {
             if (obj.GetComponent<Renderer>() == null) obj.AddComponent<MeshRenderer>();
             Texture2D texture = new Texture2D(1, 1);
