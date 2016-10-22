@@ -271,6 +271,9 @@ public class EntityProviderUnitTest
         var canvas = new GameObject();
         var camera = new Camera();
         var viewer = new GameObject();
+        Component[] userChildren;
+        Component[] vrChildren;
+        Component vrCamera = new Component();
 
         for (int i = 0; i < rootObjects.Length; ++i)
         {
@@ -282,12 +285,32 @@ public class EntityProviderUnitTest
             {
                 canvas = rootObjects[i];
             }
+            if (rootObjects[i].name == "UserController")
+            {
+                userChildren = rootObjects[i].GetComponentsInChildren<Component>();
+                for (int j = 0; j < userChildren.Length; ++j)
+                {
+                    if (userChildren[j].name == "VRLeapController")
+                    {
+                        vrChildren = userChildren[j].GetComponentsInChildren<Component>();
+                        for (int k = 0; k < vrChildren.Length; ++k)
+                        {
+                            if (vrChildren[k].name == "CenterEyeAnchor")
+                            {
+                                vrCamera = vrChildren[k];
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         camera = canvas.GetComponent<Camera>();
 
         Assert.AreEqual(camera.clearFlags, CameraClearFlags.Skybox);
         camera = viewer.GetComponentInChildren<Camera>();
+        Assert.AreEqual(camera.clearFlags, CameraClearFlags.Skybox);
+        camera = vrCamera.GetComponent<Camera>();
         Assert.AreEqual(camera.clearFlags, CameraClearFlags.Skybox);
     }
 
@@ -306,6 +329,9 @@ public class EntityProviderUnitTest
         var canvas = new GameObject();
         var camera = new Camera();
         var viewer = new GameObject();
+        Component[] userChildren;
+        Component[] vrChildren;
+        Component vrCamera = new Component();
 
         for (int i = 0; i < rootObjects.Length; ++i)
         {
@@ -317,12 +343,32 @@ public class EntityProviderUnitTest
             {
                 canvas = rootObjects[i];
             }
+            if (rootObjects[i].name == "UserController")
+            {
+                userChildren = rootObjects[i].GetComponentsInChildren<Component>();
+                for (int j = 0; j < userChildren.Length; ++j)
+                {
+                    if (userChildren[j].name == "VRLeapController")
+                    {
+                        vrChildren = userChildren[j].GetComponentsInChildren<Component>();
+                        for (int k = 0; k < vrChildren.Length; ++k)
+                        {
+                            if (vrChildren[k].name == "CenterEyeAnchor")
+                            {
+                                vrCamera = vrChildren[k];
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         camera = canvas.GetComponent<Camera>();
 
         Assert.AreEqual(camera.clearFlags, CameraClearFlags.SolidColor);
         camera = viewer.GetComponentInChildren<Camera>();
+        Assert.AreEqual(camera.clearFlags, CameraClearFlags.SolidColor);
+        camera = vrCamera.GetComponent<Camera>();
         Assert.AreEqual(camera.clearFlags, CameraClearFlags.SolidColor);
     }
     [Test]
@@ -340,6 +386,9 @@ public class EntityProviderUnitTest
         var canvas = new GameObject();
         var camera = new Camera();
         var viewer = new GameObject();
+        Component[] userChildren;
+        Component[] vrChildren;
+        Component vrCamera = new Component();
 
         for (int i = 0; i < rootObjects.Length; ++i)
         {
@@ -351,6 +400,24 @@ public class EntityProviderUnitTest
             {
                 canvas = rootObjects[i];
             }
+            if (rootObjects[i].name == "UserController")
+            {
+                userChildren = rootObjects[i].GetComponentsInChildren<Component>();
+                for (int j = 0; j < userChildren.Length; ++j)
+                {
+                    if (userChildren[j].name == "VRLeapController")
+                    {
+                        vrChildren = userChildren[j].GetComponentsInChildren<Component>();
+                        for (int k = 0; k < vrChildren.Length; ++k)
+                        {
+                            if (vrChildren[k].name == "CenterEyeAnchor")
+                            {
+                                vrCamera = vrChildren[k];
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         camera = canvas.GetComponent<Camera>();
@@ -358,6 +425,8 @@ public class EntityProviderUnitTest
         ColorUtility.TryParseHtmlString(colour, out color);
         Assert.AreEqual(camera.backgroundColor, color);
         camera = viewer.GetComponentInChildren<Camera>();
+        Assert.AreEqual(camera.backgroundColor, color);
+        camera = vrCamera.GetComponent<Camera>();
         Assert.AreEqual(camera.backgroundColor, color);
     }
 
