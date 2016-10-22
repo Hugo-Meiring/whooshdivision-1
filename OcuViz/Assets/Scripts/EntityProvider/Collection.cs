@@ -98,8 +98,8 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     original.getGameObject().transform.SetParent(parent.transform);
-                    UnityEngine.Object.Instantiate(original.getGameObject());
                     original.getGameObject().transform.position = new Vector3(xPos, yPos + (i * yDim), zPos);
+                    UnityEngine.Object.Instantiate(original.getGameObject());
                     
                 }
             }
@@ -143,8 +143,8 @@ namespace EntityProvider
                 {
                     //manually copy construct gameobject
                     //failed to get all components
-                    UnityEngine.Object.Instantiate(original.getGameObject());
                     original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos + (i * zDim));
+                    UnityEngine.Object.Instantiate(original.getGameObject());
                 }
             }
 
@@ -154,8 +154,8 @@ namespace EntityProvider
                 {
                     for (int j = 0; j < dimension; ++j)
                     {
-                        UnityEngine.Object.Instantiate(original.getGameObject());
                         original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos, zPos + (zDim * j));
+                        UnityEngine.Object.Instantiate(original.getGameObject());
                     }
                 }
             }
@@ -167,8 +167,8 @@ namespace EntityProvider
                     {
                         for (int j = 0; j < dimension; ++j)
                         {
-                            UnityEngine.Object.Instantiate(original.getGameObject());
                             original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos + (yDim * k), zPos + (zDim * j));
+                            UnityEngine.Object.Instantiate(original.getGameObject());
                             original.getGameObject().transform.SetParent(parent.transform);
                         }
                     }
@@ -190,6 +190,7 @@ namespace EntityProvider
                 xDim = original.getGameObject().transform.localScale.x;
                 yDim = original.getGameObject().transform.localScale.y;
                 zDim = original.getGameObject().transform.localScale.z;
+                
                 return original;
             }
             else throw new ArgumentNullException("entity", "The entity into the collection is null");
