@@ -57,17 +57,41 @@ namespace EntityProvider
                 else if (list[0] == "BackgroundColour")
                 {
                     GameObject[] rootObjects = scene.GetRootGameObjects();
+                    Component[] userChildren;
+                    Component[] vrChildren;
                     GameObject viewer = new GameObject();
+                    Component vrCamera = new Component();
                     for (int i = 0; i < rootObjects.Length; ++i)
                     {
                         if (rootObjects[i].name == "RigidBodyFPSController")
                         {
                             viewer = rootObjects[i];
                         }
+                        if (rootObjects[i].name == "UserController")
+                        {
+                            userChildren = rootObjects[i].GetComponentsInChildren<MonoBehaviour>();
+                            for(int j = 0; j < userChildren.Length; ++j)
+                            {
+                                if(userChildren[j].name == "VRLeapController")
+                                {
+                                    vrChildren = userChildren[j].GetComponentsInChildren<MonoBehaviour>();
+                                    for(int k = 0; k < vrChildren.Length; ++k)
+                                    {
+                                        if(vrChildren[k].name == "CenterEyeAnchor")
+                                        {
+                                            vrCamera = vrChildren[k];
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     if (list[1].ToLower() == "skybox")
                     {
                         Camera camera = viewer.GetComponentInChildren<Camera>();
+                        camera.clearFlags = CameraClearFlags.Skybox;
+
+                        camera = vrCamera.GetComponent<Camera>();
                         camera.clearFlags = CameraClearFlags.Skybox;
                     }
                     else
@@ -77,6 +101,10 @@ namespace EntityProvider
                         Color background = colour.getColour();
                         Camera camera = viewer.GetComponentInChildren<Camera>();
 
+                        camera.clearFlags = CameraClearFlags.SolidColor;
+                        camera.backgroundColor = background;
+
+                        camera = vrCamera.GetComponent<Camera>();
                         camera.clearFlags = CameraClearFlags.SolidColor;
                         camera.backgroundColor = background;
                     }
@@ -199,7 +227,9 @@ namespace EntityProvider
             {
                 //if(entityPool.get(i).getGameObject() != null)
                     //SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+                
             }
+            SceneManager.MoveGameObjectToScene(parent, scene);
 
             for (int i = 0; i < rootObjects.Length; ++i)
             {
@@ -277,8 +307,11 @@ namespace EntityProvider
         public void SetBackground(string colour)
         {
             GameObject[] rootObjects = scene.GetRootGameObjects();
+            Component[] userChildren;
+            Component[] vrChildren;
             GameObject viewer = new GameObject();
             GameObject canvas = new GameObject();
+            Component vrCamera = new Component();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "RigidBodyFPSController")
@@ -289,6 +322,24 @@ namespace EntityProvider
                 {
                     canvas = rootObjects[i];
                 }
+                if (rootObjects[i].name == "UserController")
+                {
+                    userChildren = rootObjects[i].GetComponentsInChildren<Component>();
+                    for (int j = 0; j < userChildren.Length; ++j)
+                    {
+                        if (userChildren[j].name == "VRLeapController")
+                        {
+                            vrChildren = userChildren[j].GetComponentsInChildren<Component>();
+                            for (int k = 0; k < vrChildren.Length; ++k)
+                            {
+                                if (vrChildren[k].name == "CenterEyeAnchor")
+                                {
+                                    vrCamera = vrChildren[k];
+                                }
+                            }
+                        }
+                    }
+                }
             }
             if (colour == "skybox")
             {
@@ -296,6 +347,9 @@ namespace EntityProvider
                 camera.clearFlags = CameraClearFlags.Skybox;
 
                 camera = viewer.GetComponentInChildren<Camera>();
+                camera.clearFlags = CameraClearFlags.Skybox;
+
+                camera = vrCamera.GetComponent<Camera>();
                 camera.clearFlags = CameraClearFlags.Skybox;
             }
             else
@@ -309,6 +363,11 @@ namespace EntityProvider
                 camera.backgroundColor = background;
 
                 camera = viewer.GetComponentInChildren<Camera>();
+
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = background;
+
+                camera = vrCamera.GetComponent<Camera>();
 
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = background;

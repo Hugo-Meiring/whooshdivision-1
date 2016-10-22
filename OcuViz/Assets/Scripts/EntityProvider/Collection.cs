@@ -49,6 +49,13 @@ namespace EntityProvider
         private float zPos;
 
         /// <summary>
+        /// The dimensions of the prototype Entity;
+        /// </summary>
+        private float xDim;
+        private float yDim;
+        private float zDim;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public Collection()
@@ -92,7 +99,7 @@ namespace EntityProvider
                     //failed to get all components
                     original.getGameObject().transform.SetParent(parent.transform);
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(xPos, yPos * i, zPos);
+                    original.getGameObject().transform.position = new Vector3(xPos, yPos + (i * yDim), zPos);
                     
                 }
             }
@@ -137,30 +144,23 @@ namespace EntityProvider
                     //manually copy construct gameobject
                     //failed to get all components
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos * i);
+                    original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos + (i * zDim));
                 }
             }
 
             else if (type == "2d")
             {
-                float oX = original.getGameObject().transform.localScale.x;
-                float oZ = original.getGameObject().transform.localScale.z;
-
                 for (int i = 0; i < dimension; ++i)
                 {
                     for (int j = 0; j < dimension; ++j)
                     {
                         UnityEngine.Object.Instantiate(original.getGameObject());
-                        original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos, zPos + (oZ * j));
+                        original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos, zPos + (zDim * j));
                     }
                 }
             }
             else if (type == "3d")
             {
-                float oX = original.getGameObject().transform.localScale.x;
-                float oY = original.getGameObject().transform.localScale.y;
-                float oZ = original.getGameObject().transform.localScale.z;
-
                 for (int k = 0; k < dimension; ++k)
                 {
                     for (int i = 0; i < dimension; ++i)
@@ -168,7 +168,7 @@ namespace EntityProvider
                         for (int j = 0; j < dimension; ++j)
                         {
                             UnityEngine.Object.Instantiate(original.getGameObject());
-                            original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos + (oY * k), zPos + (oZ * j));
+                            original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos + (yDim * k), zPos + (zDim * j));
                             original.getGameObject().transform.SetParent(parent.transform);
                         }
                     }
@@ -187,6 +187,9 @@ namespace EntityProvider
             if (entity != null)
             {
                 original = entity;
+                xDim = original.getGameObject().transform.localScale.x;
+                yDim = original.getGameObject().transform.localScale.y;
+                zDim = original.getGameObject().transform.localScale.z;
                 return original;
             }
             else throw new ArgumentNullException("entity", "The entity into the collection is null");
