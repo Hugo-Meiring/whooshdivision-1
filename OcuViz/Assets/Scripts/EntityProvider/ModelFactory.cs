@@ -10,7 +10,7 @@ namespace EntityProvider
         }
 
 
-        public override Entity build(String[] list)
+        public override Entity build(string[] list)
         {
             if (list == null) throw new ArgumentNullException("list", "The list of parameters to be built cannot be null.");
             if (list.Length != 9) throw new InvalidListLengthException();
@@ -20,12 +20,14 @@ namespace EntityProvider
             mesh = newMesh.ImportFile(list[2]);
 
             GameObject modelGameObject = new GameObject(list[1]);
-            MeshFilter renderer = modelGameObject.AddComponent<MeshFilter>();
+            MeshFilter filter = modelGameObject.AddComponent<MeshFilter>();
             modelGameObject.AddComponent<MeshRenderer>();
             modelGameObject.AddComponent<SkinnedMeshRenderer>();
-            modelGameObject.AddComponent<Rigidbody>();
             //modelGameObject.AddComponent<Phy>();
             modelGameObject.GetComponent<MeshFilter>().mesh = mesh;
+            modelGameObject.AddComponent<Rigidbody>();
+
+            modelGameObject.GetComponent<Renderer>().material.color = Color.black;
 
             modelGameObject.transform.position = new Vector3(float.Parse(list[3]), float.Parse(list[4]), float.Parse(list[5]));
             modelGameObject.transform.localScale = new Vector3(float.Parse(list[6]), float.Parse(list[7]), float.Parse(list[8]));

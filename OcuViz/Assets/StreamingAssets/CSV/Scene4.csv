@@ -1,0 +1,16 @@
+SceneName,moon
+BackgroundColour,white,#fff
+Shape,Moon,sphere,false,1000000,17000,17000,17000,0,63450,63450 
+Shape,block,cube,true,3,10,2,10,3,200,400 
+Light,light,ambient,#fbb,100,510,510,1000,1 
+Shape,Building,cube,true,50,50,250,50,400,100,250 
+Colour,Building,blue,#2222ff
+Texture,Moon,Assets\Resources\mars_surface.png 
+Texture,Building,Assets\Resources\mars_surface.png
+Collection,block,stack,80,70,5,-150
+Collection,Building,row,100,3000,300,3000 
+Shape,balls,sphere,true,1,1,1,1,-30,2,-400 
+Colour,balls,white,#ff000009
+Texture,balls,Assets\Resources\planet.jpg
+Collection,balls,3d,10,10,300,10
+Viewer,0,300,0,180
