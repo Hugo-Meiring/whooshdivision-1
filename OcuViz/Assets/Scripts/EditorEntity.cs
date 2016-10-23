@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,6 +16,7 @@ namespace EntityProvider
             if (selected == 0)
             {
                 temp = entityProvider.CreateGameObject("shape", "Cube", "cube");
+              
             }
             else if (selected == 1)
             {
@@ -27,7 +28,7 @@ namespace EntityProvider
             }
             else if (selected == 3)
             {
-                temp = entityProvider.CreateGameObject("shape", "Cyclinder", "cyclinder");
+                temp = entityProvider.CreateGameObject("shape", "Cylinder", "cylinder");
             }
             else if (selected == 4)
             {
@@ -61,10 +62,22 @@ namespace EntityProvider
             }
             else
             {
-                temp = entityProvider.CreateGameObject("collection", "ThreeD", "threeD");
+                temp = entityProvider.CreateGameObject("collection", "ThreeD", "3d");
 
             }
-            placeEntity(temp);
+
+            GameObject objCube = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+            //objCube = entityProvider.CreateGameObject("shape", "Cube", "cube").getGameObject();
+            temp.setGameObject(objCube);
+
+            Collection newtemp = (Collection)temp;
+            newtemp.setEntity(temp);
+            newtemp.setDimension(10);
+            //newtemp.setType("stack");
+          //  newtemp.setGameObject(objCube);
+            newtemp.createCollection();
+           // placeEntity(temp);
             entities.Add(temp);
             return temp;
         }
@@ -93,7 +106,7 @@ namespace EntityProvider
             }
 
             entities.Add(temp);
-            placeEntity(temp);
+           // placeEntity(temp);
             return temp;
         }
         public void setPlacement(string placement)
@@ -103,24 +116,45 @@ namespace EntityProvider
         }
         public Entity getModel(string path)
         {
-            Entity temp = new Entity();
-            temp = entityProvider.CreateGameObject("model", "Model", path);
-            placeEntity(temp);
-            entities.Add(temp);
-            return temp;
+            
+         
+            Mesh mesh = new Mesh();
+            ObjImporter newMesh = new ObjImporter();
+            mesh = newMesh.ImportFile(path);
+
+            GameObject modelGameObject = new GameObject("model");
+            MeshFilter renderer = modelGameObject.AddComponent<MeshFilter>();
+            modelGameObject.AddComponent<MeshRenderer>();
+            modelGameObject.AddComponent<SkinnedMeshRenderer>();
+            modelGameObject.AddComponent<Rigidbody>();
+            //modelGameObject.AddComponent<Phy>();
+            modelGameObject.GetComponent<MeshFilter>().mesh = mesh;
+
+            //modelGameObject.transform.position = new Vector3(), float.Parse(list[4]), float.Parse(list[5]));
+           // modelGameObject.transform.localScale = new Vector3(float.Parse(list[6]), float.Parse(list[7]), float.Parse(list[8]));
+            modelGameObject.GetComponent<Rigidbody>().useGravity = false;
+
+            Entity entity = new Entity();
+            entity.setName("model");
+            entity.setGameObject(modelGameObject);
+
+            return entity;
 
         }
 
         public void placeEntity(Entity entity)
         {
             GameObject temp = entity.getGameObject();
+         
             bool done = false;
             temp.AddComponent<SphereCollider>();
+
             if(placement == "Random")
             {
                 while (!done)
                 {
-                    Vector3 position = new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
+
+                    Vector3 position = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
                     float radius = temp.GetComponent<SphereCollider>().radius;
                     if (!(Physics.CheckSphere(position, radius)))
                     {
@@ -132,6 +166,7 @@ namespace EntityProvider
 
              }
         }
+
 
     }
 }
