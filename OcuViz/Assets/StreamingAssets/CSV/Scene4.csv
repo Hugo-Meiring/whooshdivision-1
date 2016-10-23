@@ -1,7 +1,6 @@
 SceneName, moon
 Background, white, #fff
 Light,light,null,ambient,#fbb,100,510,510,1000,1
-Viewer,viewer,0,0,0,0,180,0
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,0,0.5,0.5
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,0,0.5,2
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,0,0.5,3.5
@@ -10650,3 +10649,4 @@ Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,31.5,32,27.5
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,31.5,32,29
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,31.5,32,30.5
 Shape, block, null, cube, TRUE, TRUE, 1,1,1,1,31.5,32,32
+Viewer,viewer,0,0,0,0,180,0

@@ -8,6 +8,7 @@ public class Grow : MonoBehaviour
 
     // Drag and drop here the Voxel from the Scene
     // Used to create new instaces
+    [SerializeField]
     public GameObject player;
     public FirstPersonController controller;
     private bool m_isAxisInUse = false;
