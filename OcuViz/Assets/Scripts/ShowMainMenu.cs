@@ -40,16 +40,15 @@ public class ShowMainMenu : MonoBehaviour {
 
     public void backToMain()
     {
-        if (SceneManager.GetActiveScene().name == "menu")
-        {
-
-        }
-
-        else if (SceneManager.GetActiveScene().name == "scene")
+        if (SceneManager.GetActiveScene().name == "scene")
         {
             SceneManager.LoadScene(0);
             EntityProvider.EntityProvider.sceneNumber = 0;
             SceneManager.LoadScene(0);
+        }
+        else
+        {
+            StartCoroutine("toggleMenu");
         }
     }
 }
