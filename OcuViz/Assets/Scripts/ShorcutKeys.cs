@@ -19,7 +19,7 @@ public class ShorcutKeys : MonoBehaviour {
             if (SceneManager.GetActiveScene().name == "menu")
             {
                 EntityProvider.EntityProvider.sceneNumber = 2;
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(1);
             }
         }
 
@@ -28,7 +28,7 @@ public class ShorcutKeys : MonoBehaviour {
             if (SceneManager.GetActiveScene().name == "menu")
             {
                 EntityProvider.EntityProvider.sceneNumber = 3;
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(1);
             }
         }
 
