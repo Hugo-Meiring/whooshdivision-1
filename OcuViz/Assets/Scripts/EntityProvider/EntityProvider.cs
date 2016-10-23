@@ -23,6 +23,7 @@ namespace EntityProvider
         private List<string> listRead;
         protected Scene scene;
         public static int sceneNumber;
+        public static string csvPath;
 
         /// <summary>
         /// This method opens the input file and begins reading the content. This
@@ -264,6 +265,11 @@ namespace EntityProvider
             }
             else if (sceneNumber == 2) {
                 filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene2.csv");
+                generateEntities(filePath);
+            }
+            else if (csvPath != null)
+            {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, csvPath);
                 generateEntities(filePath);
             }
         }
