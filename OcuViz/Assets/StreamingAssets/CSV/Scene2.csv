@@ -1,0 +1,12 @@
+SceneName,notDefined
+BackgroundColour,skybox,#000
+Shape,block,cylinder,true,3,10,10,16,3,2,40 
+Light,light,directional,#fbb,0,51000,20,100000,1 
+Light,ambient,ambient,#fff,0,0,0,1000,0.7 
+Colour,block,white,#fff
+CustomCollection,block,C:\Users\Vukile\Documents\COS301\OcuViz\whooshdivision\OcuViz\Assets\StreamingAssets\CSV\Scene2Input1.csv 
+Model,David,Assets\Resources\david.obj,0,0,10,10,10,10
+Colour,David,grey,#666
+
+Texture,David,Assets\Resources\planet.jpg
+Collection,David,row,10,10,0,10

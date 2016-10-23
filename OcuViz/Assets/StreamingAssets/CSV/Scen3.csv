@@ -1,0 +1,5 @@
+SceneName,WalkTheMoon
+BackgroundColour,skybox,#123eef
+Shape,Moon,sphere,false,100000,1737000,1737000,1737000,0,2000000,0
+Texture,Moon,Assets\Resources\moon.jpg
+Viewer,0,3001000,0,0
