@@ -70,7 +70,7 @@ public class CustomCollectionFactoryUnitTest {
 
         list[0] = "0";
         list[1] = "name";
-        list[2] = "C:Assets\\CSV\\Scene2Input1.csv";
+        list[2] = "C:Assets\\StreamingAssets\\CSV\\Scene2Input1.csv";
 
         Assert.AreEqual(collectionFactory.setOriginal(entity, new CommaTokeniser(), new FileReader()), entity);
         Assert.IsInstanceOf<Entity>(collectionFactory.build(list));

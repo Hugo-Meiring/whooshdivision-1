@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EntityProvider
 {
@@ -48,6 +49,13 @@ namespace EntityProvider
         private float zPos;
 
         /// <summary>
+        /// The dimensions of the prototype Entity;
+        /// </summary>
+        private float xDim;
+        private float yDim;
+        private float zDim;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public Collection()
@@ -72,11 +80,16 @@ namespace EntityProvider
         /// <returns>The collection rendered.</returns>
         public List<Entity> createCollection() //Collection, EntityLink, type, 500, posX, posY, posZ
         {
-            //handle transforms, etc.
-            //EntityProvider.renderScene() will call this to delegate building the entities
+            GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
+            GameObject parent = new GameObject();
 
-            //todo: add separation of pieces (no overlapping if they spawn from the same place) <- gravity?
-            //original.getGameObject().GetComponent<Rigidbody>().useGravity = true;
+            for(int i = 0; i < roots.Length; ++i)
+            {
+                if(roots[i].name == "InteractionManager")
+                {
+                    parent = roots[i];
+                }
+            }
 
             if (type == "stack")
             {
@@ -84,8 +97,10 @@ namespace EntityProvider
                 {
                     //manually copy construct gameobject
                     //failed to get all components
+                    original.getGameObject().transform.SetParent(parent.transform);
+                    original.getGameObject().transform.position = new Vector3(xPos, yPos + (i * yDim), zPos);
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(xPos, yPos * i, zPos);
+                    
                 }
             }
             else if (type == "random")
@@ -98,14 +113,28 @@ namespace EntityProvider
                 
                 for (int i = 0; i < dimension; ++i)
                 {
+
+                    original.getGameObject().transform.SetParent(parent.transform);
                     //do
                     //{
-                        original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                    original.getGameObject().transform.position = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
                             UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
                             UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
                     //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
+                    original.getGameObject().transform.SetParent(parent.transform);
+                    //taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
+
+                    //Vector3 vector;
+                    //do
+                    //{
+                    //    vector = new Vector3(UnityEngine.Random.Range((xPos < 0) ? xPos : 0, (xPos < 0) ? 0 : xPos),
+                    //        UnityEngine.Random.Range((yPos < 0) ? yPos : 0, (yPos < 0) ? 0 : yPos),
+                    //        UnityEngine.Random.Range((zPos < 0) ? zPos : 0, (zPos < 0) ? 0 : zPos));
+                    //    original.getGameObject().transform.position.Set(vector.x, vector.y, vector.z);
+                    //} while (!taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)]);
+                    //UnityEngine.Object.Instantiate(original.getGameObject());
+                    //taken[(int)Math.Abs(original.getGameObject().transform.position.x)][(int)Math.Abs(original.getGameObject().transform.position.z)] = true;
                 }
             }
             else if (type == "row")
@@ -114,39 +143,33 @@ namespace EntityProvider
                 {
                     //manually copy construct gameobject
                     //failed to get all components
+                    original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos + (i * zDim));
                     UnityEngine.Object.Instantiate(original.getGameObject());
-                    original.getGameObject().transform.position = new Vector3(xPos, yPos, zPos * i);
                 }
             }
 
             else if (type == "2d")
             {
-                float oX = original.getGameObject().transform.localScale.x;
-                float oZ = original.getGameObject().transform.localScale.z;
-
                 for (int i = 0; i < dimension; ++i)
                 {
                     for (int j = 0; j < dimension; ++j)
                     {
+                        original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos, zPos + (zDim * j));
                         UnityEngine.Object.Instantiate(original.getGameObject());
-                        original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos, zPos + (oZ * j));
                     }
                 }
             }
             else if (type == "3d")
             {
-                float oX = original.getGameObject().transform.localScale.x;
-                float oY = original.getGameObject().transform.localScale.y;
-                float oZ = original.getGameObject().transform.localScale.z;
-
                 for (int k = 0; k < dimension; ++k)
                 {
                     for (int i = 0; i < dimension; ++i)
                     {
                         for (int j = 0; j < dimension; ++j)
                         {
+                            original.getGameObject().transform.position = new Vector3(xPos + (xDim * i), yPos + (yDim * k), zPos + (zDim * j));
                             UnityEngine.Object.Instantiate(original.getGameObject());
-                            original.getGameObject().transform.position = new Vector3(xPos + (oX * i), yPos + (oY * k), zPos + (oZ * j));
+                            original.getGameObject().transform.SetParent(parent.transform);
                         }
                     }
                 }
@@ -164,6 +187,10 @@ namespace EntityProvider
             if (entity != null)
             {
                 original = entity;
+                xDim = original.getGameObject().transform.localScale.x;
+                yDim = original.getGameObject().transform.localScale.y;
+                zDim = original.getGameObject().transform.localScale.z;
+                
                 return original;
             }
             else throw new ArgumentNullException("entity", "The entity into the collection is null");

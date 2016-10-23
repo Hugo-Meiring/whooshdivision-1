@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Leap.Unity.Interaction;
 
 namespace EntityProvider
 {
@@ -22,6 +23,7 @@ namespace EntityProvider
         private List<string> listRead;
         protected Scene scene;
         public static int sceneNumber;
+        public static string csvPath;
 
         /// <summary>
         /// This method opens the input file and begins reading the content. This
@@ -31,6 +33,15 @@ namespace EntityProvider
         /// <param name="fileName">Scene Descriptor file</param>
         public void generateEntities(string fileName)
         {
+            GameObject parent = new GameObject();
+            GameObject[] root = SceneManager.GetActiveScene().GetRootGameObjects();
+
+            for (int i = 0; i < root.Length; ++i)
+            {
+                if (root[i].name == "InteractionManager")
+                    parent = root[i];
+            }
+
             scene = SceneManager.GetActiveScene();
             string sceneName = "";
             listRead = reader.getLines(fileName);
@@ -48,17 +59,41 @@ namespace EntityProvider
                 else if (list[0] == "BackgroundColour")
                 {
                     GameObject[] rootObjects = scene.GetRootGameObjects();
+                    Component[] userChildren;
+                    Component[] vrChildren;
                     GameObject viewer = new GameObject();
+                    Component vrCamera = new Component();
                     for (int i = 0; i < rootObjects.Length; ++i)
                     {
                         if (rootObjects[i].name == "RigidBodyFPSController")
                         {
                             viewer = rootObjects[i];
                         }
+                        if (rootObjects[i].name == "UserController")
+                        {
+                            userChildren = rootObjects[i].GetComponentsInChildren<MonoBehaviour>();
+                            for(int j = 0; j < userChildren.Length; ++j)
+                            {
+                                if(userChildren[j].name == "VRLeapController")
+                                {
+                                    vrChildren = userChildren[j].GetComponentsInChildren<MonoBehaviour>();
+                                    for(int k = 0; k < vrChildren.Length; ++k)
+                                    {
+                                        if(vrChildren[k].name == "CenterEyeAnchor")
+                                        {
+                                            vrCamera = vrChildren[k];
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     if (list[1].ToLower() == "skybox")
                     {
                         Camera camera = viewer.GetComponentInChildren<Camera>();
+                        camera.clearFlags = CameraClearFlags.Skybox;
+
+                        camera = vrCamera.GetComponent<Camera>();
                         camera.clearFlags = CameraClearFlags.Skybox;
                     }
                     else
@@ -68,6 +103,10 @@ namespace EntityProvider
                         Color background = colour.getColour();
                         Camera camera = viewer.GetComponentInChildren<Camera>();
 
+                        camera.clearFlags = CameraClearFlags.SolidColor;
+                        camera.backgroundColor = background;
+
+                        camera = vrCamera.GetComponent<Camera>();
                         camera.clearFlags = CameraClearFlags.SolidColor;
                         camera.backgroundColor = background;
                     }
@@ -107,7 +146,7 @@ namespace EntityProvider
 
                 else if (list[0] == "Texture")
                 {
-                    entityPool.fetch(list[1]).addTexture(list[3], bool.Parse(list[2]));
+                    entityPool.fetch(list[1]).addTexture(list[2]);
                 }
 
                 else if (list[0] == "Attributes")
@@ -125,6 +164,7 @@ namespace EntityProvider
                 {
                     entityFactory = factoryShop.getFactory(list[0]);
                     newEntity = entityFactory.build(list);
+                    newEntity.getGameObject().transform.parent = parent.transform;
                     entityPool.store(newEntity);
                 }
             }
@@ -173,17 +213,38 @@ namespace EntityProvider
         {
             GameObject[] rootObjects = scene.GetRootGameObjects();
             GameObject canvas = new GameObject();
+            GameObject parent = new GameObject();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "Canvas")
                 {
                     canvas = rootObjects[i];
                 }
+                if (rootObjects[i].name == "InteractionManager")
+                {
+                    parent = rootObjects[i];
+                }
             }
             for (int i = 0; i < entityPool.size(); ++i)
             {
-                if(entityPool.get(i).getGameObject() != null)
-                    SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+                //if(entityPool.get(i).getGameObject() != null)
+                    //SceneManager.MoveGameObjectToScene(entityPool.get(i).getGameObject(), scene);
+                
+            }
+            SceneManager.MoveGameObjectToScene(parent, scene);
+
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name != "EventSystem" && rootObjects[i].name != "Canvas" && rootObjects[i].name != "_WorldPlane" && 
+                    rootObjects[i].name != "Directional light" && rootObjects[i].name != "World" && rootObjects[i].name != "InteractionManager" && 
+                    rootObjects[i].name != "UserController" && rootObjects[i].name != "UI" && rootObjects[i].name != "LeapEventSystem" && 
+                    rootObjects[i].name != "RigidBodyFPSController")
+                {
+                    if (rootObjects[i].GetComponent<Rigidbody>() == null) rootObjects[i].AddComponent<Rigidbody>();
+                    rootObjects[i].GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+                    rootObjects[i].AddComponent<InteractionBehaviour>();
+                    rootObjects[i].transform.SetParent(parent.transform);
+                }
             }
 
             Camera camera = canvas.GetComponent<Camera>();
@@ -196,9 +257,25 @@ namespace EntityProvider
         /// </summary>
         public void Start()
         {
-            string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
-            if (sceneNumber == 1) generateEntities(filePath);
-            else if (sceneNumber == 2) generateEntities(filePath);
+            string filePath;
+            if (sceneNumber == 1)
+            {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
+                generateEntities(filePath);
+            }
+            else if (sceneNumber == 2) {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene2.csv");
+                generateEntities(filePath);
+            }
+            else if(sceneNumber == 3)
+            {
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene3.csv");
+                generateEntities(filePath);
+            }
+            else if (csvPath != null && csvPath != "")
+            {
+                generateEntities(csvPath);
+            }
         }
 
         /// <summary>
@@ -244,8 +321,11 @@ namespace EntityProvider
         public void SetBackground(string colour)
         {
             GameObject[] rootObjects = scene.GetRootGameObjects();
+            Component[] userChildren;
+            Component[] vrChildren;
             GameObject viewer = new GameObject();
             GameObject canvas = new GameObject();
+            Component vrCamera = new Component();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "RigidBodyFPSController")
@@ -256,6 +336,24 @@ namespace EntityProvider
                 {
                     canvas = rootObjects[i];
                 }
+                if (rootObjects[i].name == "UserController")
+                {
+                    userChildren = rootObjects[i].GetComponentsInChildren<Component>();
+                    for (int j = 0; j < userChildren.Length; ++j)
+                    {
+                        if (userChildren[j].name == "VRLeapController")
+                        {
+                            vrChildren = userChildren[j].GetComponentsInChildren<Component>();
+                            for (int k = 0; k < vrChildren.Length; ++k)
+                            {
+                                if (vrChildren[k].name == "CenterEyeAnchor")
+                                {
+                                    vrCamera = vrChildren[k];
+                                }
+                            }
+                        }
+                    }
+                }
             }
             if (colour == "skybox")
             {
@@ -263,6 +361,9 @@ namespace EntityProvider
                 camera.clearFlags = CameraClearFlags.Skybox;
 
                 camera = viewer.GetComponentInChildren<Camera>();
+                camera.clearFlags = CameraClearFlags.Skybox;
+
+                camera = vrCamera.GetComponent<Camera>();
                 camera.clearFlags = CameraClearFlags.Skybox;
             }
             else
@@ -276,6 +377,11 @@ namespace EntityProvider
                 camera.backgroundColor = background;
 
                 camera = viewer.GetComponentInChildren<Camera>();
+
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = background;
+
+                camera = vrCamera.GetComponent<Camera>();
 
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = background;

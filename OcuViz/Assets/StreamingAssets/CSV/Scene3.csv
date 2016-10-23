@@ -1,0 +1,11 @@
+SceneName,Stars
+BackgroundColour,black,#000
+Light,areaLight,point,#ccc,0,0,0,100000,1
+Shape,Sun,sphere,false,1000,696,696,696,0,100,10000
+Colour,Sun,nocommon,#FDB813
+Shape,Sirius,sphere,false,1001,1191,1191,1191,-10000,100,0
+Colour,Sirius,idontknow,#b5c7ff
+Shape,Canopus,sphere,false,12001,49690,49690,49690,0,100,-10000
+Colour,Canopus,huh,#cbd9ff
+Shape,Rigil Kentaurus,sphere,false,1,854,854,854,10000,100,0
+Colour,Rigil Kentaurus,veryspecific,#fff5f2

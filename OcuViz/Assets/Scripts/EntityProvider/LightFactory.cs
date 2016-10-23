@@ -15,28 +15,28 @@ namespace EntityProvider
         /// </summary>
         /// <param name="list">List specifying how the Entity should be built.</param>
         /// <returns>A new Entity containing a new GameObject.</returns>
-		public override Entity build(String[] list) //Light, EntityLink, parent, type, #colour, x, y, z, range, intensity
-		{
+		public override Entity build(String[] list) //Light, EntityLink, type, #colour, xpos, ypos, zpos, range, intensity 
+        {
             if (list == null) throw new ArgumentNullException("list", "The list of parameters to be built cannot be null.");
-            if (list.Length != 10) throw new InvalidListLengthException();
-            if (list[3] != "spot" && list[3] != "area" && list[3] != "directional" && list[3] != "point" && list[3] != "ambient")
+            if (list.Length != 9) throw new InvalidListLengthException(); 
+            if (list[2] != "spot" && list[2] != "area" && list[2] != "directional" && list[2] != "point" && list[2] != "ambient") 
                 throw new LightTypeNotFoundException();
             
             typeName = list[0];
             GameObject lightGameObject = new GameObject(list[1]);
             Light lightComponent = lightGameObject.AddComponent<Light>();
-            Colour color = new Colour(list[1], list[4]);
+            Colour color = new Colour(list[1], list[3]);
             lightComponent.color = color.getColour();
-            if (list[3] == "spot") lightComponent.type = LightType.Spot;
-            else if (list[3] == "area") lightComponent.type = LightType.Area;
-            else if (list[3] == "directional") lightComponent.type = LightType.Directional;
-            else if (list[3] == "point") lightComponent.type = LightType.Point;
-            int x = int.Parse(list[5]);
-            int y = int.Parse(list[6]);
-            int z = int.Parse(list[7]);
+            if (list[2] == "spot") lightComponent.type = LightType.Spot; 
+            else if (list[2] == "area") lightComponent.type = LightType.Area; 
+            else if (list[2] == "directional") lightComponent.type = LightType.Directional; 
+            else if (list[2] == "point") lightComponent.type = LightType.Point; 
+            int x = int.Parse(list[4]); 
+            int y = int.Parse(list[5]); 
+            int z = int.Parse(list[6]);
             lightGameObject.transform.position = new Vector3(x, y, z);
-            lightComponent.range = float.Parse(list[8]);
-            lightComponent.intensity = float.Parse(list[9]);
+            lightComponent.range = float.Parse(list[7]); 
+            lightComponent.intensity = float.Parse(list[8]); 
 
             Entity newEntity = new Entity();
             newEntity.setName(list[1]);

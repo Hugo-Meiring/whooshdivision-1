@@ -25,7 +25,7 @@ public class InitializeScene : MonoBehaviour {
         {
             //loadingImage.SetActive(true);
             EntityProvider.EntityProvider.sceneNumber = 2;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
 
         else if (SceneManager.GetActiveScene().name == "scene")
@@ -36,7 +36,7 @@ public class InitializeScene : MonoBehaviour {
 
     public void openScene3()
     {
-        //EntityProvider.EntityProvider.sceneNumber = 3;
-        //SceneManager.LoadScene(3);
+        EntityProvider.EntityProvider.sceneNumber = 3;
+        SceneManager.LoadScene(1);
     }
 }

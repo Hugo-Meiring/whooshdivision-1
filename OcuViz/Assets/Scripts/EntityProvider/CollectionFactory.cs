@@ -22,7 +22,7 @@ namespace EntityProvider
             if (list == null) throw new ArgumentNullException("list", "The list passed to build collection is null.");
             if (list.Length != 7) throw new InvalidListLengthException();
             Collection collection = new Collection();
-            collection.setName(list[1]);
+            collection.setName(list[1] + " " + list[2] + " collection");
             collection.setType(list[2]);
             collection.setDimension(uint.Parse(list[3]));
             collection.setPos(float.Parse(list[4]), float.Parse(list[5]), float.Parse(list[6]));
@@ -41,7 +41,7 @@ namespace EntityProvider
             if (entityLink == null) throw new ArgumentNullException("entityLink", "The entity link cannot be null.");
             if (type == null) throw new ArgumentNullException("type", "The collection type cannot be null.");
             Collection collection = new Collection();
-            collection.setName(entityLink);
+            collection.setName(entityLink + " " + type + " collection");
             collection.setType(type);
             collection.setDimension(1);
             collection.setPos(0, 0, 0);
