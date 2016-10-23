@@ -58,7 +58,8 @@ namespace EntityProvider
             do
             {
                 currentLine = file.ReadLine();
-                if (currentLine != null && currentLine != "") toBeReturned.Add(currentLine);
+                if (currentLine != null && currentLine != "" && currentLine[0] != '/' && currentLine[1] != '/')
+                    toBeReturned.Add(currentLine);
             } while (currentLine != null);
 
             //file.Close();
