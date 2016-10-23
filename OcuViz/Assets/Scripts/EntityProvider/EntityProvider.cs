@@ -258,7 +258,24 @@ namespace EntityProvider
         public void Start()
         {
             string filePath;
-            if (sceneNumber == 1)
+            if(sceneNumber == -1)
+            {
+                //start the editor
+                scene = SceneManager.GetActiveScene();
+                GameObject[] rootObjects = scene.GetRootGameObjects();
+                GameObject canvas = new GameObject();
+
+                for(int i = 0; i < rootObjects.Length; ++i)
+                {
+                    if(rootObjects[i].name == "Canvas")
+                    {
+                        canvas = rootObjects[i];
+                    }
+                }
+
+                canvas.AddComponent<NewBehaviourScript>();
+            }
+            else if (sceneNumber == 1)
             {
                 filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
                 generateEntities(filePath);

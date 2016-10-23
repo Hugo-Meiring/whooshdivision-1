@@ -32,5 +32,14 @@ public class ShorcutKeys : MonoBehaviour {
             }
         }
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (SceneManager.GetActiveScene().name == "menu")
+            {
+                EntityProvider.EntityProvider.sceneNumber = -1;
+                SceneManager.LoadScene(1);
+            }
+        }
+
     }
 }
