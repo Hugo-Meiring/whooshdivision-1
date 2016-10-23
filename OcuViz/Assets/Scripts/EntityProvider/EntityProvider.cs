@@ -255,7 +255,7 @@ namespace EntityProvider
             string filePath;
             if (sceneNumber == 1)
             {
-                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene1.csv");
+                filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "CSV\\Scene4.csv");
                 generateEntities(filePath);
             }
             else if (sceneNumber == 2) {
