@@ -39,9 +39,9 @@ public class FPSDisplay : MonoBehaviour {
         float fps = 1.0f / deltaTime;
         float msec = deltaTime * 1000.0f;
 
-        if (fps >= 75)
+        if (fps >= 73)
             style.normal.textColor = green;
-        else if (fps >= 70)
+        else if (fps >= 60)
             style.normal.textColor = orange;
         else
             style.normal.textColor = red;

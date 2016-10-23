@@ -8,14 +8,10 @@ public class Grow : MonoBehaviour
 
     // Drag and drop here the Voxel from the Scene
     // Used to create new instaces
+    [SerializeField]
     public GameObject player;
-    public RigidbodyFirstPersonController controller;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    public FirstPersonController controller;
+    private bool m_isAxisInUse = false;
 
     // Update is called once per frame
     void Update()
@@ -30,26 +26,36 @@ public class Grow : MonoBehaviour
             player.transform.position = player.transform.position + new Vector3(0, -100, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
-            
+            controller.m_RunSpeed = controller.m_RunSpeed * 1.2f;
+            controller.m_WalkSpeed = controller.m_WalkSpeed * 1.2f;
             //player.transform.localScale += new Vector3(1.2F, 1.2F, 1.2F);
             //player.GetComponent<RigidbodyFirstPersonController>().height = player.GetComponent<CharacterController>().height * 1.2f;
-            controller.movementSettings.ForwardSpeed = controller.movementSettings.ForwardSpeed * 1.2F;
-            controller.movementSettings.BackwardSpeed = controller.movementSettings.BackwardSpeed * 1.2F;
-            controller.movementSettings.StrafeSpeed = controller.movementSettings.StrafeSpeed * 1.2F;
-            controller.movementSettings.RunMultiplier = controller.movementSettings.RunMultiplier * 1.2F;
-            controller.movementSettings.JumpForce = controller.movementSettings.JumpForce * 1.2F;
         }
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
+            controller.m_RunSpeed = controller.m_RunSpeed / 1.2f;
+            controller.m_WalkSpeed = controller.m_WalkSpeed / 1.2f;
             //player.transform.localScale -= new Vector3(1.2F, 1.2F, 1.2F);
             //player.GetComponent<CharacterController>().height = player.GetComponent<CharacterController>().height / 1.2f;
-            controller.movementSettings.ForwardSpeed = controller.movementSettings.ForwardSpeed / 1.2F;
-            controller.movementSettings.BackwardSpeed = controller.movementSettings.BackwardSpeed / 1.2F;
-            controller.movementSettings.StrafeSpeed = controller.movementSettings.StrafeSpeed / 1.2F;
-            controller.movementSettings.RunMultiplier = controller.movementSettings.RunMultiplier / 1.2F;
+        }
+
+        // Xbox Y button (3)
+        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+        {
+            player.transform.localScale += new Vector3(1.2f, 1.2f, 1.2f);
+            controller.m_JumpSpeed = controller.m_JumpSpeed * 1.2f;
+            controller.m_GravityMultiplier = controller.m_GravityMultiplier * 1.2f;
+        }
+
+        // Xbox A button (0)
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            player.transform.localScale -= new Vector3(1.2f, 1.2f, 1.2f);
+            controller.m_JumpSpeed = controller.m_JumpSpeed / 1.2f;
+            controller.m_GravityMultiplier = controller.m_GravityMultiplier / 1.2f;
         }
     }
 }
