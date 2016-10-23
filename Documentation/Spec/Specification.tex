@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{article}
 \addtolength{\oddsidemargin}{-1.cm}
 \addtolength{\textwidth}{2cm}
 \addtolength{\topmargin}{-2cm}
@@ -6,6 +6,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \makeindex
 
+\usepackage{rotating}
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{makeidx}
@@ -33,10 +34,11 @@
 % Upper part of the page       
 \includegraphics[width=1\textwidth]{./images/up-logo.jpg}\\[0.4cm]    
 \textsc{\LARGE Department of Computer Science}\\[1.5cm]
-\textsc{\Large Whoosh Division}\\[0.5cm]
+\textsc{\Large Whoosh Division}\\[0.3cm]
 % Title
 \HRule \\[0.4cm]
 { \huge \bfseries OcuViz - EpiUse Labs}\\[0.4cm]
+{ \huge Software Requirements Specification\\[0.4cm]and Technology Neutral Process Design }\\[0.4cm]
 \HRule \\[0.4cm]
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
@@ -79,7 +81,7 @@ Gerome Schutte
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
 \emph{} \\
-u--------
+u12031519
 \end{flushright}
 \end{minipage}
 \vfill
@@ -109,117 +111,381 @@ u--------
 \section{Vision}
 
 	% To-do
-	The vision of this project is to enable everyday people to use the power of virtual reality to grasp a sense of scale in manners that have usually been misunderstood. This would allow easy and feasible comparisons, compared to their real-world counterparts.
-
-\newpage
-%
-%	End of Vision
-%
-
-
-
-
-\section{Project Scope}		% (see scope specification for mini-project)
-
-	% To-do
-	A user can select a scenario they would like to visualise using Oculus Rift. Users can also specify their desired scene using inputs which will be generated and rendered for the user after objects are collected from a cloud store.
-
-\newpage
-%
-%	End of Project Scope
-%
-
-
-\section{Architectural Requirements}	% Non-functional Requirements
-
-\subsection{Access and integration requirements}
-
-\subsection{Quality requirements}
-Code needs to follow high development standards to produce professional code. Source code needs to be easily understood and maintainable.
-
-\subsubsection{Flexibility}
-The system needs to be able to accept a range of different object / model file types for both 2D and 3D files. CSV as well as other input data formats need to be supported.
-
-\subsubsection{Maintainability}
-	\begin{itemize}
-		\item The system should be modular and allow easy updating and fixing in the future.
-	\end{itemize}
-
-\subsubsection{Scalability}
-All major platforms should be catered for in support or aleast be relatively simple to port to. This includes:
-	\begin{itemize}
-		\item Windows
-		\item Mac
-		\item Linux		
-	\end{itemize}
-An added bonus would be:
-	\begin{itemize}
-		\item Android
-		\item iOS
-		\item Any other mobile platform (Windows mobile, etc)
-	\end{itemize}
+	OcuViz is a platform for creating rich visual representations of otherwise unintuitive data by using the power of virtual reality visualisation. It aims to address the time consuming task of working with 3D scenes and make it simple, by providing a format for specifying scenes that is concise, optimised for integration with pluggable data, and to be targeted at being easily usable by anyone with even the slightest development experience.\\\\
+	OcuViz would typically be deployed in research, data-auditing and demonstration environments, where visualisations may be used as a medium to bring data to life, for example, describing a scene that gives viewers an interactive walk-around view of a solar cataclysm rather than simply listing numbers representing objects and scale, or allowing viewers to encounter the world from the point of view of a tiny animal, or giving demonstrators the power to transport an audience to a previously unseen location.
 	
-\subsubsection{Performance requirements}
-To ensure the best experience and prevent any motion sequence meeting performance requirements is crucial.
-	\begin{itemize}
-		\item Consistent and high frame rate (75 or more fps or 13.33 ms max per frame)
-		\item Low latency between input and display
-	\end{itemize}
-Oculus Rift's requirements for CV1 (Consumer Version 1) has the following explicitely stated requirements:
-\begin{itemize}
-	\item NVIDIA GTX 970 / AMD 290 equivalent or greater.
-	\item Intel i5-4590 equivalent or greater.
-	\item 8GB+ RAM.
-	\item Compatible HDMI 1.3 video output.
-	\item 2x USB 3.0 ports.
-	\item Windows 7 SP1 or newer.
-\end{itemize}
-Working backwards, DK2 requires atleast a GTX 770 equivelant card or better owning to the fact that it has 25\% less pixels compared to the CV1. Also it only needs to run at 75 fps compared to 90 fps of the CV1.
-\subsubsection{Reliability}
-	\begin{itemize}
-		\item The system should be able to handle user input without crashing.
-	\end{itemize}
+\section{Background}
 
-\subsubsection{Security}
-Currently security is not part of the requirements, however this could change at any stage.
-
-\subsubsection{Auditability}
-
-\subsubsection{Testability}
-There should be proper unit tests which cover all the contracts of the project. All tests should be automated and allow for both mock objects and integration tests.
-
-\subsubsection{Usability}
-	\begin{itemize}
-		\item The system must have a simple and easy to use interface
-		\item The system should not require training before use
-		\item Designing scenarios should be simple
-	\end{itemize}
-
-\subsubsection{Integrability}
-
-\subsubsection{Deployability}
-
-\subsection{Architectural responsibilities}
-
-\subsection{Architecture constraints}
-
-\section{Architecture design?}
-	Is this needed?? Subsections include: architectural tactics, architectural components addressing architectural responsibilities, infrastructure, concepts and contraints for application components
+	EPI-Use Labs provides products aimed at getting the most out of data. The business prides itself in deploying products which allow users to sync, manipulate, extract and report various forms of data, whether through on-site or cloud-based solutions. The OcuViz project is a natural evolution of this focus. OcuViz enriches the data-reporting process for in-house developers at EPI-Use Labs and business clients alike, by adding new visual and interactive dimensions throughout their project life-cycles, whether used in product development as a tool to interact with test and debugging data, or as a value added feature in a complete solution.
 
 \newpage
+
+\section{Architecture Requirements}
+
+\subsection{Access Channel Requirements}
+	
+	The system should be accessible via a desktop client, with mobile clients specified as optional, but most likely not feasible due to the hardware requirements of graphics processing. The target platform is Windows x64, and as such a Windows x64 client should be provided in the form of a .exe file, complete with .exe install file.
+
+\subsection{Quality Requirements}
+	
+	\subsubsection{Performance}
+	
+		Stringent performance requirements are necessary, not only for novelty purposes, but due to the introduction of virtual reality. In order for visualisations running in virtual reality not to cause motion sickness in the viewer, the following minimum requirements need to be met:
+		
+		\begin{itemize}
+			\item Visualisations produced must run at a constant framerate of 75fps or more.
+			\item Overall system latency between user input and display must be kept below a maximum of 20ms.
+		\end{itemize}
+	
+	\subsubsection{Reliability}
+	
+		\begin{itemize}
+			\item Since input data and scene descriptor files may optionally in large part be user- or externally generated, faulty input data and scene descriptor files must be detected and reported without system crash.
+			\item All expected user inputs for each visualisation must be clearly defined. Where an input is not declared as "expected", it must have no effect.
+			\item The results of rendering a visualisation from a scene descriptor and input data file must be predictable and repeatable. 
+			\item Objects in a scene created via the scene editor must have the same properties in the actual visualisation as specified the scene editor.
+			\item All visible objects specified in the scene descriptor file or placed via the scene editor must be rendered in the visualisation.
+		\end{itemize}
+		
+	\subsubsection{Scalability}
+	
+		\begin{itemize}
+			\item The system must be developed using technologies which are operating system neutral. Windows x64 is specified as the priority target platform, but the client may in future choose to port the system to another operating system, and must be able to do so without having to rewrite system components.
+		\end{itemize}
+	
+	\subsubsection{Flexibility}
+	
+		\begin{itemize}
+			\item Visualisations must be renderable using either "hard-coded" objects fully specified in a scene descriptor file, or object blueprints specified in a scene descriptor file with "variable" object properties that may be read from an input data file.
+			\item Input data files must be pluggable, provided they contain valid input data as required by the object blueprints listed in the scene descriptor file.
+		\end{itemize}
+		
+	\subsubsection{Maintainability}
+	
+		\begin{itemize}
+			\item Version control must be used throughout the development process to create a centralised point auditing and review of code changes and simple rolling back to working system versions.
+			\item System components must be designed to be modular, following a separation of concerns approach, in order to ease pin-pointing of system errors and swapping out of existing system modules.
+		\end{itemize}
+		
+	\subsubsection{Cost}
+	
+		\begin{itemize}
+			\item The client has not budgeted for additional technologies or hardware, and as such, all technologies used in development must be free for use.
+		\end{itemize}
+	
+	\subsubsection{Usability}
+	
+		\begin{itemize}
+			\item  A complete manual must be provided describing the valid format and possible inputs of a scene descriptor file.
+			\item Only two creation contexts for visualisations are specified: importing a scene descriptor and optional input data files, and using the scene editor. Within these contexts, each use case must have a single point of access to contribute to use cases being intuitive and predictable.
+			\item A running visualisation must have clearly visible access to visualisation variable controls, such as viewer scale and position. 
+		\end{itemize}
+
+\newpage
+
+\subsection{Architecture Constraints}
+
+	\subsubsection{Required Technologies}
+		
+		\begin{itemize}
+			\item \textbf{Software:}
+				\begin{itemize}
+					\item Microsoft Windows 7 SP1 or newer x64 version operating system.
+				\end{itemize}
+			\item \textbf{Hardware:}
+				\begin{itemize}
+					\item Oculus Rift Virtual Reality Headset
+					\item Due to the processing requirements of virtual reality and the Oculus Rift, a host machine is required with:
+						\begin{itemize}
+							\item Graphics: NVIDIA GTX 970 / AMD 290 equivalent or greater
+							\item Processor: Intel i5-4590 equivalent or greater
+							\item 8GB+ RAM
+							\item HDMI 1.3 video output port
+							\item 2x USB 3.0 ports
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+	
+	\subsubsection{Architectural Strategies}
+		
+		\begin{itemize}
+			\item \textbf{Performance Strategies:}\\
+				In order to meet the demands of graphics processing, the framework used must support
+				\begin{itemize}
+					\item Resource-reuse using caching of objects which move in and out of the scene
+					\item Object pooling for duplicating repeated objects in the scene which have already been processed.
+				\end{itemize}
+				If the framework used doesn't provide native support for the abovementioned, it must support ways in which a custom implementation may be created. Furthermore, if processing still doesn't meet the set performance requirements, an increase in hardware processing power will be required.
+			\item \textbf{Reliability Strategies:}\\
+				To be able to develop a system with reliable and predictable behaviour, the framework used must support
+				\begin{itemize}
+					\item Fault detection mechanisms
+					\item Exception communication to be used throughout the rendering process, specifically in the event of invalid input
+					\item Self-testing service providers which ensure the validity of input arguments and generated output.
+				\end{itemize} 
+				System faults must be prevented as much as is reasonably possible using
+				\begin{itemize}
+					\item A test-driven development approach
+					\item A testing framework which integrates with the framework used in developing the system.
+				\end{itemize}
+			\item \textbf{Flexibility Strategies:}\\
+				Multiple forms of flexibility strategies must be employed:
+				
+				\begin{itemize}
+					\item Process Flexibility:
+						\begin{itemize}
+							\item A dedicated workflow controller must be responsible for overseeing the entire object parsing process.
+							\item Each system module must employ responsibility localization.
+						\end{itemize}
+					\item Service Provider Flexibility:
+						\begin{itemize}
+							\item System modules and service providers must be contracts based.
+							\item Objects of various predefined types must be created using abstract factories.
+							\item Dependency injection must be employed across the system.
+						\end{itemize}
+					\item Flexibility Support:
+						\begin{itemize}
+							\item Automated builds must be run on each code repository change using a continuous integration server.
+							\item Automated testing of all use cases must be run on each automated build.
+						\end{itemize}
+				\end{itemize}
+		\end{itemize}
+
+\section{Functional Requirements and Application Design}
+	
+	\subsection{Use Cases}
+		\begin{enumerate}
+			\item {\large \textbf{Add Object}}\\
+			Adding an object to the scene by selecting a shape from the creation editor-section and clicking the position in the scene where it should be placed.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+					\begin{itemize}
+						\item \textbf{Post-conditions:}
+							\begin{itemize}
+								\item Object is created
+								\item Object has default properties associated with the selected shape
+								\item Object is placed in scene at selected position.
+								\item Object is added to an object pool of its type.
+							\end{itemize}
+						%request and result data structures
+					\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Edit Object}}\\
+			Selecting an object in the scene object hierarchy and viewing and possibly editing its properties such as scale, texture, surface colour, etc. via the property inspector editor-section.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The selected object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item Object's properties are updated to reflect changes made.
+							\item Object's visual representation in scene editor reflects changed properties.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Wrap Object in Collection}}\\
+			Selecting an object in the scene object hierarchy and wrapping it in a collection via the collection selection menu in the creation editor-section. The collection becomes recognized as an object itself, parent to the object it wraps in the context of the scene object hierarchy.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The selected object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A collection of duplicate objects is visualised in the scene.
+							\item The collection object is created.
+							\item The collection is set as the subject object's parent in the scene object hierarchy.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Move Object}}\\
+			Selecting an object in the scene object hierarchy and repositioning it via mouse drag.
+			\begin{itemize}
+				\item \textbf{Priority:} Important
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The object exists in the scene.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The object's position properties are updated to reflect changes made.
+							\item Object's visual representation in scene editor reflects changed position.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Select Input Data}}\\
+			Indicating a new input data file via the creation editor-section and specifying its location via a directory open dialog.
+			\begin{itemize}
+				\item \textbf{Priority:} Important
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The input data file object is created.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Bind Input Data}}\\
+			In the same manner as use case 2, edit an object's properties to indicate, for each individual bound property, that it is bound and to which input data variable to bind it. 
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+					\begin{itemize}
+						\item The object exists in the scene.
+						\item The input file exists in the scene.
+						\item The input file contains column names matching variable names supplied by the user.
+					\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The object's bound property values are updated to match the input data values.
+							\item If more than one row of data is available for the input data supplied, duplicate objects are created for each row. Each duplicate object's bound property value corresponds to the row value of the input data.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Export Scene}}\\
+			Exporting an editor-created scene to a .csv file that may be read, edited, and rendered at a later stage by importing it.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item No scene errors must exist.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A .csv file must be created in the location specified, containing a scene descriptor that may be used to reproduce the scene that was exported.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Import Scene}}\\
+			Importing a user- or editor-created .csv file to be processed and rendered.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The .csv file must exist.
+							\item The .csv file format must conform to the scene descriptor format laid out in the user manual.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A scene is created.
+							\item The scene object hierarchy is populated and directly corresponds to the objects mentioned in the scene descriptor .csv file.
+							\item Objects created have properties which directly correspond to the objects mentioned in the scene descriptor .csv file.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Parse Instruction}}\\
+			Processing a line of input from the scene descriptor .csv file into an object which may be rendered in the scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Critical
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The line is non-empty.
+							\item The line's format is error-free, conforming to the scene descriptor format laid out in the user manual.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item An object is created with properties based on the data values in the line.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Search Model}}\\
+			Perform a remote search for custom object models (in .obj format) which may be downloaded and included in a scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The search query must be non-empty.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item A resulting set of models are returned from the remote model store which correspond to the search query, or a message is displayed that an error occurred in case of network error.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{Import Model}}\\
+			Select a custom object model from a remote model store and import it, downloading it and making it possible to be included in the scene.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The model selected must be freely available.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The model's .obj file is downloaded to the scene's model folder.
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+			
+			\item {\large \textbf{User Controls via LeapMotion}}\\
+			Using the LeapMotion controller, allow users to control aspects of a visualisation, such as movement around a scene or adjusting scale.
+			\begin{itemize}
+				\item \textbf{Priority:} Nice-to-have
+				\item \textbf{Service contract:}
+				\begin{itemize}
+					\item \textbf{Pre-conditions:}
+						\begin{itemize}
+							\item The input type is defined.
+						\end{itemize}
+					\item \textbf{Post-conditions:}
+						\begin{itemize}
+							\item The visualisation reflects changes depending on what the user input is defined to do. 
+						\end{itemize}
+					%request and result data structures
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
+	
+	\subsection{Domain Model}
+	The domain model for the EntityProvider package, which parses and renders objects, follows.
+	
+	\begin{sidewaysfigure}
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/EntityProvider.jpg}
+	\end{sidewaysfigure}
+	
 %
 %	End of Architectural Requirements
-%
-
-
-
-
-\section{Initial Design}  % proposed software architecture (this may evolve over the project)
-
-	% To-do
-
-\newpage
-%
-%	End of Initial Design
 %
 \end{document}

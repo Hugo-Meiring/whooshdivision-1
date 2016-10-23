@@ -13,9 +13,8 @@ public class ShowMainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetKey(KeyCode.JoystickButton6))
+	    if (Input.GetKeyDown(KeyCode.JoystickButton6) || (Input.GetKeyDown(KeyCode.Escape)))
         {
-            Application.Quit();
             StartCoroutine("toggleMenu");
         }
 	}
@@ -25,29 +24,31 @@ public class ShowMainMenu : MonoBehaviour {
         visibleGUI = !visibleGUI;
         gui.SetActive(visibleGUI);
         gui.transform.position = this.transform.position;
-        gui.transform.position = gui.transform.position + this.transform.forward * 1;
+        gui.transform.position = gui.transform.position + this.transform.forward * 1 + new Vector3(0, 0.75f, 0);
         gui.transform.rotation = this.transform.rotation;
         yield return new WaitForSeconds(0.1f);
     }
 
-    public void quit()
+    public void quitApplication()
     {
-        Application.Quit();
-        Application.ForceCrash(0);
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public void backToMain()
     {
-        if (SceneManager.GetActiveScene().name == "menu")
-        {
-
-        }
-
-        else if (SceneManager.GetActiveScene().name == "scene")
+        if (SceneManager.GetActiveScene().name == "scene")
         {
             SceneManager.LoadScene(0);
             EntityProvider.EntityProvider.sceneNumber = 0;
             SceneManager.LoadScene(0);
+        }
+        else
+        {
+            StartCoroutine("toggleMenu");
         }
     }
 }

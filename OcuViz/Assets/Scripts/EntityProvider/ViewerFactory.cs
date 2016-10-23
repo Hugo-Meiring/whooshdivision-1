@@ -26,16 +26,42 @@ namespace EntityProvider
 
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             GameObject viewer = new GameObject();
+            GameObject userController = new GameObject();
+            Component[] userChildren;
+            Component[] vrChildren;
+            Component vrCamera = new Component();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "RigidBodyFPSController")
                 {
                     viewer = rootObjects[i];
                 }
+                if (rootObjects[i].name == "UserController")
+                {
+                    userController = rootObjects[i];
+                    userChildren = rootObjects[i].GetComponentsInChildren<MonoBehaviour>();
+                    for (int j = 0; j < userChildren.Length; ++j)
+                    {
+                        if (userChildren[j].name == "VRLeapController")
+                        {
+                            vrChildren = userChildren[j].GetComponentsInChildren<MonoBehaviour>();
+                            for (int k = 0; k < vrChildren.Length; ++k)
+                            {
+                                if (vrChildren[k].name == "CenterEyeAnchor")
+                                {
+                                    vrCamera = vrChildren[k];
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             viewer.transform.position = new Vector3(float.Parse(list[1]), float.Parse(list[2]), float.Parse(list[3])); 
             viewer.transform.Rotate(0, float.Parse(list[4]), 0);
+
+            userController.transform.position = new Vector3(float.Parse(list[1]), float.Parse(list[2]), float.Parse(list[3]));
+            userController.transform.Rotate(0, float.Parse(list[4]), 0);
 
             Entity entity = new Entity();
             entity.setName(list[1]);
@@ -58,11 +84,32 @@ namespace EntityProvider
 
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             GameObject viewer = new GameObject();
+            Component[] userChildren;
+            Component[] vrChildren;
+            Component vrCamera = new Component();
             for (int i = 0; i < rootObjects.Length; ++i)
             {
                 if (rootObjects[i].name == "RigidBodyFPSController")
                 {
                     viewer = rootObjects[i];
+                }
+                if (rootObjects[i].name == "UserController")
+                {
+                    userChildren = rootObjects[i].GetComponentsInChildren<MonoBehaviour>();
+                    for (int j = 0; j < userChildren.Length; ++j)
+                    {
+                        if (userChildren[j].name == "VRLeapController")
+                        {
+                            vrChildren = userChildren[j].GetComponentsInChildren<MonoBehaviour>();
+                            for (int k = 0; k < vrChildren.Length; ++k)
+                            {
+                                if (vrChildren[k].name == "CenterEyeAnchor")
+                                {
+                                    vrCamera = vrChildren[k];
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
