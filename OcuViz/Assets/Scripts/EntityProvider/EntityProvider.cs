@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Leap.Unity.Interaction;
 
 namespace EntityProvider
 {
@@ -238,6 +239,9 @@ namespace EntityProvider
                     rootObjects[i].name != "UserController" && rootObjects[i].name != "UI" && rootObjects[i].name != "LeapEventSystem" && 
                     rootObjects[i].name != "RigidBodyFPSController")
                 {
+                    if (rootObjects[i].GetComponent<Rigidbody>() == null) rootObjects[i].AddComponent<Rigidbody>();
+                    rootObjects[i].GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+                    rootObjects[i].AddComponent<InteractionBehaviour>();
                     rootObjects[i].transform.SetParent(parent.transform);
                 }
             }
