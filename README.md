@@ -60,12 +60,12 @@ Firstly open Leap Motion controll panel and head to the `Troubleshooting` tab. I
 + Hugo Meiring
 
 # Technologies
-<img src="Documentation/Logos/tools/unity-logo.png" style="width:400px; display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity logo">
+<img src="Documentation/Logos/tools/unity-logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity logo">
 
-<img src="Documentation/Logos/tools/Oculus_VR_Logo.png" style="width:400px; display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Oculus Rift logo">
+<img src="Documentation/Logos/tools/Oculus_VR_Logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Oculus Rift logo">
 
-<img src="Documentation/Logos/tools/Leap_Motion_logo.png" style="width:400px; display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Leap Motion logo">
+<img src="Documentation/Logos/tools/Leap_Motion_logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Leap Motion logo">
 
-<img src="Documentation/Logos/tools/xbox.png" style="width:400px; display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Xbox logo">
+<img src="Documentation/Logos/tools/xbox.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Xbox logo">
 
-<img src="Documentation/Logos/tools/unity-cloud-build.jpeg" style="width:400px; display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity Cloud build logo">
+<img src="Documentation/Logos/tools/unity-cloud-build.jpeg" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity Cloud build logo">
