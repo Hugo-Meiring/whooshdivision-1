@@ -60,12 +60,12 @@ Firstly open Leap Motion controll panel and head to the `Troubleshooting` tab. I
 + Hugo Meiring
 
 # Technologies
-<img src="Documentation/Logos/tools/unity-logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity logo">
+<p align="center"><img src="Documentation/Logos/tools/unity-logo.png" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity logo"/></p>
 
-<img src="Documentation/Logos/tools/Oculus_VR_Logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Oculus Rift logo">
+<p align="center"><img src="Documentation/Logos/tools/Oculus_VR_Logo.png" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Oculus Rift logo"/></p>
 
-<img src="Documentation/Logos/tools/Leap_Motion_logo.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Leap Motion logo">
+<p align="center"><img src="Documentation/Logos/tools/Leap_Motion_logo.png" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Leap Motion logo"/></p>
 
-<img src="Documentation/Logos/tools/xbox.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Xbox logo">
+<p align="center"><img src="Documentation/Logos/tools/xbox.png" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Xbox logo"/></p>
 
-<img src="Documentation/Logos/tools/unity-cloud-build.jpeg" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity Cloud build logo">
+<p align="center"><img src="Documentation/Logos/tools/unity-cloud-build.jpeg" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity Cloud build logo"/></p>
