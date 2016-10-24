@@ -59,6 +59,10 @@ Firstly open Leap Motion controll panel and head to the `Troubleshooting` tab. I
 + Vukile Langa
 + Hugo Meiring
 
+## Client:
+
+<img src="Documentation/Logos/EPI-USE.png" width="400" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="EPI-USE labs logo">
+
 # Technologies
 <p align="center"><img src="Documentation/Logos/tools/unity-logo.png" width="350" style="display:block; margin: 80px; margin-left: auto; margin-right: auto;" alt="Unity logo"/></p>
 
