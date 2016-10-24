@@ -262,18 +262,7 @@ namespace EntityProvider
             {
                 //start the editor
                 scene = SceneManager.GetActiveScene();
-                GameObject[] rootObjects = scene.GetRootGameObjects();
-                GameObject canvas = new GameObject();
-
-                for(int i = 0; i < rootObjects.Length; ++i)
-                {
-                    if(rootObjects[i].name == "Canvas")
-                    {
-                        canvas = rootObjects[i];
-                    }
-                }
-
-                canvas.AddComponent<NewBehaviourScript>();
+                startEditor();
             }
             else if (sceneNumber == 1)
             {
@@ -426,6 +415,23 @@ namespace EntityProvider
         {
             scene = seen;
             return scene;
+        }
+
+        public void startEditor()
+        {
+            scene = SceneManager.GetActiveScene();
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            GameObject canvas = new GameObject();
+
+            for (int i = 0; i < rootObjects.Length; ++i)
+            {
+                if (rootObjects[i].name == "Canvas")
+                {
+                    canvas = rootObjects[i];
+                }
+            }
+
+            NewBehaviourScript editor = canvas.AddComponent<NewBehaviourScript>();
         }
     }
 }

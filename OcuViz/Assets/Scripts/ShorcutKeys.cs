@@ -36,8 +36,7 @@ public class ShorcutKeys : MonoBehaviour {
         {
             if (SceneManager.GetActiveScene().name == "menu")
             {
-                EntityProvider.EntityProvider.sceneNumber = -1;
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(3);
             }
         }
 
